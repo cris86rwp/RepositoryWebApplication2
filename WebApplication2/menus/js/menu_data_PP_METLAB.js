@@ -1,0 +1,33 @@
+Menu.prototype.cssFile = '/wap/menus/skins/officexp/officexp.css';
+
+Menu.prototype.cssFile = '/wap/menus/skins/officexp/officexp.css';
+var mN12= new Menu();var mL02= new Menu();var mA03= new Menu();var mT80= new Menu();var mT01= new Menu();var mL03= new Menu();var mL50= new Menu();var mT16= new Menu();var mT12= new Menu();var mT81= new Menu();var mT86= new Menu();var mL04= new Menu();
+var tmp;
+mA03.add(tmp = new MenuItem("Add Employee","/wap/ppms/miscEDs/miscErngDeductionNoting.aspx?mode=add"));tmp.mnemonic = '';mA03.add(tmp = new MenuItem("Modify Employee","/wap/ppms/miscEDs/miscErngDeductionNoting.aspx?mode=edit"));tmp.mnemonic = '';mA03.add(tmp = new MenuItem("Delete Employee","/wap/ppms/miscEDs/miscErngDeductionNoting.aspx?mode=delete"));tmp.mnemonic = '';mA03.add(tmp = new MenuItem("View Noting","/wap/ppms/miscEDs/miscErngDeductionNotingQuery.aspx"));tmp.mnemonic = '';mA03.add(tmp = new MenuItem("Print Noting","/wap/ppms/Reports/Formats/miscEDs/miscEdPrintNoting.aspx?mode=miscEdNoting.rpt"));tmp.mnemonic = '';mA03.add(tmp = new MenuItem("Generate Memorandum","/wap/ppms/miscEDs/miscEDOffOrdNumber.aspx"));tmp.mnemonic = '';mA03.add(tmp = new MenuItem("Print Memorandum","/wap/ppms/Reports/Formats/miscEds/miscEdPrintMemorandum.aspx?mode=miscEdMemorandum.rpt"));tmp.mnemonic = '';mA03.add(tmp = new MenuItem("Print Unposted","/wap/ppms/Reports/Formats/miscEds/miscEdUnPostedEntries.aspx?mode=miscEdUnPosted.rpt"));tmp.mnemonic = '';mL02.add(tmp = new MenuItem("Leave Application",null,null, mL03) );
+tmp.mnemonic = '';
+mL02.add(tmp = new MenuItem("Leave/Absence",null,null, mL50) );
+tmp.mnemonic = '';
+mN12.add(tmp = new MenuItem("Create Noting","/wap/ppms/hoer/creatingHoerNoting.aspx"));tmp.mnemonic = '';mN12.add(tmp = new MenuItem("Add Employee","/wap/ppms/hoer/miscAttandance.aspx?mode=add"));tmp.mnemonic = '';mN12.add(tmp = new MenuItem("Modify","/wap/ppms/hoer/miscAttandance.aspx?mode=edit"));tmp.mnemonic = '';mN12.add(tmp = new MenuItem("View","/wap/ppms/hoer/miscAttandance.aspx?mode=view"));tmp.mnemonic = '';mN12.add(tmp = new MenuItem("Delete","/wap/ppms/hoer/miscAttandance.aspx?mode=delete"));tmp.mnemonic = '';mN12.add(tmp = new MenuItem("Print Noting","/wap/ppms/hoer/printNotingHoer.aspx"));tmp.mnemonic = '';mN12.add(tmp = new MenuItem("Generate Memorandum","/wap/ppms/hoer/MemoGeneration.aspx"));tmp.mnemonic = '';mT01.add(tmp = new MenuItem("TA City Classes",null,null, mT16) );
+tmp.mnemonic = '';
+mT01.add(tmp = new MenuItem("TA Advance",null,null, mT12) );
+tmp.mnemonic = '';
+mT01.add(tmp = new MenuItem("Add",""));tmp.mnemonic = '';mT01.add(tmp = new MenuItem("Edit",""));tmp.mnemonic = '';mT01.add(tmp = new MenuItem("Create Noting","/wap/ppms/ta/createNotingForTA.aspx"));tmp.mnemonic = '';mT01.add(tmp = new MenuItem("Delete",""));tmp.mnemonic = '';mT01.add(tmp = new MenuItem("View",""));tmp.mnemonic = '';mT01.add(tmp = new MenuItem("Print Noting","/wap/ppms/ta/taPrintNoting.aspx"));tmp.mnemonic = '';mT01.add(tmp = new MenuItem("Generate Memorandum","/wap/ppms/ta/taMemorandum.aspx"));tmp.mnemonic = '';mT01.add(tmp = new MenuItem("Print Memorandum","/wap/ppms/ta/taPrintMemorandum.aspx"));tmp.mnemonic = '';mT01.add(tmp = new MenuItem("Posting to Payroll","/wap/ppms/ta/taPosting.aspx?post=P"));tmp.mnemonic = '';mT01.add(tmp = new MenuItem("Posting to Supplementary","/wap/ppms/ta/taPosting.aspx?post=S"));tmp.mnemonic = '';mT80.add(tmp = new MenuItem("TA Journal entry",null,null, mT81) );
+tmp.mnemonic = '';
+mT80.add(tmp = new MenuItem("Contingency/conveyance",null,null, mT86) );
+tmp.mnemonic = '';
+mT80.add(tmp = new MenuItem("TA Journal/Contingency printing","/wap/ppms/ta/RptTravellingAllowance.aspx"));tmp.mnemonic = '';mT81.add(tmp = new MenuItem("Add","/wap/ppms/ta/ta1.aspx?mode=add"));tmp.mnemonic = '';mT81.add(tmp = new MenuItem("Delete","/wap/ppms/ta/editTA.aspx?mode=delete"));tmp.mnemonic = '';mT86.add(tmp = new MenuItem("Add","/wap/ppms/ta/ta2.aspx?mode=add"));tmp.mnemonic = '';mT86.add(tmp = new MenuItem("Delete","/wap/ppms/ta/deleteTA2.aspx?mode=delete"));tmp.mnemonic = '';mL03.add(tmp = new MenuItem("Application Posting",null,null, mL04) );
+tmp.mnemonic = '';
+mL03.add(tmp = new MenuItem("Posting Leave Sanction","/wap/ppms/leave/postSanctionToApplicationForLeave.aspx?mode=post"));tmp.mnemonic = '';mL04.add(tmp = new MenuItem("Add","/wap/ppms/leave/leaveApplication.aspx?mode=add&task_id=L05"));tmp.mnemonic = '';mL04.add(tmp = new MenuItem("Application Printing","/wap/ppms/Reports/formats/ApplicationForms/rptLeaveApplication.aspx?mode=rptLeaveApplication"));tmp.mnemonic = '';mL50.add(tmp = new MenuItem("GenerateMemorandum","/wap/ppms/leave/leaveMemorandum.aspx"));tmp.mnemonic = '';mL50.add(tmp = new MenuItem("Print Memorandum","/wap/ppms/leave/rptLeaveMemorandum.aspx?mode=memorandum"));tmp.mnemonic = '';mL50.add(tmp = new MenuItem("CheckList(Leave posting)","/wap/ppms/Reports/formats/leave/leavePostingCheckList.aspx?mode=leaveAbsenseCheckList.rpt"));tmp.mnemonic = '';mL50.add(tmp = new MenuItem("Leave Query","/wap/ppms/leave/leaveQuery.aspx"));tmp.mnemonic = '';mT12.add(tmp = new MenuItem("Post Application","/wap/ppms/ta/applicationforTAadvance.aspx"));tmp.mnemonic = '';mT12.add(tmp = new MenuItem("Sanction Postings","/wap/ppms/ta/posttaadvancesanctioned.aspx"));tmp.mnemonic = '';mT12.add(tmp = new MenuItem("TA Advance Noting Generation","/wap/ppms/ta/taadvancenoting.aspx"));tmp.mnemonic = '';mT16.add(tmp = new MenuItem("Add","/wap/ppms/ta/addclassofcities.aspx?mode=add"));tmp.mnemonic = '';mT16.add(tmp = new MenuItem("Edit","/wap/ppms/ta/editClassOfCities.aspx.aspx?mode=edit"));tmp.mnemonic = '';mT16.add(tmp = new MenuItem("Delete","/wap/ppms/ta/editClassOfCities.aspx.aspx?mode=delete"));tmp.mnemonic = '';mT16.add(tmp = new MenuItem("View","/wap/ppms/ta/addclassofcities.aspx?mode=view"));tmp.mnemonic = '';
+var menuBar = new MenuBar();
+menuBar.add( tmp = new MenuButton("HOER OT/NDA", mN12) );
+tmp.mnemonic = '';
+menuBar.add( tmp = new MenuButton("Leave Accounting", mL02) );
+tmp.mnemonic = '';
+menuBar.add( tmp = new MenuButton("Misc. E/Ds", mA03) );
+tmp.mnemonic = '';
+menuBar.add( tmp = new MenuButton("POST T.A./CONVAYANCE", mT80) );
+tmp.mnemonic = '';
+menuBar.add( tmp = new MenuButton("Travel Allowance", mT01) );
+tmp.mnemonic = '';
+
+menuBar.write();

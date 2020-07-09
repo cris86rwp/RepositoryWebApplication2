@@ -1,0 +1,3324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SSDTUnitTestPath Condition="'$(SSDTUnitTestPath)' == ''">$(VsInstallRoot)\Common7\IDE\Extensions\Microsoft\SQLDB</SSDTUnitTestPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SSDTPath Condition="'$(SSDTPath)' == ''">$(VsInstallRoot)\Common7\IDE\Extensions\Microsoft\SQLDB\DAC\130</SSDTPath>
+  </PropertyGroup>
+  <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>
+    </SchemaVersion>
+    <ProjectGuid>{7BF8CB0B-5A06-4B0F-B6F7-F9740BFD2E2D}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>WebApplication2</RootNamespace>
+    <AssemblyName>WebApplication2</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MyType>Custom</MyType>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>WebApplication2.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>WebApplication2.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationBlocks.Data, Version=1.0.917.17496, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\App Backup\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Authorization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Authorization.1.0.0-rc1-final\lib\net451\Microsoft.AspNet.Authorization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.FileProviders.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.FileProviders.Abstractions.1.0.0-rc1-final\lib\net451\Microsoft.AspNet.FileProviders.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Hosting.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Hosting.Abstractions.1.0.0-rc1-final\lib\net451\Microsoft.AspNet.Hosting.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Http.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Http.Abstractions.1.0.0-rc1-final\lib\net451\Microsoft.AspNet.Http.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Http.Extensions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Http.Extensions.1.0.0-rc1-final\lib\net451\Microsoft.AspNet.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Http.Features, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Http.Features.1.0.0-rc1-final\lib\net451\Microsoft.AspNet.Http.Features.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Mvc.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.Abstractions.6.0.0-rc1-final\lib\net451\Microsoft.AspNet.Mvc.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Mvc.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.Core.6.0.0-rc1-final\lib\net451\Microsoft.AspNet.Mvc.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Routing, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Routing.1.0.0-rc1-final\lib\net451\Microsoft.AspNet.Routing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.TelemetryCorrelation, Version=1.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.6\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.Configuration, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.1.0.0-rc1-final\lib\net451\Microsoft.Extensions.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.1.0.0-rc1-final\lib\net451\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Binder.1.0.0-rc1-final\lib\net451\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.1.0.0-rc1-final\lib\net451\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.1.0.0-rc1-final\lib\net451\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.MemoryPool, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.MemoryPool.1.0.0-rc1-final\lib\net451\Microsoft.Extensions.MemoryPool.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.OptionsModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.OptionsModel.1.0.0-rc1-final\lib\net451\Microsoft.Extensions.OptionsModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.PlatformAbstractions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.PlatformAbstractions.1.0.0-rc1-final\lib\net451\Microsoft.Extensions.PlatformAbstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.1.0.0-rc1-final\lib\net451\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.WebEncoders.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.WebEncoders.Core.1.0.0-rc1-final\lib\net451\Microsoft.Extensions.WebEncoders.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Net.Http.Headers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.Headers.1.0.0-rc1-final\lib\net451\Microsoft.Net.Http.Headers.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.4.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.6.0-preview8.19405.3\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.3\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\Theme1\Theme1.css" />
+    <Content Include="App_Themes\Theme2\Theme2.css" />
+    <Content Include="App_Themes\Theme3\Theme3.css" />
+    <Content Include="bin\WebApplication2.dll" />
+    <Content Include="bin\WebApplication2.pdb" />
+    <Content Include="ChalanAndGatePassIssue.aspx" />
+    <Content Include="Electrical Maintenance\ELECTRI\Transaction\AdminEnergyConsumption.aspx" />
+    <Content Include="Electrical Maintenance\ELECTRI\Transaction\AdminEnergyConsumptionEdit.aspx" />
+    <Content Include="Electrical Maintenance\ELECTRI\Transaction\EditArcFurnaceMeltingStats.aspx" />
+    <Content Include="Electrical Maintenance\ELECTRI\Transaction\monthlystatementedit.aspx" />
+    <Content Include="General\HeatRangeQuerries.aspx" />
+    <Content Include="General\Query\InspectionResults.aspx" />
+    <Content Include="General\Query\MeltingQuerry.aspx" />
+    <Content Include="General\Query\HeatQuery.aspx" />
+    <Content Include="General\Query\WheelHistoryQuerry.aspx" />
+    <Content Include="General\Report\js\Chart.min.js" />
+    <Content Include="General\Report\mm_wheel_rej_ana_wap_norms_UI.aspx" />
+    <Content Include="General\Report\RWP_DashBorad.aspx" />
+    <Content Include="General\Report\Wheel_History.aspx" />
+    <Content Include="General\send_email.aspx" />
+    <Content Include="General\Transaction\BreakDownMemoEdit.aspx" />
+    <Content Include="General\Transaction\User_Password_change.aspx" />
+    <Content Include="General\Transaction\WheelShopFloorBalanceReconcilation.aspx" />
+    <Content Include="images\calender.jpg" />
+    <Content Include="js\Chart.min.js" />
+    <Content Include="js\menu4.js" />
+    <Content Include="js\poslib.js" />
+    <Content Include="js\scrollbutton.js" />
+    <Content Include="leave_form\applicationForLeave.aspx" />
+    <Content Include="leave_form\CancelApplicationForLeave.aspx" />
+    <Content Include="leave_form\CancelLeaveAfterSanction.aspx" />
+    <Content Include="leave_form\leaveQuery.aspx" />
+    <Content Include="leave_form\Password_change.aspx" />
+    <Content Include="leave_form\postSanctionToApplicationForLeave.aspx" />
+    <Content Include="leave_form\PrintLeavedetails.aspx" />
+    <Content Include="leave_form\StaffOnLeave.aspx" />
+    <Content Include="Log.aspx" />
+    <Content Include="login_next_new.aspx" />
+    <Content Include="logon.aspx" />
+    <Content Include="login_next.aspx" />
+    <Content Include="Mechanical_Maintenance\Utility\CriticalNonStockItemListDelete.aspx" />
+    <Content Include="Mechanical_Maintenance\Utility\CriticalNonStockItemListEdit.aspx" />
+    <Content Include="Mechanical_Maintenance\Utility\CriticalNonStockItemListUndoDelete.aspx" />
+    <Content Include="Mechanical_Maintenance\Utility\CriticalStockItemList.aspx" />
+    <Content Include="Mechanical_Maintenance\Utility\CriticalStockItemListDelete.aspx" />
+    <Content Include="Mechanical_Maintenance\Utility\CriticalStockItemListEdit.aspx" />
+    <Content Include="Mechanical_Maintenance\Utility\CriticalStockItemListUndoDelete.aspx" />
+    <Content Include="Mechanical_Maintenance\Utility\MarerialList.aspx" />
+    <Content Include="Mechanical_Maintenance\UTILIT\Reports\CuttingGasConsumption.aspx" />
+    <Content Include="Melt_Forms\MMS\EmpyLadleWeightsEntry.aspx" />
+    <Content Include="Melt_Forms\MMS\FumeExtraction.aspx" />
+    <Content Include="Melt_Forms\MSS\Report\PreHeatedLadleReport.aspx" />
+    <Content Include="Melt_Forms\MSS\Report\ProdRefractoryLining.aspx" />
+    <Content Include="Melt_Forms\MSS\RoofLining.aspx" />
+    <Content Include="MOULD\MLDING\Baking.aspx" />
+    <Content Include="MOULD\MLDING\HotWheelLineHubCut.aspx" />
+    <Content Include="MOULD\MLDING\HWLSPG.aspx" />
+    <Content Include="MOULD\MLDING\MouldPosition.aspx" />
+    <Content Include="MOULD\MLDING\MouldRoomHeatPosition.aspx" />
+    <Content Include="MOULD\MLDING\MouldRoomPosition.aspx" />
+    <Content Include="MOULD\MLDING\MouldRoomRunBackRunOutDetails.aspx" />
+    <Content Include="MOULD\MLDING\MouldTransactionNew.aspx" />
+    <Content Include="MOULD\MLDING\MROffloadWheels.aspx" />
+    <Content Include="MOULD\MLDING\MRRejections.aspx" />
+    <Content Include="MOULD\MLDING\Offload.aspx" />
+    <Content Include="MOULD\MLDING\PostPouring.aspx" />
+    <Content Include="MOULD\MLDING\Pouring.aspx" />
+    <Content Include="MOULD\MLDING\PouringTube.aspx" />
+    <Content Include="MOULD\MLDING\pouringtube_pre.aspx" />
+    <Content Include="MOULD\MLDING\PrePouring.aspx" />
+    <Content Include="Melt_Forms\MMS\Report\HeatSheet_3011_UI.aspx" />
+    <Content Include="MOULD\MLDING\SandPreparationNew.aspx" />
+    <Content Include="MOULD\MLDING\SandSampleSend.aspx" />
+    <Content Include="MOULD\MLDING\sand_recipe_table.aspx" />
+    <Content Include="MOULD\MLDING\spraystationentry.aspx" />
+    <Content Include="MOULD\mould_reports\MRShiftWiseReport.aspx" />
+    <Content Include="General\Report\ShpFlrGndBal.aspx" />
+    <Content Include="MOULD\mould_reports\302_mouldRoom_report.aspx" />
+    <Content Include="MOULD\mould_reports\excess_pouringtime_report.aspx" />
+    <Content Include="General\Report\mm_BreakDownDetails.aspx" />
+    <Content Include="MOULD\SSMOLD\SubStore\ConsumableRateAndCriticalBoudaries.aspx" />
+    <Content Include="MOULD\SSMOLD\SubStore\MaterialTransactionDetails.aspx" />
+    <Content Include="MOULD\SSMOLD\SubStore\NonStockMatDetails.aspx" />
+    <Content Include="MOULD\SSMOLD\SubStore\Stock_Item_Form.aspx" />
+    <Content Include="MOULD\mould_reports\MouldRoomFormatsReport.aspx" />
+    <Content Include="MOULD\mould_reports\Mould_Form.aspx" />
+    <Content Include="MOULD\mould_reports\Mould_New_Report1.aspx" />
+    <Content Include="MOULD\mould_reports\Mould_New_Report2.aspx" />
+    <Content Include="MOULD\mould_reports\Mould_New_Report3_XC.aspx">
+      <BrowseToURL>~/WebApplication2/Consolidation55/mould_reports/Mould_New_Report3_XC.aspx</BrowseToURL>
+    </Content>
+    <Content Include="MOULD\mould_reports\MRReports.aspx" />
+    <Content Include="MOULD\SSMOLD\SubStore\Used_Item_Detail_Form.aspx" />
+    <Content Include="MRSMRS\Query\Conemned_graphite_moulds.aspx" />
+    <Content Include="MRSMRS\Query\Daily_cope_drag_receipt.aspx" />
+    <Content Include="MRSMRS\Query\Daily_mould_position.aspx" />
+    <Content Include="MRSMRS\Reports\MouldRepairShopReports.aspx" />
+    <Content Include="MRSMRS\Reports\Mould_history.aspx" />
+    <Content Include="MRSMRS\Transaction\ChangeMouldStatus.aspx" />
+    <Content Include="MRSMRS\Transaction\ConvertedMoulds.aspx" />
+    <Content Include="MRSMRS\Transaction\mouldAssemblyAdd.aspx" />
+    <Content Include="MRSMRS\Transaction\mouldCondemnation.aspx" />
+    <Content Include="MRSMRS\Transaction\MouldMachiningAdd.aspx" />
+    <Content Include="MRSMRS\Transaction\MouldMachiningEdit.aspx" />
+    <Content Include="MRSMRS\Transaction\mouldReceiptAdd.aspx" />
+    <Content Include="MRSMRS\Transaction\MouldTransaction.aspx" />
+    <Content Include="MRSMRS\Transaction\mouldTransferToMR.aspx" />
+    <Content Include="MRSMRS\Transaction\MRSMouldCampaign.aspx" />
+    <Content Include="MRSMRS\Transaction\MRS_machineCode_Edit.aspx" />
+    <Content Include="MRSMRS\Transaction\NewMouldIntroductionAdd.aspx" />
+    <Content Include="MRSMRS\Transaction\NewMouldIntroductionEdit.aspx" />
+    <Content Include="MRSMRS\Transaction\UpdatePOofMoulds.aspx" />
+    <Content Include="NewFolder1\HS-BLANKforReport.jpg" />
+    <Content Include="PCO\BillOfMaterial.aspx" />
+    <Content Include="PCO\ConsigneeDetails.aspx" />
+    <Content Include="PCO\FeedbackForm.aspx" />
+    <Content Include="PCO\Holidays.aspx" />
+    <Content Include="PCO\LateWorkOrderRelease.aspx" />
+    <Content Include="PCO\ManualRMR.aspx" />
+    <Content Include="PCO\mm_pco_WTA_PlannedQuantitiesAdd.aspx" />
+    <Content Include="PCO\mm_pco_WTA_PlannedQuantitiesDelete.aspx" />
+    <Content Include="PCO\mm_pco_WTA_PlannedQuantitiesEdit.aspx" />
+    <Content Include="PCO\mm_pco_WTA_PlannedQuantitiesView.aspx" />
+    <Content Include="PCO\mm_pco_WTA_SupplyOrdersDelete.aspx" />
+    <Content Include="PCO\mm_pco_WTA_SupplyOrdersEdit.aspx" />
+    <Content Include="PCO\mm_pco_WTA_SupplyOrdersView.aspx" />
+    <Content Include="PCO\PHL_Report_Generation.aspx" />
+    <Content Include="PCO\ProductionHighlights_45C.aspx" />
+    <Content Include="PCO\ReferenceTaxDetails.aspx" />
+    <Content Include="PCO\Reports\WheelCost_report.aspx" />
+    <Content Include="General\Report\RWP_DashBorad_old.aspx" />
+    <Content Include="PCO\WheelCastDetails.aspx" />
+    <Content Include="PCO\WMS_Wheel.aspx" />
+    <Content Include="PCO\WorkOrderClose.aspx" />
+    <Content Include="Quality_Forms\CLRMAG\QUERY\MagnaReportsForSSMOLD.aspx" />
+    <Content Include="Quality_Forms\CLRMAG\QUERY\MagnaSummary.aspx" />
+    <Content Include="Quality_Forms\CLRMAG\QUERY\OldWheelLookUP.aspx" />
+    <Content Include="Quality_Forms\CLRMAG\Report\AnalysisOfBGCWheels.aspx" />
+    <Content Include="Quality_Forms\CLRMAG\Report\Calibration.aspx" />
+    <Content Include="Quality_Forms\CLRMAG\Report\PinkSheet.aspx" />
+    <Content Include="Quality_Forms\CLRMAG\Report\TestResult_StockWheels.aspx" />
+    <Content Include="Quality_Forms\CLRMAG\Report\TotalTestedWheel.aspx" />
+    <Content Include="Quality_Forms\CLRMAG\Report\XcDailyAnalysis.aspx" />
+    <Content Include="Quality_Forms\CLRMAG\Transaction\CalibrationOfMagAndUTInWheelShop.aspx" />
+    <Content Include="Quality_Forms\CLRMAG\Transaction\CalibrationOfMagAndUTInWheelShopView.aspx" />
+    <Content Include="Quality_Forms\CLRMAG\Transaction\CalibrationOfUVIntensity.aspx" />
+    <Content Include="Quality_Forms\CLRMAG\Transaction\calibration_bhn.aspx" />
+    <Content Include="Quality_Forms\CLRMAG\Transaction\ChangeMagnaXCToMRXC.aspx" />
+    <Content Include="Quality_Forms\CLRMAG\Transaction\GeneratePinkSheet.aspx" />
+    <Content Include="Quality_Forms\CLRMAG\Transaction\GeneratePinkSheetTotal.aspx" />
+    <Content Include="Quality_Forms\CLRMAG\Transaction\magnaprocessingnavigator.aspx" />
+    <Content Include="Quality_Forms\CLRMAG\Transaction\MagProcessingNavigator.aspx" />
+    <Content Include="Quality_Forms\CLRMAG\Transaction\mm_PostedAsMRRej.aspx" />
+    <Content Include="Quality_Forms\METLAB\PHY\Transaction\BHNPostHardnessValues.aspx" />
+    <Content Include="Quality_Forms\SPECTRO\Report\SpectroTestReport.aspx" />
+    <Content Include="Quality_Forms\SPECTRO\Transaction\JMPSampleData.aspx" />
+    <Content Include="wapframesetpp.aspx" />
+    <Content Include="WapGroupset.aspx" />
+    <Content Include="WFPS_Forms\CLRINS\Query\RMWheelsQry.aspx" />
+    <Content Include="WFPS_Forms\MLDNFDF\Transaction\EditDrawfurnaceDetails.aspx" />
+    <Content Include="WFPS_Forms\MLDNFDF\Transaction\EditDrawFurnaceZoneTemp.aspx" />
+    <Content Include="WFPS_Forms\MLDNFDF\Transaction\EditNormalisingFurnaceDetails.aspx" />
+    <Content Include="WFPS_Forms\MLDNFDF\Transaction\EditNormalisingFurnaceZoneTemp.aspx" />
+    <Content Include="WFPS_Forms\WFPS_REP\_302_cleaningroom_report.aspx" />
+    <Content Include="MOULD\SSMOLD\MMS\Query\RejectionProducingMoulds.aspx" />
+    <Content Include="MOULD\SSMOLD\MMS\REPORT\CheckListReport.aspx" />
+    <Content Include="MOULD\SSMOLD\MSS\ConsumablesStockingDetails.aspx" />
+    <Content Include="MOULD\SSMOLD\MSS\PLConsumption.aspx" />
+    <Content Include="MOULD\SSMOLD\MSS\PTMSConsumableList.aspx" />
+    <Content Include="MOULD\SSMOLD\MSS\PTMSConsumableListEdit.aspx" />
+    <Content Include="MOULD\SSMOLD\MSS\PTMSCriticalItemSelect.aspx" />
+    <Content Include="MOULD\SSMOLD\MSS\Query\ConsumablesStockingDetailsReport.aspx" />
+    <Content Include="MOULD\SSMOLD\MSS\Query\StockIDNStatusListDetails.aspx" />
+    <Content Include="MOULD\SSMOLD\MSS\RMRConsumption.aspx" />
+    <Content Include="MOULD\SSMOLD\MSS\Utility\StockIDNItemList.aspx" />
+    <Content Include="MOULD\SSMOLD\MSS\Utility\StockIDNItemListDelete.aspx" />
+    <Content Include="MOULD\SSMOLD\MSS\Utility\StockIDNItemListEdit.aspx" />
+    <Content Include="MOULD\SSMOLD\MSS\Utility\StockIDNItemListItems.aspx" />
+    <Content Include="Electrical Maintenance\ELECTRI\Transaction\ArcFurnaceMeltingStats.aspx" />
+    <Content Include="Electrical Maintenance\ELECTRI\Transaction\ArcFurnaceReadings.aspx" />
+    <Content Include="Electrical Maintenance\ELECTRI\Transaction\DailyMDPF.aspx" />
+    <Content Include="Electrical Maintenance\ELECTRI\Transaction\DailyVoltageCurrent.aspx" />
+    <Content Include="Electrical Maintenance\ELECTRI\Transaction\DailyVoltageCurrentReport.aspx" />
+    <Content Include="Electrical Maintenance\ELECTRI\Transaction\ElecPFReadings.aspx" />
+    <Content Include="Electrical Maintenance\ELECTRI\Transaction\monthlyStatement.aspx" />
+    <Content Include="Electrical Maintenance\ELECTRI\Transaction\PowerFailure.aspx" />
+    <Content Include="Electrical Maintenance\ELECTRI\Transaction\ShopWiseDailyEnergyConsumption.aspx" />
+    <Content Include="Electrical Maintenance\ELECTRI\Transaction\TODReadings.aspx" />
+    <Content Include="Electrical Maintenance\ELECTRI\Transaction\WheelEnergyConsumption.aspx" />
+    <Content Include="Electrical Maintenance\Reports\ArcFurnaceEnergyConsumptionQry.aspx" />
+    <Content Include="Electrical Maintenance\Reports\ArcFurnaceMeltingStatisticsQry.aspx" />
+    <Content Include="Electrical Maintenance\Reports\DailyEnergyConsumptionShopsQryReport.aspx" />
+    <Content Include="Electrical Maintenance\Reports\DailyVoltageCurrentReport.aspx" />
+    <Content Include="Electrical Maintenance\Reports\MonthlyEnergyConsumptionReport.aspx" />
+    <Content Include="Electrical Maintenance\Reports\MonthlyFurnaceWiseHeatsReport.aspx" />
+    <Content Include="Electrical Maintenance\Reports\ms_Monthly_Energy_Consumption.aspx" />
+    <Content Include="Electrical Maintenance\Reports\ms_Special_Energy_Consumption.aspx" />
+    <Content Include="Electrical Maintenance\Reports\NewArcFurnaceReport.aspx" />
+    <Content Include="Electrical Maintenance\Reports\NewEnergyConsumptionReport.aspx" />
+    <Content Include="Electrical Maintenance\Reports\PowerFailureReport.aspx" />
+    <Content Include="General\Query\MagnaDailyAnalysis.aspx" />
+    <Content Include="General\Query\PODetailsQry.aspx" />
+    <Content Include="Quality_Forms\WHLQCI\QCIResults.aspx" />
+    <Content Include="General\Query\RMRQry.aspx" />
+    <Content Include="General\Query\WFPSSummary.aspx" />
+    <Content Include="General\TEST\WebForm1.aspx" />
+    <Content Include="General\Transaction\BreakDownMemo.aspx" />
+    <Content Include="General\Transaction\LadleWeights.aspx" />
+    <Content Include="General\Transaction\ShopGroundBalance.aspx" />
+    <Content Include="Mechanical_Maintenance\Query\SearchIMBPlNumbers.aspx" />
+    <Content Include="Mechanical_Maintenance\Reports\BreakDownMaintenaceSummary.aspx" />
+    <Content Include="Mechanical_Maintenance\Reports\BreakDownMaintenace_UI.aspx" />
+    <Content Include="Mechanical_Maintenance\Reports\ElecMachinesUnScheduledReport.aspx" />
+    <Content Include="Mechanical_Maintenance\Reports\MachineModification_UI.aspx" />
+    <Content Include="Mechanical_Maintenance\Reports\ms_BreakDownDetails_New.aspx" />
+    <Content Include="Mechanical_Maintenance\Reports\NewBreakDownAnalysis.aspx" />
+    <Content Include="Mechanical_Maintenance\Reports\NewBreakDownAnalysisGroupWise.aspx" />
+    <Content Include="Mechanical_Maintenance\Reports\NewBreakDownAvailability.aspx" />
+    <Content Include="Mechanical_Maintenance\Reports\rptBreakDownsforDay.aspx" />
+    <Content Include="Mechanical_Maintenance\Reports\rptMachineryMasterList.aspx" />
+    <Content Include="Mechanical_Maintenance\Reports\rptMachineSubAssemblySpares.aspx" />
+    <Content Include="Mechanical_Maintenance\Reports\rptNewBreakDownsforDay.aspx" />
+    <Content Include="Mechanical_Maintenance\Reports\rptUnSchBreakDownsforDay.aspx" />
+    <Content Include="Mechanical_Maintenance\Reports\SubAssemblyBreakDownMaintenance.aspx" />
+    <Content Include="Mechanical_Maintenance\RTShop\HSDRTConsumption.aspx" />
+    <Content Include="Mechanical_Maintenance\RTShop\HSDRTSValues.aspx" />
+    <Content Include="Mechanical_Maintenance\RTShop\Utility\StockTransaction.aspx" />
+    <Content Include="Mechanical_Maintenance\RTShop\Utility\StockTransactionEdit.aspx" />
+    <Content Include="Mechanical_Maintenance\Setup\MachinesForTop3BdQry.aspx" />
+    <Content Include="Mechanical_Maintenance\Setup\ms_machinesparesNew.aspx" />
+    <Content Include="Mechanical_Maintenance\TOOLS\DeleteGroupTools.aspx" />
+    <Content Include="Mechanical_Maintenance\TOOLS\EditGroupTools.aspx" />
+    <Content Include="Mechanical_Maintenance\TOOLS\Reports\InterShopJobs.aspx" />
+    <Content Include="Mechanical_Maintenance\Transaction\NewMachineryMasterEdit.aspx" />
+    <Content Include="Mechanical_Maintenance\TOOLS\addGroupTools.aspx" />
+    <Content Include="Mechanical_Maintenance\TOOLS\CaliFreqUpdate.aspx" />
+    <Content Include="Mechanical_Maintenance\TOOLS\consumableToolIssue.aspx" />
+    <Content Include="Mechanical_Maintenance\TOOLS\consumableToolReceipt.aspx" />
+    <Content Include="Mechanical_Maintenance\TOOLS\JobsDoneAtTR.aspx" />
+    <Content Include="Mechanical_Maintenance\TOOLS\Reports\DueForCalibration.aspx" />
+    <Content Include="Mechanical_Maintenance\TOOLS\GroupToolAdd.aspx" />
+    <Content Include="Mechanical_Maintenance\TOOLS\GroupToolEdit.aspx" />
+    <Content Include="Mechanical_Maintenance\TOOLS\ManageTools.aspx" />
+    <Content Include="Mechanical_Maintenance\TOOLS\Reports\RecallNotice.aspx" />
+    <Content Include="Mechanical_Maintenance\TOOLS\ShopUpdate.aspx" />
+    <Content Include="Mechanical_Maintenance\TOOLS\toolCalibration.aspx" />
+    <Content Include="Mechanical_Maintenance\TOOLS\ToolReceipt.aspx" />
+    <Content Include="Mechanical_Maintenance\TOOLS\Reports\ToolRoomReports.aspx" />
+    <Content Include="Mechanical_Maintenance\TOOLS\ToolsDelete.aspx" />
+    <Content Include="Mechanical_Maintenance\TOOLS\Reports\ToolsHistoryCard.aspx" />
+    <Content Include="Mechanical_Maintenance\Transaction\PreventiveMaintenance.aspx" />
+    <Content Include="Mechanical_Maintenance\Transaction\PreventiveMaintenanceScheduleAdd.aspx" />
+    <Content Include="Mechanical_Maintenance\UTILIT\HSDUTConsumption.aspx" />
+    <Content Include="Mechanical_Maintenance\UTILIT\HSDUTValues.aspx" />
+    <Content Include="Mechanical_Maintenance\UTILIT\LiquidOxygenValues.aspx" />
+    <Content Include="Melt_Forms\MMS\MeltingProcessBoot.aspx" />
+    <Content Include="Melt_Forms\MMS\PCDOEntry.aspx" />
+    <Content Include="Melt_Forms\MMS\PreHeatedLadleDetails.aspx" />
+    <Content Include="Melt_Forms\MMS\Report\IDNReport.aspx" />
+    <Content Include="Melt_Forms\MSS\ProdConsumableDetails.aspx" />
+    <Content Include="Melt_Forms\MMS\Report\ProdConsumableDetailsReport.aspx" />
+    <Content Include="Melt_Forms\MMS\Report\ProdConsumableRegister.aspx" />
+    <Content Include="Melt_Forms\MSS\ProdScrapReceipt.aspx" />
+    <Content Include="Melt_Forms\MMS\RoofFixing.aspx" />
+    <Content Include="Electrical Maintenance\ELECTRI\Transaction\DailyVoltageCurrentDelete.aspx" />
+    <Content Include="Electrical Maintenance\Transaction\BakingPadCurrentReadings.aspx" />
+    <Content Include="logon_old.aspx" />
+    <Content Include="Mechanical_Maintenance\Query\IMBPLDetails.aspx" />
+    <Content Include="Mechanical_Maintenance\RTShop\NewMachineSparesDelete.aspx" />
+    <Content Include="Mechanical_Maintenance\UTILIT\Reports\FlowMeterReadings.aspx" />
+    <Content Include="Mechanical_Maintenance\RTShop\Utility\StockIDNItemList.aspx" />
+    <Content Include="Mechanical_Maintenance\RTShop\Utility\StockIDNItemListDelete.aspx" />
+    <Content Include="Mechanical_Maintenance\RTShop\Utility\StockIDNItemListEdit.aspx" />
+    <Content Include="Mechanical_Maintenance\Setup\majorSubAssemblyNew.aspx" />
+    <Content Include="Mechanical_Maintenance\Setup\NewMachineryMaster.aspx" />
+    <Content Include="Mechanical_Maintenance\Transaction\BreakDownMemoMWEdit.aspx" />
+    <Content Include="Mechanical_Maintenance\Transaction\machineModified.aspx" />
+    <Content Include="Mechanical_Maintenance\Transaction\NewMachineryMasterDelete.aspx" />
+    <Content Include="Mechanical_Maintenance\Setup\NewMachineSparesAdd.aspx" />
+    <Content Include="Mechanical_Maintenance\Transaction\NewMachineSparesDelete.aspx" />
+    <Content Include="Mechanical_Maintenance\Transaction\NewMachineSparesEdit.aspx" />
+    <Content Include="Mechanical_Maintenance\Transaction\PLNumersforBreakDownMemo.aspx" />
+    <Content Include="Mechanical_Maintenance\Transaction\PreventiveMaintenanceadd.aspx" />
+    <Content Include="Mechanical_Maintenance\Transaction\PreventiveMaintenanceEdit.aspx" />
+    <Content Include="Mechanical_Maintenance\Transaction\unScheduleEntry.aspx" />
+    <Content Include="Mechanical_Maintenance\Transaction\unScheduleEntryDelete.aspx" />
+    <Content Include="Mechanical_Maintenance\Transaction\unScheduleEntryEdit.aspx" />
+    <Content Include="Mechanical_Maintenance\Utility\CriticalNonStockItemList.aspx" />
+    <Content Include="Mechanical_Maintenance\Utility\MaterialRequirement.aspx" />
+    <Content Include="Mechanical_Maintenance\Utility\MaterialRequirementDelete.aspx" />
+    <Content Include="Mechanical_Maintenance\Utility\MaterialRequirementEdit.aspx" />
+    <Content Include="Mechanical_Maintenance\Utility\MaterialRequirementGenerate.aspx" />
+    <Content Include="Mechanical_Maintenance\Utility\StockIDNItemList.aspx" />
+    <Content Include="Mechanical_Maintenance\Utility\StockIDNItemListDelete.aspx" />
+    <Content Include="Mechanical_Maintenance\Utility\StockIDNItemListEdit.aspx" />
+    <Content Include="Mechanical_Maintenance\Utility\StockIDNItemListItems.aspx" />
+    <Content Include="Mechanical_Maintenance\UTILIT\Reports\WaterHardnessQuerry.aspx" />
+    <Content Include="Mechanical_Maintenance\UTILIT\WaterHardnessData.aspx" />
+    <Content Include="Melt_Forms\MSS\ProdBreakDown.aspx" />
+    <Content Include="Melt_Forms\MSS\ProdCalcinedLimeDetails.aspx" />
+    <Content Include="Melt_Forms\MSS\ProdConsumableCB.aspx" />
+    <Content Include="Melt_Forms\MSS\ProdConsumableDetailsData.aspx" />
+    <Content Include="Melt_Forms\MSS\ProdConsumables.aspx" />
+    <Content Include="Melt_Forms\MSS\ProdIDNDetails.aspx" />
+    <Content Include="Melt_Forms\MSS\ProdLining.aspx" />
+    <Content Include="Melt_Forms\MSS\ProdLiningDetails.aspx" />
+    <Content Include="Melt_Forms\MSS\ProdLiningPLs.aspx" />
+    <Content Include="Melt_Forms\MSS\ProdLiningRemarks.aspx" />
+    <Content Include="Melt_Forms\MSS\ProdMaterialDumpRegister.aspx" />
+    <Content Include="Melt_Forms\MSS\ProdPreHeatedLadleNo.aspx" />
+    <Content Include="Melt_Forms\MSS\ProdScrapAccontal.aspx" />
+    <Content Include="Melt_Forms\MSS\PTMSCriticalItemListAdd.aspx" />
+    <Content Include="Melt_Forms\MSS\PTMSCriticalItemListDelete.aspx" />
+    <Content Include="Melt_Forms\MSS\PTMSCriticalItemListEdit.aspx" />
+    <Content Include="Melt_Forms\MSS\PTMSCriticalItemListUndoDelete.aspx" />
+    <Content Include="MRSMRS\Query\mmMouldBlankMachiningDetailsReport.aspx" />
+    <Content Include="MRSMRS\Query\MouldPerformance.aspx" />
+    <Content Include="MRSMRS\Transaction\IngateAssemblyNew.aspx" />
+    <Content Include="NewFolder1\700-29690W.jpg" />
+    <Content Include="NewFolder1\700-66859W.jpg" />
+    <Content Include="NewFolder1\AmsScrnImage.jpg" />
+    <Content Include="NewFolder1\Bholuwithlight.jpg" />
+    <Content Include="NewFolder1\Bholu_logo.gif" />
+    <Content Include="NewFolder1\BirdsView.gif" />
+    <Content Include="NewFolder1\CRIS-Recruitment.jpg" />
+    <Content Include="NewFolder1\div_line.gif" />
+    <Content Include="NewFolder1\div_line2.gif" />
+    <Content Include="NewFolder1\dms.gif" />
+    <Content Include="NewFolder1\dms_b.gif" />
+    <Content Include="NewFolder1\dms_big.gif" />
+    <Content Include="NewFolder1\dms_big_bkp.gif" />
+    <Content Include="NewFolder1\dms_d.gif" />
+    <Content Include="NewFolder1\dms_title.gif" />
+    <Content Include="NewFolder1\download.png" />
+    <Content Include="NewFolder1\dropdown_r2_c2.gif" />
+    <Content Include="NewFolder1\dropdown_r2_c3.gif" />
+    <Content Include="NewFolder1\dropdown_r2_c5.gif" />
+    <Content Include="NewFolder1\dropdown_r2_c7.gif" />
+    <Content Include="NewFolder1\dropdown_r2_c8.gif" />
+    <Content Include="NewFolder1\dropdown_r2_c9.gif" />
+    <Content Include="NewFolder1\exit.gif" />
+    <Content Include="NewFolder1\fms.gif" />
+    <Content Include="NewFolder1\fms_b.gif" />
+    <Content Include="NewFolder1\fms_big.gif" />
+    <Content Include="NewFolder1\fms_d.gif" />
+    <Content Include="NewFolder1\fms_title.gif" />
+    <Content Include="NewFolder1\Folder Settings\mincold.gif" />
+    <Content Include="NewFolder1\Folder Settings\minhot.gif" />
+    <Content Include="NewFolder1\Folder Settings\pluscold.gif" />
+    <Content Include="NewFolder1\Folder Settings\plushot.gif" />
+    <Content Include="NewFolder1\Folder Settings\wvleft.bmp" />
+    <Content Include="NewFolder1\Folder Settings\wvline.gif" />
+    <Content Include="NewFolder1\gif\Bholu_logo.gif" />
+    <Content Include="NewFolder1\gif\Bholu_logo_blue.gif" />
+    <Content Include="NewFolder1\gif\Bird%27sView.gif" />
+    <Content Include="NewFolder1\gif\depot.gif" />
+    <Content Include="NewFolder1\gif\finance.gif" />
+    <Content Include="NewFolder1\gif\Forging.gif" />
+    <Content Include="NewFolder1\gif\logo.gif" />
+    <Content Include="NewFolder1\gif\logo_blue.gif" />
+    <Content Include="NewFolder1\gif\wheels.gif" />
+    <Content Include="NewFolder1\gif\WheelSet.gif" />
+    <Content Include="NewFolder1\gif\whl-split1.gif" />
+    <Content Include="NewFolder1\gif\whl-stack2.gif" />
+    <Content Include="NewFolder1\HINDI_MARK.gif" />
+    <Content Include="NewFolder1\home.gif" />
+    <Content Include="NewFolder1\icon_home_small.gif" />
+    <Content Include="NewFolder1\images\700-29690W.jpg" />
+    <Content Include="NewFolder1\images\700-66859W.jpg" />
+    <Content Include="NewFolder1\images\AmsScrnImage.jpg" />
+    <Content Include="NewFolder1\images\Bholuwithlight.jpg" />
+    <Content Include="NewFolder1\images\Bholu_logo.gif" />
+    <Content Include="NewFolder1\images\BirdsView.gif" />
+    <Content Include="NewFolder1\images\div_line.gif" />
+    <Content Include="NewFolder1\images\div_line2.gif" />
+    <Content Include="NewFolder1\images\dms.gif" />
+    <Content Include="NewFolder1\images\dms_b.gif" />
+    <Content Include="NewFolder1\images\dms_big.gif" />
+    <Content Include="NewFolder1\images\dms_big_bkp.gif" />
+    <Content Include="NewFolder1\images\dms_d.gif" />
+    <Content Include="NewFolder1\images\dms_title.gif" />
+    <Content Include="NewFolder1\images\dropdown_r2_c2.gif" />
+    <Content Include="NewFolder1\images\dropdown_r2_c3.gif" />
+    <Content Include="NewFolder1\images\dropdown_r2_c5.gif" />
+    <Content Include="NewFolder1\images\dropdown_r2_c7.gif" />
+    <Content Include="NewFolder1\images\dropdown_r2_c8.gif" />
+    <Content Include="NewFolder1\images\dropdown_r2_c9.gif" />
+    <Content Include="NewFolder1\images\exit.gif" />
+    <Content Include="NewFolder1\images\fms.gif" />
+    <Content Include="NewFolder1\images\fms_b.gif" />
+    <Content Include="NewFolder1\images\fms_big.gif" />
+    <Content Include="NewFolder1\images\fms_d.gif" />
+    <Content Include="NewFolder1\images\fms_title.gif" />
+    <Content Include="NewFolder1\images\Folder Settings\mincold.gif" />
+    <Content Include="NewFolder1\images\Folder Settings\minhot.gif" />
+    <Content Include="NewFolder1\images\Folder Settings\pluscold.gif" />
+    <Content Include="NewFolder1\images\Folder Settings\plushot.gif" />
+    <Content Include="NewFolder1\images\Folder Settings\wvleft.bmp" />
+    <Content Include="NewFolder1\images\Folder Settings\wvline.gif" />
+    <Content Include="NewFolder1\images\gif\Bholu_logo.gif" />
+    <Content Include="NewFolder1\images\gif\Bholu_logo_blue.gif" />
+    <Content Include="NewFolder1\images\gif\Bird%27sView.gif" />
+    <Content Include="NewFolder1\images\gif\depot.gif" />
+    <Content Include="NewFolder1\images\gif\finance.gif" />
+    <Content Include="NewFolder1\images\gif\Forging.gif" />
+    <Content Include="NewFolder1\images\gif\logo.gif" />
+    <Content Include="NewFolder1\images\gif\logo_blue.gif" />
+    <Content Include="NewFolder1\images\gif\wheels.gif" />
+    <Content Include="NewFolder1\images\gif\WheelSet.gif" />
+    <Content Include="NewFolder1\images\gif\whl-split1.gif" />
+    <Content Include="NewFolder1\images\gif\whl-stack2.gif" />
+    <Content Include="NewFolder1\images\HINDI_MARK.gif" />
+    <Content Include="NewFolder1\images\home.gif" />
+    <Content Include="NewFolder1\images\icon_home_small.gif" />
+    <Content Include="NewFolder1\images\logo.gif" />
+    <Content Include="NewFolder1\images\logout.gif" />
+    <Content Include="NewFolder1\images\logo_bkp.gif" />
+    <Content Include="NewFolder1\images\main.gif" />
+    <Content Include="NewFolder1\images\main.jpg" />
+    <Content Include="NewFolder1\images\main1.jpg" />
+    <Content Include="NewFolder1\images\main_bkp.gif" />
+    <Content Include="NewFolder1\images\mms_b.gif" />
+    <Content Include="NewFolder1\images\MMS_big.gif" />
+    <Content Include="NewFolder1\images\mms_big_old.gif" />
+    <Content Include="NewFolder1\images\MMS_big_old_140804.gif" />
+    <Content Include="NewFolder1\images\MMS_big_old_old.gif" />
+    <Content Include="NewFolder1\images\mms_d.gif" />
+    <Content Include="NewFolder1\images\mms_title.gif" />
+    <Content Include="NewFolder1\images\mms_title_diwali.JPG" />
+    <Content Include="NewFolder1\images\mms_title_eid.gif" />
+    <Content Include="NewFolder1\images\mms_title_flag.GIF" />
+    <Content Include="NewFolder1\images\mms_title_ind.GIF" />
+    <Content Include="NewFolder1\images\mms_title_MC.gif" />
+    <Content Include="NewFolder1\images\mms_title_merrychrist.gif" />
+    <Content Include="NewFolder1\images\mms_title_ny.gif" />
+    <Content Include="NewFolder1\images\mms_title_ny2007.gif" />
+    <Content Include="NewFolder1\images\mms_title_ny_old.gif" />
+    <Content Include="NewFolder1\images\mms_title_old140804.gif" />
+    <Content Include="NewFolder1\images\mms_title_onam.gif" />
+    <Content Include="NewFolder1\images\mms_title_pong.gif" />
+    <Content Include="NewFolder1\images\mms_title_pongal.gif" />
+    <Content Include="NewFolder1\images\mms_title_pongal.jpg" />
+    <Content Include="NewFolder1\images\mms_title_Rday.gif" />
+    <Content Include="NewFolder1\images\mms_title_vig.GIF" />
+    <Content Include="NewFolder1\images\mss.gif" />
+    <Content Include="NewFolder1\images\mss_b.gif" />
+    <Content Include="NewFolder1\images\mss_big.gif" />
+    <Content Include="NewFolder1\images\mss_d.gif" />
+    <Content Include="NewFolder1\images\mss_title.gif" />
+    <Content Include="NewFolder1\images\NewYear.gif" />
+    <Content Include="NewFolder1\images\nitish.jpg" />
+    <Content Include="NewFolder1\images\pms.gif" />
+    <Content Include="NewFolder1\images\pms_b.gif" />
+    <Content Include="NewFolder1\images\pms_big.gif" />
+    <Content Include="NewFolder1\images\pms_d.gif" />
+    <Content Include="NewFolder1\images\pms_title.gif" />
+    <Content Include="NewFolder1\images\pollogo.gif" />
+    <Content Include="NewFolder1\images\ppms.gif" />
+    <Content Include="NewFolder1\images\ppms_b.gif" />
+    <Content Include="NewFolder1\images\ppms_big.gif" />
+    <Content Include="NewFolder1\images\ppms_d.gif" />
+    <Content Include="NewFolder1\images\ppms_title.gif" />
+    <Content Include="NewFolder1\images\pp_big.gif" />
+    <Content Include="NewFolder1\images\pp_d.gif" />
+    <Content Include="NewFolder1\images\pp_title.gif" />
+    <Content Include="NewFolder1\images\quest.jpg" />
+    <Content Include="NewFolder1\images\rwp.png" />
+    <Content Include="NewFolder1\images\rwp1.jpg" />
+    <Content Include="NewFolder1\images\rwp2.jpg" />
+    <Content Include="NewFolder1\images\rwp3.gif" />
+    <Content Include="NewFolder1\images\rwp3.jpg" />
+    <Content Include="NewFolder1\images\rwp3.jpg.png" />
+    <Content Include="NewFolder1\images\spacer.jpg" />
+    <Content Include="NewFolder1\images\status_line.gif" />
+    <Content Include="NewFolder1\images\textfx.png" />
+    <Content Include="NewFolder1\images\title.gif" />
+    <Content Include="NewFolder1\images\title_2.gif" />
+    <Content Include="NewFolder1\images\title_2_bkp1.gif" />
+    <Content Include="NewFolder1\images\title_bkp.gif" />
+    <Content Include="NewFolder1\images\vertical_line.gif" />
+    <Content Include="NewFolder1\images\wap_big.gif" />
+    <Content Include="NewFolder1\images\wap_f.gif" />
+    <Content Include="NewFolder1\images\wap_f_bkp.gif" />
+    <Content Include="NewFolder1\images\wheel.jpg" />
+    <Content Include="NewFolder1\images\wheelnaxle.gif" />
+    <Content Include="NewFolder1\images\wheels.gif" />
+    <Content Include="NewFolder1\images\WheelSet.gif" />
+    <Content Include="NewFolder1\images\WheelSet.jpg" />
+    <Content Include="NewFolder1\images\wheel_axle_inner.gif" />
+    <Content Include="NewFolder1\logo.gif" />
+    <Content Include="NewFolder1\logout.gif" />
+    <Content Include="NewFolder1\logo_bkp.gif" />
+    <Content Include="NewFolder1\main-qimg-a09b45a8d2b5cffe7f0cd292e94d5901.gif" />
+    <Content Include="NewFolder1\main.gif" />
+    <Content Include="NewFolder1\main.jpg" />
+    <Content Include="NewFolder1\main1.jpg" />
+    <Content Include="NewFolder1\main_bkp.gif" />
+    <Content Include="NewFolder1\mms_b.gif" />
+    <Content Include="NewFolder1\MMS_big.gif" />
+    <Content Include="NewFolder1\mms_big_old.gif" />
+    <Content Include="NewFolder1\MMS_big_old_140804.gif" />
+    <Content Include="NewFolder1\MMS_big_old_old.gif" />
+    <Content Include="NewFolder1\mms_d.gif" />
+    <Content Include="NewFolder1\mms_title.gif" />
+    <Content Include="NewFolder1\mms_title_diwali.JPG" />
+    <Content Include="NewFolder1\mms_title_eid.gif" />
+    <Content Include="NewFolder1\mms_title_flag.GIF" />
+    <Content Include="NewFolder1\mms_title_ind.GIF" />
+    <Content Include="NewFolder1\mms_title_MC.gif" />
+    <Content Include="NewFolder1\mms_title_merrychrist.gif" />
+    <Content Include="NewFolder1\mms_title_ny.gif" />
+    <Content Include="NewFolder1\mms_title_ny2007.gif" />
+    <Content Include="NewFolder1\mms_title_ny_old.gif" />
+    <Content Include="NewFolder1\mms_title_old140804.gif" />
+    <Content Include="NewFolder1\mms_title_onam.gif" />
+    <Content Include="NewFolder1\mms_title_pong.gif" />
+    <Content Include="NewFolder1\mms_title_pongal.gif" />
+    <Content Include="NewFolder1\mms_title_pongal.jpg" />
+    <Content Include="NewFolder1\mms_title_Rday.gif" />
+    <Content Include="NewFolder1\mms_title_vig.GIF" />
+    <Content Include="NewFolder1\mss.gif" />
+    <Content Include="NewFolder1\mss_b.gif" />
+    <Content Include="NewFolder1\mss_big.gif" />
+    <Content Include="NewFolder1\mss_d.gif" />
+    <Content Include="NewFolder1\mss_title.gif" />
+    <Content Include="NewFolder1\NewYear.gif" />
+    <Content Include="NewFolder1\nitish.jpg" />
+    <Content Include="NewFolder1\pms.gif" />
+    <Content Include="NewFolder1\pms_b.gif" />
+    <Content Include="NewFolder1\pms_big.gif" />
+    <Content Include="NewFolder1\pms_d.gif" />
+    <Content Include="NewFolder1\pms_title.gif" />
+    <Content Include="NewFolder1\pollogo.gif" />
+    <Content Include="NewFolder1\ppms.gif" />
+    <Content Include="NewFolder1\ppms_b.gif" />
+    <Content Include="NewFolder1\ppms_big.gif" />
+    <Content Include="NewFolder1\ppms_d.gif" />
+    <Content Include="NewFolder1\ppms_title.gif" />
+    <Content Include="NewFolder1\pp_big.gif" />
+    <Content Include="NewFolder1\pp_d.gif" />
+    <Content Include="NewFolder1\pp_title.gif" />
+    <Content Include="NewFolder1\quest.jpg" />
+    <Content Include="NewFolder1\rwp.png" />
+    <Content Include="NewFolder1\rwp1.jpg" />
+    <Content Include="NewFolder1\rwp2.jpg" />
+    <Content Include="NewFolder1\rwp3.gif" />
+    <Content Include="NewFolder1\rwp3.jpg" />
+    <Content Include="NewFolder1\rwp3.jpg.png" />
+    <Content Include="NewFolder1\South-East-Central-Railway-Jobs.png" />
+    <Content Include="NewFolder1\spacer.jpg" />
+    <Content Include="NewFolder1\status_line.gif" />
+    <Content Include="NewFolder1\textfx.png" />
+    <Content Include="NewFolder1\title.gif" />
+    <Content Include="NewFolder1\title_2.gif" />
+    <Content Include="NewFolder1\title_2_bkp1.gif" />
+    <Content Include="NewFolder1\title_bkp.gif" />
+    <Content Include="NewFolder1\unnamed.png" />
+    <Content Include="NewFolder1\vertical_line.gif" />
+    <Content Include="NewFolder1\wap_big.gif" />
+    <Content Include="NewFolder1\wap_f.gif" />
+    <Content Include="NewFolder1\wap_f_bkp.gif" />
+    <Content Include="NewFolder1\wheel.jpg" />
+    <Content Include="NewFolder1\wheelnaxle.gif" />
+    <Content Include="NewFolder1\wheels.gif" />
+    <Content Include="NewFolder1\WheelSet.gif" />
+    <Content Include="NewFolder1\WheelSet.jpg" />
+    <Content Include="NewFolder1\wheel_axle_inner.gif" />
+    <Content Include="PCO\ChangeWoProductCode.aspx" />
+    <Content Include="PCO\CopyBOM.aspx" />
+    <Content Include="PCO\EnhanceWorkOrder.aspx" />
+    <Content Include="PCO\HeatRemBrkDnRemEditForPHL.aspx" />
+    <Content Include="PCO\InvalidSession.aspx" />
+    <Content Include="PCO\Reports\Invoice.aspx" />
+    <Content Include="PCO\MMSOfflineReports.aspx" />
+    <Content Include="PCO\Reports\mm_bom_Composite.aspx" />
+    <Content Include="PCO\Reports\mm_MonthlyWorkOrders.aspx" />
+    <Content Include="PCO\mm_pco_WTA_ComplianceAdd.aspx" />
+    <Content Include="PCO\mm_pco_WTA_ComplianceDelete.aspx" />
+    <Content Include="PCO\mm_pco_WTA_Meetings.aspx" />
+    <Content Include="PCO\mm_pco_WTA_MeetingsEdit.aspx" />
+    <Content Include="PCO\mm_pco_WTA_MeetingsView.aspx" />
+    <Content Include="PCO\mm_pco_WTA_ProductList.aspx" />
+    <Content Include="PCO\mm_pco_WTA_SuppliesAdd.aspx" />
+    <Content Include="PCO\mm_pco_WTA_SuppliesDelete.aspx" />
+    <Content Include="PCO\mm_pco_WTA_SuppliesEdit.aspx" />
+    <Content Include="PCO\mm_pco_WTA_SuppliesView.aspx" />
+    <Content Include="PCO\mm_pco_WTA_SupplyOrders.aspx" />
+    <Content Include="PCO\NonRWFAxlesPcoEntry.aspx" />
+    <Content Include="PCO\NonRWFAxlesPcoEntryDelete.aspx" />
+    <Content Include="PCO\PPC.aspx" />
+    <Content Include="PCO\PPC_RB.aspx" />
+    <Content Include="PCO\Reports\ProductionHighlightsReport.aspx" />
+    <Content Include="PCO\ProductMaster.aspx" />
+    <Content Include="PCO\ProductUnifiedPL.aspx" />
+    <Content Include="PCO\RemovePmsDeletedPlNumberFromBOM.aspx" />
+    <Content Include="PCO\RMRCancelResume.aspx" />
+    <Content Include="PCO\RMRgeneration.aspx" />
+    <Content Include="PCO\Reports\Rmr_generate.aspx" />
+    <Content Include="PCO\SSEPCOAuthorises.aspx" />
+    <Content Include="PCO\Reports\Summary_list_of_rmrs_rpt.aspx" />
+    <Content Include="PCO\UpLoadReports.aspx" />
+    <Content Include="PCO\WorkOrder.aspx" />
+    <Content Include="PCO\Reports\YearlyProductionPlan.aspx" />
+    <Content Include="General\Query\MagnaQuerry.aspx" />
+    <Content Include="Quality_Forms\CMTWHL\Transaction\magnaglowTestingEdit.aspx" />
+    <Content Include="Quality_Forms\CMTWHL\Transaction\MagProcessDateChange.aspx" />
+    <Content Include="Quality_Forms\METLAB\Chem\QUERY\TestReadingDateReport.aspx" />
+    <Content Include="Quality_Forms\METLAB\Chem\SETUP\ChemicalMaterialCharacteristics.aspx" />
+    <Content Include="Quality_Forms\METLAB\Chem\SETUP\ChemicalMaterialList.aspx" />
+    <Content Include="Quality_Forms\METLAB\Chem\Transaction\CastTest.aspx" />
+    <Content Include="Quality_Forms\METLAB\Chem\Transaction\CharpyCastTest.aspx" />
+    <Content Include="Quality_Forms\METLAB\Chem\Transaction\ChemicalLabNumber.aspx" />
+    <Content Include="Quality_Forms\METLAB\Chem\Transaction\ChemicalLabNumberChange.aspx" />
+    <Content Include="Quality_Forms\METLAB\Chem\Transaction\ChemicalLabNumberEdit.aspx" />
+    <Content Include="Quality_Forms\METLAB\Chem\Transaction\ChemicalTestResults.aspx" />
+    <Content Include="Quality_Forms\METLAB\Chem\Transaction\ChemicalTestResultsEdit.aspx" />
+    <Content Include="Quality_Forms\METLAB\Chem\Transaction\FinalTestResultRemark.aspx" />
+    <Content Include="Quality_Forms\METLAB\Chem\Transaction\MetlabNABLCertificateGeneration.aspx" />
+    <Content Include="Quality_Forms\METLAB\Chem\Transaction\SandTestResults.aspx" />
+    <Content Include="Quality_Forms\METLAB\PHY\Query\rptCastTestDetails.aspx" />
+    <Content Include="Quality_Forms\METLAB\PHY\Query\rptClosureHeatRange.aspx" />
+    <Content Include="Quality_Forms\METLAB\PHY\Query\TestDetails.aspx" />
+    <Content Include="Quality_Forms\METLAB\PHY\REPORT\BHNSampleReport.aspx" />
+    <Content Include="Quality_Forms\METLAB\PHY\REPORT\rptHarnessSurveyReport.aspx" />
+    <Content Include="Quality_Forms\METLAB\PHY\Transaction\BHNChemicalValues.aspx" />
+    <Content Include="Quality_Forms\METLAB\PHY\Transaction\BHNHeatTreatmentDetails.aspx" />
+    <Content Include="Quality_Forms\METLAB\PHY\Transaction\BHNPostExperimentalResultAdd.aspx" />
+    <Content Include="Quality_Forms\METLAB\PHY\Transaction\BHNPostExperimentaPhysicalAdd.aspx" />
+    <Content Include="Quality_Forms\METLAB\PHY\Transaction\BHNPostResultAdd.aspx" />
+    <Content Include="Quality_Forms\METLAB\PHY\Transaction\BHNPostResultEdit.aspx" />
+    <Content Include="Quality_Forms\METLAB\PHY\Transaction\BHNSample.aspx" />
+    <Content Include="Quality_Forms\METLAB\PHY\Transaction\BHNSampleEdit.aspx" />
+    <Content Include="Quality_Forms\METLAB\PHY\Transaction\BHNSampleScheduleDelete.aspx" />
+    <Content Include="Quality_Forms\METLAB\PHY\Transaction\BHNSampleSend.aspx" />
+    <Content Include="Quality_Forms\METLAB\PHY\Transaction\BHNSampleSendAdd.aspx" />
+    <Content Include="Quality_Forms\METLAB\PHY\Transaction\BHNSampleSendEdit.aspx" />
+    <Content Include="Quality_Forms\METLAB\PHY\Transaction\ClosureTest.aspx" />
+    <Content Include="Quality_Forms\METLAB\Chem\Report\ChemicalTestReport.aspx" />
+    <Content Include="Mechanical_Maintenance\UTILIT\Reports\LiquidOxygenValuesReport.aspx" />
+    <Content Include="Quality_Forms\METLAB\Chem\Report\MetlabReports.aspx" />
+    <Content Include="Quality_Forms\SPECTRO\Query\rptSpectroChemicalResults.aspx" />
+    <Content Include="Quality_Forms\SPECTRO\Transaction\BHNchemicalvalueaddedit.aspx" />
+    <Content Include="StyleSheet1.css" />
+    <Content Include="wapframeset.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="WFPS_Forms\AWMCLR\Query\LocateWheels.aspx" />
+    <Content Include="WFPS_Forms\AWMCLR\Transaction\mm_CloseShift_Authorisation.aspx" />
+    <Content Include="WFPS_Forms\AWMCLR\Transaction\mm_ContinueShift_Authorisation.aspx" />
+    <Content Include="WFPS_Forms\AWMCLR\Transaction\mm_ContinueShift_AuthorisationView.aspx" />
+    <Content Include="WFPS_Forms\AWMCLR\Transaction\mm_DeleteShift_Authorisation.aspx" />
+    <Content Include="WFPS_Forms\AWMCLR\Transaction\mm_ExtendContinueShift_Authorisation.aspx" />
+    <Content Include="WFPS_Forms\AWMCLR\Transaction\RMWheels.aspx" />
+    <Content Include="WFPS_Forms\AWMCLR\Transaction\WheelMachining.aspx" />
+    <Content Include="General\Transaction\WheelNotFoundInMaster.aspx" />
+    <Content Include="WFPS_Forms\CLRINS\Query\FinalInspectionScore.aspx" />
+    <Content Include="WFPS_Forms\CLRINS\Query\FIQuerry.aspx" />
+    <Content Include="WFPS_Forms\CLRINS\Query\LocateWheels.aspx" />
+    <Content Include="WFPS_Forms\CLRINS\Transaction\BoreInspectionUnBorePassedWheels.aspx" />
+    <Content Include="WFPS_Forms\CLRINS\Transaction\HoldHeatsFromFIPassing.aspx" />
+    <Content Include="WFPS_Forms\CLRINS\Transaction\NonRWFWheels.aspx" />
+    <Content Include="WFPS_Forms\CLRINS\Transaction\WFPSWarpageDetails.aspx" />
+    <Content Include="WFPS_Forms\CLRINS\Transaction\WheelFinalInspection.aspx" />
+    <Content Include="WFPS_Forms\CLRINS\Transaction\WheelInspectionDelete.aspx" />
+    <Content Include="WFPS_Forms\MLDNFDF\Transaction\addDrawfurnaceDetails.aspx" />
+    <Content Include="WFPS_Forms\MLDNFDF\Transaction\addDrawFurnaceZoneTemp.aspx" />
+    <Content Include="WFPS_Forms\MLDNFDF\Transaction\addNormalisingFurnaceDetails.aspx" />
+    <Content Include="WFPS_Forms\MLDNFDF\Transaction\addNormalisingFurnaceZoneTemp.aspx" />
+    <Content Include="WFPS_Forms\MLDNFDF\Transaction\HeatTreatmentMaster.aspx" />
+    <Content Include="WFPS_Forms\MLDNFDF\Transaction\WheelNF.aspx" />
+    <Content Include="WFPS_Forms\MLDNFDF\Transaction\WheelNormalising.aspx" />
+    <Content Include="WFPS_Forms\SSINSP\Transaction\TreadDiaChangeAfterPressing.aspx" />
+    <Content Include="WFPS_Forms\SSINSP\Transaction\TreadDiaChangeBeforePressing.aspx" />
+    <Content Include="WFPS_Forms\SSINSP\Transaction\WheelFinalInspectionParam.aspx" />
+    <Content Include="WFPS_Forms\SSINSP\Transaction\YardInspectionFinal.aspx" />
+    <Content Include="WFPS_Forms\WFPS_REP\ConsigneeWiseS1313.aspx" />
+    <Content Include="WFPS_Forms\WFPS_REP\HSD.aspx" />
+    <Content Include="WFPS_Forms\WFPS_REP\InspectionCertificateWAS.aspx" />
+    <Content Include="WFPS_Forms\WFPS_REP\WFPSRegisterReport.aspx" />
+    <Content Include="WFPS_Forms\AWMCLR\Query\WheelMachinedInRWFReport.aspx" />
+    <Content Include="WFPS_Forms\WHLYARD\Transaction\YardInspectionMagna.aspx" />
+    <Content Include="WheelDespatch.aspx" />
+    <Content Include="WheelDespatchDetails.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ChalanAndGatePassIssue.aspx.designer.vb">
+      <DependentUpon>ChalanAndGatePassIssue.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChalanAndGatePassIssue.aspx.vb">
+      <DependentUpon>ChalanAndGatePassIssue.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Code\Admin.vb" />
+    <Compile Include="Code\AWMCLR.vb" />
+    <Compile Include="Code\BreakDown.vb" />
+    <Compile Include="Code\Calibration.vb" />
+    <Compile Include="Code\CLRINS.vb" />
+    <Compile Include="Code\CriticalItems.vb" />
+    <Compile Include="Code\ElecMaintenance.vb" />
+    <Compile Include="Code\ElecSpares.vb" />
+    <Compile Include="Code\FinalInspectionClass.vb" />
+    <Compile Include="Code\FIQuerryDetails.vb" />
+    <Compile Include="Code\HotWheelLine.vb" />
+    <Compile Include="Code\HSD_Class.vb" />
+    <Compile Include="Code\imb.vb" />
+    <Compile Include="Code\LadleWeight.vb" />
+    <Compile Include="Code\LooseAxleInspClass.vb" />
+    <Compile Include="Code\Magna.vb" />
+    <Compile Include="Code\MagnaQuerryDetails.vb" />
+    <Compile Include="Code\Magproc.vb" />
+    <Compile Include="Code\Maintenance.vb" />
+    <Compile Include="Code\Marketing.vb" />
+    <Compile Include="Code\Melting.vb" />
+    <Compile Include="Code\metLab.vb" />
+    <Compile Include="Code\Moulding.vb" />
+    <Compile Include="Code\Moulding1.vb" />
+    <Compile Include="Code\Moulds.vb" />
+    <Compile Include="Code\MRQueery.vb" />
+    <Compile Include="Code\NonRWFWheel.vb" />
+    <Compile Include="Code\PCO.vb" />
+    <Compile Include="Code\ProductionConsumables.vb" />
+    <Compile Include="Code\RWFGen.vb" />
+    <Compile Include="Code\RWFTables.vb" />
+    <Compile Include="Code\SparesCell.vb" />
+    <Compile Include="Code\SSINSP.vb" />
+    <Compile Include="Code\SubStoreStock.vb" />
+    <Compile Include="Code\Utility.vb" />
+    <Compile Include="Code\WFPSQuerry.vb" />
+    <Compile Include="Code\WheelMachiningClass.vb" />
+    <Compile Include="Code\WHLQCI.vb" />
+    <Compile Include="Code\YardInsp.vb" />
+    <Compile Include="CrystalReport1.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReport1.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Crystal_Reports\Drinking Water.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Drinking Water.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSet1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSet2.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Electrical Maintenance\ELECTRI\Transaction\AdminEnergyConsumption.aspx.vb">
+      <DependentUpon>AdminEnergyConsumption.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electrical Maintenance\ELECTRI\Transaction\AdminEnergyConsumptionEdit.aspx.designer.vb">
+      <DependentUpon>AdminEnergyConsumptionEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Electrical Maintenance\ELECTRI\Transaction\AdminEnergyConsumptionEdit.aspx.vb">
+      <DependentUpon>AdminEnergyConsumptionEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electrical Maintenance\ELECTRI\Transaction\EditArcFurnaceMeltingStats.aspx.vb">
+      <DependentUpon>EditArcFurnaceMeltingStats.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electrical Maintenance\ELECTRI\Transaction\monthlystatementedit.aspx.vb">
+      <DependentUpon>monthlystatementedit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\HeatRangeQuerries.aspx.vb">
+      <DependentUpon>HeatRangeQuerries.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\Query\InspectionResults.aspx.vb">
+      <DependentUpon>InspectionResults.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\Query\MeltingQuerry.aspx.vb">
+      <DependentUpon>MeltingQuerry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\Query\HeatQuery.aspx.vb">
+      <DependentUpon>HeatQuery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\Query\WheelHistoryQuerry.aspx.vb">
+      <DependentUpon>WheelHistoryQuerry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\Report\mm_wheel_rej_ana_wap_norms_UI.aspx.vb">
+      <DependentUpon>mm_wheel_rej_ana_wap_norms_UI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\Report\RWP_DashBorad.aspx.vb">
+      <DependentUpon>RWP_DashBorad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\Report\Wheel_History.aspx.vb">
+      <DependentUpon>Wheel_History.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\send_email.aspx.designer.vb">
+      <DependentUpon>send_email.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="General\send_email.aspx.vb">
+      <DependentUpon>send_email.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="General\Transaction\BreakDownMemoEdit.aspx.vb">
+      <DependentUpon>BreakDownMemoEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\Transaction\User_Password_change.aspx.vb">
+      <DependentUpon>User_Password_change.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\Transaction\WheelShopFloorBalanceReconcilation.aspx.vb">
+      <DependentUpon>WheelShopFloorBalanceReconcilation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="leave_form\applicationForLeave.aspx.vb">
+      <DependentUpon>applicationForLeave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="leave_form\CancelApplicationForLeave.aspx.vb">
+      <DependentUpon>CancelApplicationForLeave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="leave_form\CancelLeaveAfterSanction.aspx.vb">
+      <DependentUpon>CancelLeaveAfterSanction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="leave_form\leaveQuery.aspx.vb">
+      <DependentUpon>leaveQuery.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="leave_form\Password_change.aspx.vb">
+      <DependentUpon>Password_change.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="leave_form\postSanctionToApplicationForLeave.aspx.vb">
+      <DependentUpon>postSanctionToApplicationForLeave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="leave_form\PrintLeavedetails.aspx.vb">
+      <DependentUpon>PrintLeavedetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="leave_form\StaffOnLeave.aspx.vb">
+      <DependentUpon>StaffOnLeave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Log.aspx.vb">
+      <DependentUpon>Log.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login_next_new.aspx.vb">
+      <DependentUpon>login_next_new.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logon.aspx.vb">
+      <DependentUpon>logon.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login_next.aspx.vb">
+      <DependentUpon>login_next.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Utility\CriticalNonStockItemListDelete.aspx.vb">
+      <DependentUpon>CriticalNonStockItemListDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Utility\CriticalNonStockItemListEdit.aspx.vb">
+      <DependentUpon>CriticalNonStockItemListEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Utility\CriticalNonStockItemListUndoDelete.aspx.vb">
+      <DependentUpon>CriticalNonStockItemListUndoDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Utility\CriticalStockItemList.aspx.vb">
+      <DependentUpon>CriticalStockItemList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Utility\CriticalStockItemListDelete.aspx.vb">
+      <DependentUpon>CriticalStockItemListDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Utility\CriticalStockItemListEdit.aspx.vb">
+      <DependentUpon>CriticalStockItemListEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Utility\CriticalStockItemListUndoDelete.aspx.vb">
+      <DependentUpon>CriticalStockItemListUndoDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Utility\MarerialList.aspx.vb">
+      <DependentUpon>MarerialList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\UTILIT\Reports\CuttingGasConsumption.vb.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MMS\EmpyLadleWeightsEntry.aspx.vb">
+      <DependentUpon>EmpyLadleWeightsEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MMS\FumeExtraction.aspx.vb">
+      <DependentUpon>FumeExtraction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MSS\Report\PreHeatedLadleReport.aspx.vb">
+      <DependentUpon>PreHeatedLadleReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MSS\Report\ProdRefractoryLining.aspx.vb">
+      <DependentUpon>ProdRefractoryLining.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MSS\RoofLining.aspx.designer.vb">
+      <DependentUpon>RoofLining.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Melt_Forms\MSS\RoofLining.aspx.vb">
+      <DependentUpon>RoofLining.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\MLDING\Baking.aspx.designer.vb">
+      <DependentUpon>Baking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MOULD\MLDING\Baking.aspx.vb">
+      <DependentUpon>Baking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\MLDING\HotWheelLineHubCut.aspx.designer.vb">
+      <DependentUpon>HotWheelLineHubCut.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MOULD\MLDING\HotWheelLineHubCut.aspx.vb">
+      <DependentUpon>HotWheelLineHubCut.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\MLDING\HWLSPG.aspx.designer.vb">
+      <DependentUpon>HWLSPG.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MOULD\MLDING\HWLSPG.aspx.vb">
+      <DependentUpon>HWLSPG.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\MLDING\MouldPosition.aspx.vb">
+      <DependentUpon>MouldPosition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\MLDING\MouldRoomHeatPosition.aspx.vb">
+      <DependentUpon>MouldRoomHeatPosition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\MLDING\MouldRoomPosition.aspx.vb">
+      <DependentUpon>MouldRoomPosition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\MLDING\MouldRoomRunBackRunOutDetails.aspx.vb">
+      <DependentUpon>MouldRoomRunBackRunOutDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\MLDING\MouldTransactionNew.aspx.vb">
+      <DependentUpon>MouldTransactionNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\MLDING\MROffloadWheels.aspx.vb">
+      <DependentUpon>MROffloadWheels.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\MLDING\MRRejections.aspx.designer.vb">
+      <DependentUpon>MRRejections.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MOULD\MLDING\MRRejections.aspx.vb">
+      <DependentUpon>MRRejections.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\MLDING\Offload.aspx.vb">
+      <DependentUpon>Offload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\MLDING\PostPouring.aspx.designer.vb">
+      <DependentUpon>PostPouring.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MOULD\MLDING\PostPouring.aspx.vb">
+      <DependentUpon>PostPouring.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\MLDING\Pouring.aspx.designer.vb">
+      <DependentUpon>Pouring.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MOULD\MLDING\Pouring.aspx.vb">
+      <DependentUpon>Pouring.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\MLDING\PouringTube.aspx.vb">
+      <DependentUpon>PouringTube.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\MLDING\pouringtube_pre.aspx.vb">
+      <DependentUpon>pouringtube_pre.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\MLDING\PrePouring.aspx.vb">
+      <DependentUpon>PrePouring.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MMS\Report\HeatSheet_3011_UI.aspx.vb">
+      <DependentUpon>HeatSheet_3011_UI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\MLDING\SandPreparationNew.aspx.designer.vb">
+      <DependentUpon>SandPreparationNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MOULD\MLDING\SandPreparationNew.aspx.vb">
+      <DependentUpon>SandPreparationNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\MLDING\SandSampleSend.aspx.designer.vb">
+      <DependentUpon>SandSampleSend.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MOULD\MLDING\SandSampleSend.aspx.vb">
+      <DependentUpon>SandSampleSend.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\MLDING\sand_recipe_table.aspx.designer.vb">
+      <DependentUpon>sand_recipe_table.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MOULD\MLDING\sand_recipe_table.aspx.vb">
+      <DependentUpon>sand_recipe_table.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\MLDING\spraystationentry.aspx.designer.vb">
+      <DependentUpon>spraystationentry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MOULD\MLDING\spraystationentry.aspx.vb">
+      <DependentUpon>spraystationentry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\mould_reports\MRShiftWiseReport.aspx.vb">
+      <DependentUpon>MRShiftWiseReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\Report\ShpFlrGndBal.aspx.vb">
+      <DependentUpon>ShpFlrGndBal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\mould_reports\302_mouldRoom_report.aspx.vb">
+      <DependentUpon>302_mouldRoom_report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\mould_reports\excess_pouringtime_report.aspx.vb">
+      <DependentUpon>excess_pouringtime_report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\Report\mm_BreakDownDetails.aspx.vb">
+      <DependentUpon>mm_BreakDownDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\SSMOLD\SubStore\ConsumableRateAndCriticalBoudaries.aspx.designer.vb">
+      <DependentUpon>ConsumableRateAndCriticalBoudaries.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MOULD\SSMOLD\SubStore\ConsumableRateAndCriticalBoudaries.aspx.vb">
+      <DependentUpon>ConsumableRateAndCriticalBoudaries.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\SSMOLD\SubStore\MaterialTransactionDetails.aspx.designer.vb">
+      <DependentUpon>MaterialTransactionDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MOULD\SSMOLD\SubStore\MaterialTransactionDetails.aspx.vb">
+      <DependentUpon>MaterialTransactionDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\SSMOLD\SubStore\NonStockMatDetails.aspx.designer.vb">
+      <DependentUpon>NonStockMatDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MOULD\SSMOLD\SubStore\NonStockMatDetails.aspx.vb">
+      <DependentUpon>NonStockMatDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\SSMOLD\SubStore\Stock_Item_Form.aspx.designer.vb">
+      <DependentUpon>Stock_Item_Form.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MOULD\SSMOLD\SubStore\Stock_Item_Form.aspx.vb">
+      <DependentUpon>Stock_Item_Form.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\mould_reports\MouldRoomFormatsReport.aspx.vb">
+      <DependentUpon>MouldRoomFormatsReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\mould_reports\Mould_Form.aspx.vb">
+      <DependentUpon>Mould_Form.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\mould_reports\Mould_New_Report1.aspx.vb">
+      <DependentUpon>Mould_New_Report1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\mould_reports\Mould_New_Report2.aspx.vb">
+      <DependentUpon>Mould_New_Report2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\mould_reports\Mould_New_Report3_XC.aspx.vb">
+      <DependentUpon>Mould_New_Report3_XC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\mould_reports\MRReports.aspx.vb">
+      <DependentUpon>MRReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\SSMOLD\SubStore\Used_Item_Detail_Form.aspx.designer.vb">
+      <DependentUpon>Used_Item_Detail_Form.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MOULD\SSMOLD\SubStore\Used_Item_Detail_Form.aspx.vb">
+      <DependentUpon>Used_Item_Detail_Form.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MRSMRS\Query\Conemned_graphite_moulds.aspx.vb">
+      <DependentUpon>Conemned_graphite_moulds.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MRSMRS\Query\Daily_cope_drag_receipt.aspx.vb">
+      <DependentUpon>Daily_cope_drag_receipt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MRSMRS\Query\Daily_mould_position.aspx.vb">
+      <DependentUpon>Daily_mould_position.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MRSMRS\Reports\MouldRepairShopReports.aspx.vb">
+      <DependentUpon>MouldRepairShopReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MRSMRS\Reports\Mould_history.aspx.vb">
+      <DependentUpon>Mould_history.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MRSMRS\Transaction\ChangeMouldStatus.aspx.vb">
+      <DependentUpon>ChangeMouldStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MRSMRS\Transaction\ConvertedMoulds.aspx.vb">
+      <DependentUpon>ConvertedMoulds.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MRSMRS\Transaction\mouldAssemblyAdd.aspx.vb">
+      <DependentUpon>mouldAssemblyAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MRSMRS\Transaction\mouldCondemnation.aspx.vb">
+      <DependentUpon>mouldCondemnation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MRSMRS\Transaction\MouldMachiningAdd.aspx.vb">
+      <DependentUpon>MouldMachiningAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MRSMRS\Transaction\MouldMachiningEdit.aspx.vb">
+      <DependentUpon>MouldMachiningEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MRSMRS\Transaction\mouldReceiptAdd.aspx.vb">
+      <DependentUpon>mouldReceiptAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MRSMRS\Transaction\MouldTransaction.aspx.vb">
+      <DependentUpon>MouldTransaction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MRSMRS\Transaction\mouldTransferToMR.aspx.vb">
+      <DependentUpon>mouldTransferToMR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MRSMRS\Transaction\MRSMouldCampaign.aspx.vb">
+      <DependentUpon>MRSMouldCampaign.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MRSMRS\Transaction\MRS_machineCode_Edit.aspx.vb">
+      <DependentUpon>MRS_machineCode_Edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MRSMRS\Transaction\NewMouldIntroductionAdd.aspx.vb">
+      <DependentUpon>NewMouldIntroductionAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MRSMRS\Transaction\NewMouldIntroductionEdit.aspx.vb">
+      <DependentUpon>NewMouldIntroductionEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MRSMRS\Transaction\UpdatePOofMoulds.aspx.vb">
+      <DependentUpon>UpdatePOofMoulds.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\BillOfMaterial.aspx.vb">
+      <DependentUpon>BillOfMaterial.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\ConsigneeDetails.aspx.vb">
+      <DependentUpon>ConsigneeDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\FeedbackForm.aspx.designer.vb">
+      <DependentUpon>FeedbackForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PCO\FeedbackForm.aspx.vb">
+      <DependentUpon>FeedbackForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\Holidays.aspx.vb">
+      <DependentUpon>Holidays.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\LateWorkOrderRelease.aspx.vb">
+      <DependentUpon>LateWorkOrderRelease.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\ManualRMR.aspx.vb">
+      <DependentUpon>ManualRMR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\mm_pco_WTA_PlannedQuantitiesAdd.aspx.vb">
+      <DependentUpon>mm_pco_WTA_PlannedQuantitiesAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\mm_pco_WTA_PlannedQuantitiesDelete.aspx.vb">
+      <DependentUpon>mm_pco_WTA_PlannedQuantitiesDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\mm_pco_WTA_PlannedQuantitiesEdit.aspx.vb">
+      <DependentUpon>mm_pco_WTA_PlannedQuantitiesEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\mm_pco_WTA_PlannedQuantitiesView.aspx.vb">
+      <DependentUpon>mm_pco_WTA_PlannedQuantitiesView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\mm_pco_WTA_SupplyOrdersDelete.aspx.designer.vb">
+      <DependentUpon>mm_pco_WTA_SupplyOrdersDelete.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PCO\mm_pco_WTA_SupplyOrdersDelete.aspx.vb">
+      <DependentUpon>mm_pco_WTA_SupplyOrdersDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\mm_pco_WTA_SupplyOrdersEdit.aspx.designer.vb">
+      <DependentUpon>mm_pco_WTA_SupplyOrdersEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PCO\mm_pco_WTA_SupplyOrdersEdit.aspx.vb">
+      <DependentUpon>mm_pco_WTA_SupplyOrdersEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\mm_pco_WTA_SupplyOrdersView.aspx.designer.vb">
+      <DependentUpon>mm_pco_WTA_SupplyOrdersView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PCO\mm_pco_WTA_SupplyOrdersView.aspx.vb">
+      <DependentUpon>mm_pco_WTA_SupplyOrdersView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\PHL_Report_Generation.aspx.vb">
+      <DependentUpon>PHL_Report_Generation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\ProductionHighlights_45C.aspx.vb">
+      <DependentUpon>ProductionHighlights_45C.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\ReferenceTaxDetails.aspx.vb">
+      <DependentUpon>ReferenceTaxDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\Reports\WheelCost_report.aspx.vb">
+      <DependentUpon>WheelCost_report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\Report\RWP_DashBorad_old.aspx.vb">
+      <DependentUpon>RWP_DashBorad_old.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\WheelCastDetails.aspx.designer.vb">
+      <DependentUpon>WheelCastDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PCO\WheelCastDetails.aspx.vb">
+      <DependentUpon>WheelCastDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\WMS_Wheel.aspx.vb">
+      <DependentUpon>WMS_Wheel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\WorkOrderClose.aspx.vb">
+      <DependentUpon>WorkOrderClose.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\CLRMAG\QUERY\MagnaReportsForSSMOLD.aspx.vb">
+      <DependentUpon>MagnaReportsForSSMOLD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\CLRMAG\QUERY\MagnaSummary.aspx.vb">
+      <DependentUpon>MagnaSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\CLRMAG\QUERY\OldWheelLookUP.aspx.vb">
+      <DependentUpon>OldWheelLookUP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\CLRMAG\Report\AnalysisOfBGCWheels.aspx.vb">
+      <DependentUpon>AnalysisOfBGCWheels.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\CLRMAG\Report\Calibration.aspx.vb">
+      <DependentUpon>Calibration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\CLRMAG\Report\PinkSheet.aspx.vb">
+      <DependentUpon>PinkSheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\CLRMAG\Report\TestResult_StockWheels.aspx.vb">
+      <DependentUpon>TestResult_StockWheels.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\CLRMAG\Report\TotalTestedWheel.aspx.vb">
+      <DependentUpon>TotalTestedWheel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\CLRMAG\Report\XcDailyAnalysis.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\CLRMAG\Transaction\CalibrationOfMagAndUTInWheelShop.aspx.vb">
+      <DependentUpon>CalibrationOfMagAndUTInWheelShop.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\CLRMAG\Transaction\CalibrationOfMagAndUTInWheelShopView.aspx.vb">
+      <DependentUpon>CalibrationOfMagAndUTInWheelShopView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\CLRMAG\Transaction\CalibrationOfUVIntensity.aspx.vb">
+      <DependentUpon>CalibrationOfUVIntensity.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\CLRMAG\Transaction\calibration_bhn.aspx.vb">
+      <DependentUpon>calibration_bhn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\CLRMAG\Transaction\ChangeMagnaXCToMRXC.aspx.vb">
+      <DependentUpon>ChangeMagnaXCToMRXC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\CLRMAG\Transaction\GeneratePinkSheet.aspx.vb">
+      <DependentUpon>GeneratePinkSheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\CLRMAG\Transaction\GeneratePinkSheetTotal.aspx.vb">
+      <DependentUpon>GeneratePinkSheetTotal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\CLRMAG\Transaction\magnaprocessingnavigator.aspx.designer.vb">
+      <DependentUpon>magnaprocessingnavigator.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Quality_Forms\CLRMAG\Transaction\magnaprocessingnavigator.aspx.vb">
+      <DependentUpon>magnaprocessingnavigator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\CLRMAG\Transaction\MagProcessingNavigator.aspx.vb">
+      <DependentUpon>MagProcessingNavigator.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\CLRMAG\Transaction\mm_PostedAsMRRej.aspx.vb">
+      <DependentUpon>mm_PostedAsMRRej.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\PHY\Transaction\BHNPostHardnessValues.aspx.vb">
+      <DependentUpon>BHNPostHardnessValues.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\SPECTRO\Report\SpectroTestReport.vb">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\SPECTRO\Transaction\JMPSampledata.aspx.designer.vb">
+      <DependentUpon>JMPSampleData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Quality_Forms\SPECTRO\Transaction\JMPSampleData.aspx.vb">
+      <DependentUpon>JMPSampleData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="wapframesetpp.aspx.designer.vb">
+      <DependentUpon>wapframesetpp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="wapframesetpp.aspx.vb">
+      <DependentUpon>wapframesetpp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WapGroupset.aspx.vb">
+      <DependentUpon>WapGroupset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\CLRINS\Query\RMWheelsQry.aspx.vb">
+      <DependentUpon>RMWheelsQry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\MLDNFDF\Transaction\EditDrawfurnaceDetails.aspx.designer.vb">
+      <DependentUpon>EditDrawfurnaceDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFPS_Forms\MLDNFDF\Transaction\EditDrawfurnaceDetails.aspx.vb">
+      <DependentUpon>EditDrawfurnaceDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\MLDNFDF\Transaction\EditDrawFurnaceZoneTemp.aspx.designer.vb">
+      <DependentUpon>EditDrawFurnaceZoneTemp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFPS_Forms\MLDNFDF\Transaction\EditDrawFurnaceZoneTemp.aspx.vb">
+      <DependentUpon>EditDrawFurnaceZoneTemp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\MLDNFDF\Transaction\EditNormalisingFurnaceDetails.aspx.designer.vb">
+      <DependentUpon>EditNormalisingFurnaceDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFPS_Forms\MLDNFDF\Transaction\EditNormalisingFurnaceDetails.aspx.vb">
+      <DependentUpon>EditNormalisingFurnaceDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\MLDNFDF\Transaction\EditNormalisingFurnaceZoneTemp.aspx.designer.vb">
+      <DependentUpon>EditNormalisingFurnaceZoneTemp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFPS_Forms\MLDNFDF\Transaction\EditNormalisingFurnaceZoneTemp.aspx.vb">
+      <DependentUpon>EditNormalisingFurnaceZoneTemp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\WFPS_REP\_302_cleaningroom_report.aspx.vb">
+      <DependentUpon>_302_cleaningroom_report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\SSMOLD\MMS\Query\RejectionProducingMoulds.aspx.vb">
+      <DependentUpon>RejectionProducingMoulds.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\SSMOLD\MMS\REPORT\CheckListReport.aspx.vb">
+      <DependentUpon>CheckListReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\SSMOLD\MSS\ConsumablesStockingDetails.aspx.vb">
+      <DependentUpon>ConsumablesStockingDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\SSMOLD\MSS\PLConsumption.aspx.designer.vb">
+      <DependentUpon>PLConsumption.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MOULD\SSMOLD\MSS\PLConsumption.aspx.vb">
+      <DependentUpon>PLConsumption.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\SSMOLD\MSS\PTMSConsumableList.aspx.vb">
+      <DependentUpon>PTMSConsumableList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\SSMOLD\MSS\PTMSConsumableListEdit.aspx.vb">
+      <DependentUpon>PTMSConsumableListEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\SSMOLD\MSS\PTMSCriticalItemSelect.aspx.vb">
+      <DependentUpon>PTMSCriticalItemSelect.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\SSMOLD\MSS\Query\ConsumablesStockingDetailsReport.aspx.vb">
+      <DependentUpon>ConsumablesStockingDetailsReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\SSMOLD\MSS\Query\StockIDNStatusListDetails.aspx.vb">
+      <DependentUpon>StockIDNStatusListDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\SSMOLD\MSS\RMRConsumption.aspx.vb">
+      <DependentUpon>RMRConsumption.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\SSMOLD\MSS\Utility\StockIDNItemList.aspx.vb">
+      <DependentUpon>StockIDNItemList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\SSMOLD\MSS\Utility\StockIDNItemListDelete.aspx.vb">
+      <DependentUpon>StockIDNItemListDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\SSMOLD\MSS\Utility\StockIDNItemListEdit.aspx.vb">
+      <DependentUpon>StockIDNItemListEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MOULD\SSMOLD\MSS\Utility\StockIDNItemListItems.aspx.vb">
+      <DependentUpon>StockIDNItemListItems.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electrical Maintenance\ELECTRI\Transaction\ArcFurnaceMeltingStats.aspx.vb">
+      <DependentUpon>ArcFurnaceMeltingStats.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electrical Maintenance\ELECTRI\Transaction\ArcFurnaceReadings.aspx.vb">
+      <DependentUpon>ArcFurnaceReadings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electrical Maintenance\ELECTRI\Transaction\DailyMDPF.aspx.vb">
+      <DependentUpon>DailyMDPF.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electrical Maintenance\ELECTRI\Transaction\DailyVoltageCurrent.aspx.vb">
+      <DependentUpon>DailyVoltageCurrent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electrical Maintenance\ELECTRI\Transaction\ElecPFReadings.aspx.vb">
+      <DependentUpon>ElecPFReadings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electrical Maintenance\ELECTRI\Transaction\monthlyStatement.aspx.vb">
+      <DependentUpon>monthlyStatement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electrical Maintenance\ELECTRI\Transaction\PowerFailure.aspx.vb">
+      <DependentUpon>PowerFailure.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electrical Maintenance\ELECTRI\Transaction\ShopWiseDailyEnergyConsumption.aspx.vb">
+      <DependentUpon>ShopWiseDailyEnergyConsumption.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electrical Maintenance\ELECTRI\Transaction\TODReadings.aspx.vb">
+      <DependentUpon>TODReadings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electrical Maintenance\ELECTRI\Transaction\WheelEnergyConsumption.aspx.vb">
+      <DependentUpon>WheelEnergyConsumption.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electrical Maintenance\Reports\ArcFurnaceEnergyConsumptionQry.aspx.vb">
+      <DependentUpon>ArcFurnaceEnergyConsumptionQry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electrical Maintenance\Reports\ArcFurnaceMeltingStatisticsQry.aspx.vb">
+      <DependentUpon>ArcFurnaceMeltingStatisticsQry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electrical Maintenance\Reports\DailyEnergyConsumptionShopsQryReport.aspx.vb">
+      <DependentUpon>DailyEnergyConsumptionShopsQryReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electrical Maintenance\Reports\DailyVoltageCurrentReport.aspx.vb">
+      <DependentUpon>DailyVoltageCurrentReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electrical Maintenance\Reports\MonthlyEnergyConsumptionReport.aspx.vb">
+      <DependentUpon>MonthlyEnergyConsumptionReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electrical Maintenance\Reports\MonthlyFurnaceWiseHeatsReport.aspx.vb">
+      <DependentUpon>MonthlyFurnaceWiseHeatsReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electrical Maintenance\Reports\ms_Monthly_Energy_Consumption.aspx.vb">
+      <DependentUpon>ms_Monthly_Energy_Consumption.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electrical Maintenance\Reports\ms_Special_Energy_Consumption.aspx.vb">
+      <DependentUpon>ms_Special_Energy_Consumption.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electrical Maintenance\Reports\NewArcFurnaceReport.aspx.vb">
+      <DependentUpon>NewArcFurnaceReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electrical Maintenance\Reports\NewEnergyConsumptionReport.aspx.vb">
+      <DependentUpon>NewEnergyConsumptionReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electrical Maintenance\Reports\PowerFailureReport.aspx.vb">
+      <DependentUpon>PowerFailureReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\Query\MagnaDailyAnalysis.aspx.vb">
+      <DependentUpon>MagnaDailyAnalysis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\Query\PODetailsQry.aspx.vb">
+      <DependentUpon>PODetailsQry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\WHLQCI\QCIResults.aspx.vb">
+      <DependentUpon>QCIResults.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\Query\RMRQry.aspx.vb">
+      <DependentUpon>RMRQry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\Query\WFPSSummary.aspx.vb">
+      <DependentUpon>WFPSSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\TEST\WebForm1.aspx.designer.vb">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="General\TEST\WebForm1.aspx.vb">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="General\Transaction\BreakDownMemo.aspx.vb">
+      <DependentUpon>BreakDownMemo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\Transaction\LadleWeights.aspx.vb">
+      <DependentUpon>LadleWeights.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\Transaction\ShopGroundBalance.aspx.vb">
+      <DependentUpon>ShopGroundBalance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Query\SearchIMBPlNumbers.aspx.vb">
+      <DependentUpon>SearchIMBPlNumbers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Reports\BreakDownMaintenaceSummary.aspx.vb">
+      <DependentUpon>BreakDownMaintenaceSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Reports\BreakDownMaintenace_UI.aspx.vb">
+      <DependentUpon>BreakDownMaintenace_UI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Reports\ElecMachinesUnScheduledReport.aspx.vb">
+      <DependentUpon>ElecMachinesUnScheduledReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Reports\MachineModification_UI.aspx.vb">
+      <DependentUpon>MachineModification_UI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Reports\ms_BreakDownDetails_New.aspx.vb">
+      <DependentUpon>ms_BreakDownDetails_New.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Reports\NewBreakDownAnalysis.aspx.vb">
+      <DependentUpon>NewBreakDownAnalysis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Reports\NewBreakDownAnalysisGroupWise.aspx.vb">
+      <DependentUpon>NewBreakDownAnalysisGroupWise.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Reports\NewBreakDownAvailability.aspx.vb">
+      <DependentUpon>NewBreakDownAvailability.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Reports\rptBreakDownsforDay.aspx.vb">
+      <DependentUpon>rptBreakDownsforDay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Reports\rptMachineryMasterList.aspx.vb">
+      <DependentUpon>rptMachineryMasterList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Reports\rptMachineSubAssemblySpares.aspx.vb">
+      <DependentUpon>rptMachineSubAssemblySpares.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Reports\rptNewBreakDownsforDay.aspx.vb">
+      <DependentUpon>rptNewBreakDownsforDay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Reports\rptUnSchBreakDownsforDay.aspx.vb">
+      <DependentUpon>rptUnSchBreakDownsforDay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Reports\SubAssemblyBreakDownMaintenance.aspx.vb">
+      <DependentUpon>SubAssemblyBreakDownMaintenance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\RTShop\HSDRTConsumption.aspx.vb">
+      <DependentUpon>HSDRTConsumption.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\RTShop\HSDRTSValues.aspx.vb">
+      <DependentUpon>HSDRTSValues.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\RTShop\Utility\StockTransaction.aspx.vb">
+      <DependentUpon>StockTransaction.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\RTShop\Utility\StockTransactionEdit.aspx.vb">
+      <DependentUpon>StockTransactionEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Setup\MachinesForTop3BdQry.aspx.vb">
+      <DependentUpon>MachinesForTop3BdQry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Setup\ms_machinesparesNew.aspx.vb">
+      <DependentUpon>ms_machinesparesNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\TOOLS\DeleteGroupTools.aspx.designer.vb">
+      <DependentUpon>DeleteGroupTools.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\TOOLS\DeleteGroupTools.aspx.vb">
+      <DependentUpon>DeleteGroupTools.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\TOOLS\EditGroupTools.aspx.designer.vb">
+      <DependentUpon>EditGroupTools.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\TOOLS\EditGroupTools.aspx.vb">
+      <DependentUpon>EditGroupTools.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\TOOLS\Reports\InterShopJobs.aspx.vb">
+      <DependentUpon>InterShopJobs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Transaction\NewMachineryMasterEdit.aspx.vb">
+      <DependentUpon>NewMachineryMasterEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\TOOLS\addGroupTools.aspx.vb">
+      <DependentUpon>addGroupTools.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\TOOLS\CaliFreqUpdate.aspx.vb">
+      <DependentUpon>CaliFreqUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\TOOLS\consumableToolIssue.aspx.vb">
+      <DependentUpon>consumableToolIssue.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\TOOLS\consumableToolReceipt.aspx.vb">
+      <DependentUpon>consumableToolReceipt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\TOOLS\JobsDoneAtTR.aspx.vb">
+      <DependentUpon>JobsDoneAtTR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\TOOLS\Reports\DueForCalibration.aspx.vb">
+      <DependentUpon>DueForCalibration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\TOOLS\GroupToolAdd.aspx.vb">
+      <DependentUpon>GroupToolAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\TOOLS\GroupToolEdit.aspx.vb">
+      <DependentUpon>GroupToolEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\TOOLS\ManageTools.aspx.vb">
+      <DependentUpon>ManageTools.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\TOOLS\Reports\RecallNotice.aspx.vb">
+      <DependentUpon>RecallNotice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\TOOLS\ShopUpdate.aspx.vb">
+      <DependentUpon>ShopUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\TOOLS\toolCalibration.aspx.vb">
+      <DependentUpon>toolCalibration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\TOOLS\ToolReceipt.aspx.vb">
+      <DependentUpon>ToolReceipt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Code\ToolRoom.vb" />
+    <Compile Include="Mechanical_Maintenance\TOOLS\Reports\ToolRoomReports.aspx.vb">
+      <DependentUpon>ToolRoomReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\TOOLS\ToolsDelete.aspx.vb">
+      <DependentUpon>ToolsDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\TOOLS\Reports\ToolsHistoryCard.aspx.vb">
+      <DependentUpon>ToolsHistoryCard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Transaction\PreventiveMaintenance.aspx.designer.vb">
+      <DependentUpon>PreventiveMaintenance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Transaction\PreventiveMaintenance.aspx.vb">
+      <DependentUpon>PreventiveMaintenance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Transaction\PreventiveMaintenanceScheduleAdd.aspx.designer.vb">
+      <DependentUpon>PreventiveMaintenanceScheduleAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Transaction\PreventiveMaintenanceScheduleAdd.aspx.vb">
+      <DependentUpon>PreventiveMaintenanceScheduleAdd.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\UTILIT\HSDUTConsumption.aspx.vb">
+      <DependentUpon>HSDUTConsumption.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\UTILIT\HSDUTValues.aspx.vb">
+      <DependentUpon>HSDUTValues.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\UTILIT\LiquidOxygenValues.aspx.vb">
+      <DependentUpon>LiquidOxygenValues.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MMS\MeltingProcessBoot.aspx.vb">
+      <DependentUpon>MeltingProcessBoot.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MMS\PCDOEntry.aspx.vb">
+      <DependentUpon>PCDOEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MMS\PreHeatedLadleDetails.aspx.vb">
+      <DependentUpon>PreHeatedLadleDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MMS\Report\IDNReport.aspx.vb">
+      <DependentUpon>IDNReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MSS\ProdConsumableDetails.aspx.vb">
+      <DependentUpon>ProdConsumableDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MMS\Report\ProdConsumableDetailsReport.aspx.vb">
+      <DependentUpon>ProdConsumableDetailsReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MMS\Report\ProdConsumableRegister.aspx.vb">
+      <DependentUpon>ProdConsumableRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MSS\ProdScrapReceipt.aspx.vb">
+      <DependentUpon>ProdScrapReceipt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MMS\RoofFixing.aspx.vb">
+      <DependentUpon>RoofFixing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electrical Maintenance\ELECTRI\Transaction\DailyVoltageCurrentDelete.aspx.vb">
+      <DependentUpon>DailyVoltageCurrentDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Electrical Maintenance\Transaction\BakingPadCurrentReadings.aspx.vb">
+      <DependentUpon>BakingPadCurrentReadings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logon_old.aspx.designer.vb">
+      <DependentUpon>logon_old.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logon_old.aspx.vb">
+      <DependentUpon>logon_old.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Query\IMBPLDetails.aspx.vb">
+      <DependentUpon>IMBPLDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\RTShop\NewMachineSparesDelete.aspx.vb">
+      <DependentUpon>NewMachineSparesDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\UTILIT\Reports\FlowMeterReadings.aspx.vb">
+      <DependentUpon>FlowMeterReadings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\RTShop\Utility\StockIDNItemList.aspx.vb">
+      <DependentUpon>StockIDNItemList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\RTShop\Utility\StockIDNItemListDelete.aspx.vb">
+      <DependentUpon>StockIDNItemListDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\RTShop\Utility\StockIDNItemListEdit.aspx.vb">
+      <DependentUpon>StockIDNItemListEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Setup\majorSubAssemblyNew.aspx.vb">
+      <DependentUpon>majorSubAssemblyNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Setup\NewMachineryMaster.aspx.vb">
+      <DependentUpon>NewMachineryMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Transaction\BreakDownMemoMWEdit.aspx.vb">
+      <DependentUpon>BreakDownMemoMWEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Transaction\machineModified.aspx.vb">
+      <DependentUpon>machineModified.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Transaction\NewMachineryMasterDelete.aspx.vb">
+      <DependentUpon>NewMachineryMasterDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Setup\NewMachineSparesAdd.aspx.vb">
+      <DependentUpon>NewMachineSparesAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Transaction\NewMachineSparesDelete.aspx.vb">
+      <DependentUpon>NewMachineSparesDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Transaction\NewMachineSparesEdit.aspx.vb">
+      <DependentUpon>NewMachineSparesEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Transaction\PLNumersforBreakDownMemo.aspx.vb">
+      <DependentUpon>PLNumersforBreakDownMemo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Transaction\PreventiveMaintenanceadd.aspx.designer.vb">
+      <DependentUpon>PreventiveMaintenanceadd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Transaction\PreventiveMaintenanceadd.aspx.vb">
+      <DependentUpon>PreventiveMaintenanceadd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Transaction\PreventiveMaintenanceEdit.aspx.designer.vb">
+      <DependentUpon>PreventiveMaintenanceEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Transaction\PreventiveMaintenanceEdit.aspx.vb">
+      <DependentUpon>PreventiveMaintenanceEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Transaction\unScheduleEntry.aspx.vb">
+      <DependentUpon>unScheduleEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Transaction\unScheduleEntryDelete.aspx.vb">
+      <DependentUpon>unScheduleEntryDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Transaction\unScheduleEntryEdit.aspx.designer.vb">
+      <DependentUpon>unScheduleEntryEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Transaction\unScheduleEntryEdit.aspx.vb">
+      <DependentUpon>unScheduleEntryEdit.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Utility\CriticalNonStockItemList.aspx.vb">
+      <DependentUpon>CriticalNonStockItemList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Utility\MaterialRequirement.aspx.vb">
+      <DependentUpon>MaterialRequirement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Utility\MaterialRequirementDelete.aspx.vb">
+      <DependentUpon>MaterialRequirementDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Utility\MaterialRequirementEdit.aspx.vb">
+      <DependentUpon>MaterialRequirementEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Utility\MaterialRequirementGenerate.aspx.vb">
+      <DependentUpon>MaterialRequirementGenerate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Utility\StockIDNItemList.aspx.vb">
+      <DependentUpon>StockIDNItemList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Utility\StockIDNItemListDelete.aspx.vb">
+      <DependentUpon>StockIDNItemListDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Utility\StockIDNItemListEdit.aspx.vb">
+      <DependentUpon>StockIDNItemListEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\Utility\StockIDNItemListItems.aspx.vb">
+      <DependentUpon>StockIDNItemListItems.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\UTILIT\Reports\WaterHardnessQuerry.aspx.vb">
+      <DependentUpon>WaterHardnessQuerry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\UTILIT\WaterHardnessData.aspx.vb">
+      <DependentUpon>WaterHardnessData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MSS\ProdBreakDown.aspx.vb">
+      <DependentUpon>ProdBreakDown.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MSS\ProdCalcinedLimeDetails.aspx.vb">
+      <DependentUpon>ProdCalcinedLimeDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MSS\ProdConsumableCB.aspx.vb">
+      <DependentUpon>ProdConsumableCB.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MSS\ProdConsumableDetailsData.aspx.vb">
+      <DependentUpon>ProdConsumableDetailsData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MSS\ProdConsumables.aspx.vb">
+      <DependentUpon>ProdConsumables.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MSS\ProdIDNDetails.aspx.vb">
+      <DependentUpon>ProdIDNDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MSS\ProdLining.aspx.vb">
+      <DependentUpon>ProdLining.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MSS\ProdLiningDetails.aspx.vb">
+      <DependentUpon>ProdLiningDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MSS\ProdLiningPLs.aspx.vb">
+      <DependentUpon>ProdLiningPLs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MSS\ProdLiningRemarks.aspx.vb">
+      <DependentUpon>ProdLiningRemarks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MSS\ProdMaterialDumpRegister.aspx.vb">
+      <DependentUpon>ProdMaterialDumpRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MSS\ProdPreHeatedLadleNo.aspx.vb">
+      <DependentUpon>ProdPreHeatedLadleNo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MSS\ProdScrapAccontal.aspx.vb">
+      <DependentUpon>ProdScrapAccontal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MSS\PTMSCriticalItemListAdd.aspx.vb">
+      <DependentUpon>PTMSCriticalItemListAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MSS\PTMSCriticalItemListDelete.aspx.vb">
+      <DependentUpon>PTMSCriticalItemListDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MSS\PTMSCriticalItemListEdit.aspx.vb">
+      <DependentUpon>PTMSCriticalItemListEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Melt_Forms\MSS\PTMSCriticalItemListUndoDelete.aspx.vb">
+      <DependentUpon>PTMSCriticalItemListUndoDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MRSMRS\Query\mmMouldBlankMachiningDetailsReport.aspx.vb">
+      <DependentUpon>mmMouldBlankMachiningDetailsReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MRSMRS\Query\MouldPerformance.aspx.vb">
+      <DependentUpon>MouldPerformance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MRSMRS\Transaction\IngateAssemblyNew.aspx.vb">
+      <DependentUpon>IngateAssemblyNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\MyExtensions\MyWebExtension.vb">
+      <VBMyExtensionTemplateID>Microsoft.VisualBasic.Web.MyExtension</VBMyExtensionTemplateID>
+      <VBMyExtensionTemplateVersion>1.0.0.0</VBMyExtensionTemplateVersion>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="PCO\ChangeWoProductCode.aspx.vb">
+      <DependentUpon>ChangeWoProductCode.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\CopyBOM.aspx.vb">
+      <DependentUpon>CopyBOM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\EnhanceWorkOrder.aspx.vb">
+      <DependentUpon>EnhanceWorkOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\HeatRemBrkDnRemEditForPHL.aspx.vb">
+      <DependentUpon>HeatRemBrkDnRemEditForPHL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\InvalidSession.aspx.vb">
+      <DependentUpon>InvalidSession.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\Reports\Invoice.aspx.vb">
+      <DependentUpon>Invoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\MMSOfflineReports.aspx.vb">
+      <DependentUpon>MMSOfflineReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\Reports\mm_bom_Composite.aspx.vb">
+      <DependentUpon>mm_bom_Composite.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\Reports\mm_MonthlyWorkOrders.aspx.vb">
+      <DependentUpon>mm_MonthlyWorkOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\mm_pco_WTA_ComplianceAdd.aspx.vb">
+      <DependentUpon>mm_pco_WTA_ComplianceAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\mm_pco_WTA_ComplianceDelete.aspx.vb">
+      <DependentUpon>mm_pco_WTA_ComplianceDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\mm_pco_WTA_Meetings.aspx.vb">
+      <DependentUpon>mm_pco_WTA_Meetings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\mm_pco_WTA_MeetingsEdit.aspx.vb">
+      <DependentUpon>mm_pco_WTA_MeetingsEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\mm_pco_WTA_MeetingsView.aspx.designer.vb">
+      <DependentUpon>mm_pco_WTA_MeetingsView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PCO\mm_pco_WTA_MeetingsView.aspx.vb">
+      <DependentUpon>mm_pco_WTA_MeetingsView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\mm_pco_WTA_ProductList.aspx.vb">
+      <DependentUpon>mm_pco_WTA_ProductList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\mm_pco_WTA_SuppliesAdd.aspx.vb">
+      <DependentUpon>mm_pco_WTA_SuppliesAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\mm_pco_WTA_SuppliesDelete.aspx.vb">
+      <DependentUpon>mm_pco_WTA_SuppliesDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\mm_pco_WTA_SuppliesEdit.aspx.vb">
+      <DependentUpon>mm_pco_WTA_SuppliesEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\mm_pco_WTA_SuppliesView.aspx.vb">
+      <DependentUpon>mm_pco_WTA_SuppliesView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\mm_pco_WTA_SupplyOrders.aspx.vb">
+      <DependentUpon>mm_pco_WTA_SupplyOrders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\NonRWFAxlesPcoEntry.aspx.vb">
+      <DependentUpon>NonRWFAxlesPcoEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\NonRWFAxlesPcoEntryDelete.aspx.vb">
+      <DependentUpon>NonRWFAxlesPcoEntryDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Code\PcoNonRwfAxleClass.vb" />
+    <Compile Include="PCO\PPC.aspx.vb">
+      <DependentUpon>PPC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\PPC_RB.aspx.vb">
+      <DependentUpon>PPC_RB.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\Reports\ProductionHighlightsReport.aspx.vb">
+      <DependentUpon>ProductionHighlightsReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\ProductMaster.aspx.vb">
+      <DependentUpon>ProductMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\ProductUnifiedPL.aspx.vb">
+      <DependentUpon>ProductUnifiedPL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\RemovePmsDeletedPlNumberFromBOM.aspx.vb">
+      <DependentUpon>RemovePmsDeletedPlNumberFromBOM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Code\RMR.vb" />
+    <Compile Include="PCO\RMRCancelResume.aspx.vb">
+      <DependentUpon>RMRCancelResume.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\RMRgeneration.aspx.vb">
+      <DependentUpon>RMRgeneration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\Reports\Rmr_generate.aspx.vb">
+      <DependentUpon>Rmr_generate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\SSEPCOAuthorises.aspx.vb">
+      <DependentUpon>SSEPCOAuthorises.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\Reports\Summary_list_of_rmrs_rpt.aspx.vb">
+      <DependentUpon>Summary_list_of_rmrs_rpt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\UpLoadReports.aspx.vb">
+      <DependentUpon>UpLoadReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Code\UTMTRDQry.vb" />
+    <Compile Include="PCO\WorkOrder.aspx.vb">
+      <DependentUpon>WorkOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PCO\Reports\YearlyProductionPlan.aspx.vb">
+      <DependentUpon>YearlyProductionPlan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\Query\MagnaQuerry.aspx.vb">
+      <DependentUpon>MagnaQuerry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\CMTWHL\Transaction\magnaglowTestingEdit.aspx.vb">
+      <DependentUpon>magnaglowTestingEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\CMTWHL\Transaction\MagProcessDateChange.aspx.vb">
+      <DependentUpon>MagProcessDateChange.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\Chem\QUERY\TestReadingDateReport.aspx.vb">
+      <DependentUpon>TestReadingDateReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\Chem\SETUP\ChemicalMaterialCharacteristics.aspx.vb">
+      <DependentUpon>ChemicalMaterialCharacteristics.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\Chem\SETUP\ChemicalMaterialList.aspx.vb">
+      <DependentUpon>ChemicalMaterialList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\Chem\Transaction\CastTest.aspx.vb">
+      <DependentUpon>CastTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\Chem\Transaction\CharpyCastTest.aspx.vb">
+      <DependentUpon>CharpyCastTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\Chem\Transaction\ChemicalLabNumber.aspx.vb">
+      <DependentUpon>ChemicalLabNumber.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\Chem\Transaction\ChemicalLabNumberChange.aspx.vb">
+      <DependentUpon>ChemicalLabNumberChange.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\Chem\Transaction\ChemicalLabNumberEdit.aspx.vb">
+      <DependentUpon>ChemicalLabNumberEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\Chem\Transaction\ChemicalTestResults.aspx.vb">
+      <DependentUpon>ChemicalTestResults.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\Chem\Transaction\ChemicalTestResultsEdit.aspx.vb">
+      <DependentUpon>ChemicalTestResultsEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\Chem\Transaction\FinalTestResultRemark.aspx.designer.vb">
+      <DependentUpon>FinalTestResultRemark.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\Chem\Transaction\FinalTestResultRemark.aspx.vb">
+      <DependentUpon>FinalTestResultRemark.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\Chem\Transaction\MetlabNABLCertificateGeneration.aspx.designer.vb">
+      <DependentUpon>MetlabNABLCertificateGeneration.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\Chem\Transaction\MetlabNABLCertificateGeneration.aspx.vb">
+      <DependentUpon>MetlabNABLCertificateGeneration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\Chem\Transaction\SandTestResults.aspx.vb">
+      <DependentUpon>SandTestResults.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\PHY\Query\rptCastTestDetails.aspx.vb">
+      <DependentUpon>rptCastTestDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\PHY\Query\rptClosureHeatRange.aspx.vb">
+      <DependentUpon>rptClosureHeatRange.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\PHY\Query\TestDetails.aspx.vb">
+      <DependentUpon>TestDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\PHY\REPORT\BHNSampleReport.aspx.designer.vb">
+      <DependentUpon>BHNSampleReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\PHY\REPORT\BHNSampleReport.aspx.vb">
+      <DependentUpon>BHNSampleReport.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\PHY\REPORT\rptHarnessSurveyReport.aspx.vb">
+      <DependentUpon>rptHarnessSurveyReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\PHY\Transaction\BHNChemicalValues.aspx.vb">
+      <DependentUpon>BHNChemicalValues.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\PHY\Transaction\BHNHeatTreatmentDetails.aspx.vb">
+      <DependentUpon>BHNHeatTreatmentDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\PHY\Transaction\BHNPostExperimentalResultAdd.aspx.vb">
+      <DependentUpon>BHNPostExperimentalResultAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\PHY\Transaction\BHNPostExperimentaPhysicalAdd.aspx.vb">
+      <DependentUpon>BHNPostExperimentaPhysicalAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\PHY\Transaction\BHNPostResultAdd.aspx.vb">
+      <DependentUpon>BHNPostResultAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\PHY\Transaction\BHNPostResultEdit.aspx.vb">
+      <DependentUpon>BHNPostResultEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\PHY\Transaction\BHNSample.aspx.vb">
+      <DependentUpon>BHNSample.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\PHY\Transaction\BHNSampleEdit.aspx.vb">
+      <DependentUpon>BHNSampleEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\PHY\Transaction\BHNSampleScheduleDelete.aspx.vb">
+      <DependentUpon>BHNSampleScheduleDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\PHY\Transaction\BHNSampleSend.aspx.vb">
+      <DependentUpon>BHNSampleSend.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\PHY\Transaction\BHNSampleSendAdd.aspx.vb">
+      <DependentUpon>BHNSampleSendAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\PHY\Transaction\BHNSampleSendEdit.aspx.vb">
+      <DependentUpon>BHNSampleSendEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\PHY\Transaction\ClosureTest.aspx.vb">
+      <DependentUpon>ClosureTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\Chem\Report\ChemicalTestReport.aspx.vb">
+      <DependentUpon>ChemicalTestReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mechanical_Maintenance\UTILIT\Reports\LiquidOxygenValuesReport.aspx.vb">
+      <DependentUpon>LiquidOxygenValuesReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\Chem\Report\MetlabReports.aspx.designer.vb">
+      <DependentUpon>MetlabReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Quality_Forms\METLAB\Chem\Report\MetlabReports.aspx.vb">
+      <DependentUpon>MetlabReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\SPECTRO\Query\rptSpectroChemicalResults.aspx.vb">
+      <DependentUpon>rptSpectroChemicalResults.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Quality_Forms\SPECTRO\Transaction\BHNchemicalvalueaddedit.aspx.designer.vb">
+      <DependentUpon>BHNchemicalvalueaddedit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Quality_Forms\SPECTRO\Transaction\BHNchemicalvalueaddedit.aspx.vb">
+      <DependentUpon>BHNchemicalvalueaddedit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="wapframeset.aspx.designer.vb">
+      <DependentUpon>wapframeset.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="wapframeset.aspx.vb">
+      <DependentUpon>wapframeset.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\AWMCLR\Query\LocateWheels.aspx.vb">
+      <DependentUpon>LocateWheels.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\AWMCLR\Transaction\mm_CloseShift_Authorisation.aspx.vb">
+      <DependentUpon>mm_CloseShift_Authorisation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\AWMCLR\Transaction\mm_ContinueShift_Authorisation.aspx.vb">
+      <DependentUpon>mm_ContinueShift_Authorisation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\AWMCLR\Transaction\mm_ContinueShift_AuthorisationView.aspx.vb">
+      <DependentUpon>mm_ContinueShift_AuthorisationView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\AWMCLR\Transaction\mm_DeleteShift_Authorisation.aspx.vb">
+      <DependentUpon>mm_DeleteShift_Authorisation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\AWMCLR\Transaction\mm_ExtendContinueShift_Authorisation.aspx.vb">
+      <DependentUpon>mm_ExtendContinueShift_Authorisation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\AWMCLR\Transaction\RMWheels.aspx.vb">
+      <DependentUpon>RMWheels.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\AWMCLR\Transaction\WheelMachining.aspx.vb">
+      <DependentUpon>WheelMachining.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="General\Transaction\WheelNotFoundInMaster.aspx.vb">
+      <DependentUpon>WheelNotFoundInMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\CLRINS\Query\FinalInspectionScore.aspx.vb">
+      <DependentUpon>FinalInspectionScore.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\CLRINS\Query\FIQuerry.aspx.vb">
+      <DependentUpon>FIQuerry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\CLRINS\Query\LocateWheels.aspx.vb">
+      <DependentUpon>LocateWheels.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\CLRINS\Transaction\BoreInspectionUnBorePassedWheels.aspx.vb">
+      <DependentUpon>BoreInspectionUnBorePassedWheels.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\CLRINS\Transaction\HoldHeatsFromFIPassing.aspx.vb">
+      <DependentUpon>HoldHeatsFromFIPassing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\CLRINS\Transaction\NonRWFWheel.vb" />
+    <Compile Include="WFPS_Forms\CLRINS\Transaction\NonRWFWheels.aspx.vb">
+      <DependentUpon>NonRWFWheels.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\CLRINS\Transaction\WFPSWarpageDetails.aspx.designer.vb">
+      <DependentUpon>WFPSWarpageDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFPS_Forms\CLRINS\Transaction\WFPSWarpageDetails.aspx.vb">
+      <DependentUpon>WFPSWarpageDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\CLRINS\Transaction\WheelFinalInspection.aspx.vb">
+      <DependentUpon>WheelFinalInspection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\CLRINS\Transaction\WheelInspectionDelete.aspx.vb">
+      <DependentUpon>WheelInspectionDelete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\MLDNFDF\Transaction\addDrawfurnaceDetails.aspx.vb">
+      <DependentUpon>addDrawfurnaceDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\MLDNFDF\Transaction\addDrawFurnaceZoneTemp.aspx.vb">
+      <DependentUpon>addDrawFurnaceZoneTemp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\MLDNFDF\Transaction\addNormalisingFurnaceDetails.aspx.vb">
+      <DependentUpon>addNormalisingFurnaceDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\MLDNFDF\Transaction\addNormalisingFurnaceZoneTemp.aspx.designer.vb">
+      <DependentUpon>addNormalisingFurnaceZoneTemp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFPS_Forms\MLDNFDF\Transaction\addNormalisingFurnaceZoneTemp.aspx.vb">
+      <DependentUpon>addNormalisingFurnaceZoneTemp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\MLDNFDF\Transaction\HeatTreatmentMaster.aspx.designer.vb">
+      <DependentUpon>HeatTreatmentMaster.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WFPS_Forms\MLDNFDF\Transaction\HeatTreatmentMaster.aspx.vb">
+      <DependentUpon>HeatTreatmentMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\MLDNFDF\Transaction\WheelNF.aspx.vb">
+      <DependentUpon>WheelNF.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\MLDNFDF\Transaction\WheelNormalising.aspx.vb">
+      <DependentUpon>WheelNormalising.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\SSINSP\Transaction\TreadDiaChangeAfterPressing.aspx.vb">
+      <DependentUpon>TreadDiaChangeAfterPressing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\SSINSP\Transaction\TreadDiaChangeBeforePressing.aspx.vb">
+      <DependentUpon>TreadDiaChangeBeforePressing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\SSINSP\Transaction\WheelFinalInspectionParam.aspx.vb">
+      <DependentUpon>WheelFinalInspectionParam.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\SSINSP\Transaction\YardInspectionFinal.aspx.vb">
+      <DependentUpon>YardInspectionFinal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\WFPS_REP\ConsigneeWiseS1313.aspx.vb">
+      <DependentUpon>ConsigneeWiseS1313.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\WFPS_REP\HSD.aspx.vb">
+      <DependentUpon>HSD.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\WFPS_REP\InspectionCertificateWAS.aspx.vb">
+      <DependentUpon>InspectionCertificateWAS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\WFPS_REP\WFPSRegisterReport.aspx.vb">
+      <DependentUpon>WFPSRegisterReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\AWMCLR\Query\WheelMachinedInRWFReport.aspx.vb">
+      <DependentUpon>WheelMachinedInRWFReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WFPS_Forms\WHLYARD\Transaction\YardInspectionMagna.aspx.vb">
+      <DependentUpon>YardInspectionMagna.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WheelDespatch.aspx.designer.vb">
+      <DependentUpon>WheelDespatch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WheelDespatch.aspx.vb">
+      <DependentUpon>WheelDespatch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WheelDespatchDetails.aspx.designer.vb">
+      <DependentUpon>WheelDespatchDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WheelDespatchDetails.aspx.vb">
+      <DependentUpon>WheelDespatchDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CrystalReport1.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReport1.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Crystal_Reports\Drinking Water.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Drinking Water.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Electrical Maintenance\ELECTRI\Transaction\AdminEnergyConsumption.aspx.resx" />
+    <EmbeddedResource Include="General\Query\InspectionResults.aspx.resx" />
+    <EmbeddedResource Include="General\Query\MeltingQuerry.aspx.resx" />
+    <EmbeddedResource Include="General\Transaction\WheelShopFloorBalanceReconcilation.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\Utility\CriticalNonStockItemListDelete.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\Utility\CriticalNonStockItemListEdit.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\Utility\CriticalNonStockItemListUndoDelete.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\Utility\CriticalStockItemList.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\Utility\CriticalStockItemListDelete.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\Utility\CriticalStockItemListEdit.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\Utility\CriticalStockItemListUndoDelete.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\Utility\MarerialList.aspx.resx" />
+    <EmbeddedResource Include="Melt_Forms\MMS\EmpyLadleWeightsEntry.aspx.resx" />
+    <EmbeddedResource Include="Melt_Forms\MSS\Report\PreHeatedLadleReport.aspx.resx">
+      <DependentUpon>PreHeatedLadleReport.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MOULD\MLDING\MouldRoomHeatPosition.aspx.resx">
+      <DependentUpon>MouldRoomHeatPosition.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MOULD\MLDING\MouldRoomPosition.aspx.resx" />
+    <EmbeddedResource Include="MOULD\MLDING\MouldRoomRunBackRunOutDetails.aspx.resx">
+      <DependentUpon>MouldRoomRunBackRunOutDetails.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MOULD\MLDING\MouldTransactionNew.aspx.resx" />
+    <EmbeddedResource Include="MOULD\MLDING\MROffloadWheels.aspx.resx">
+      <DependentUpon>MROffloadWheels.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MOULD\MLDING\Offload.aspx.resx">
+      <DependentUpon>Offload.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Melt_Forms\MMS\Report\HeatSheet_3011_UI.aspx.resx">
+      <DependentUpon>HeatSheet_3011_UI.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="General\Report\ShpFlrGndBal.aspx.resx">
+      <DependentUpon>ShpFlrGndBal.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MOULD\SSMOLD\MMS\Query\RejectionProducingMoulds.aspx.resx">
+      <DependentUpon>RejectionProducingMoulds.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MOULD\SSMOLD\MSS\ConsumablesStockingDetails.aspx.resx">
+      <DependentUpon>ConsumablesStockingDetails.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Electrical Maintenance\ELECTRI\Transaction\ArcFurnaceMeltingStats.aspx.resx" />
+    <EmbeddedResource Include="Electrical Maintenance\ELECTRI\Transaction\ArcFurnaceReadings.aspx.resx" />
+    <EmbeddedResource Include="Electrical Maintenance\ELECTRI\Transaction\DailyMDPF.aspx.resx" />
+    <EmbeddedResource Include="Electrical Maintenance\ELECTRI\Transaction\ElecPFReadings.aspx.resx" />
+    <EmbeddedResource Include="Electrical Maintenance\ELECTRI\Transaction\monthlyStatement.aspx.resx" />
+    <EmbeddedResource Include="Electrical Maintenance\ELECTRI\Transaction\PowerFailure.aspx.resx" />
+    <EmbeddedResource Include="Electrical Maintenance\ELECTRI\Transaction\TODReadings.aspx.resx" />
+    <EmbeddedResource Include="Electrical Maintenance\ELECTRI\Transaction\WheelEnergyConsumption.aspx.resx" />
+    <EmbeddedResource Include="General\Query\MagnaDailyAnalysis.aspx.resx">
+      <DependentUpon>MagnaDailyAnalysis.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Electrical Maintenance\ELECTRI\Transaction\DailyVoltageCurrentDelete.aspx.resx">
+      <DependentUpon>DailyVoltageCurrentDelete.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Electrical Maintenance\Transaction\BakingPadCurrentReadings.aspx.resx">
+      <DependentUpon>BakingPadCurrentReadings.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="General\Transaction\BreakDownMemo.aspx.resx">
+      <DependentUpon>BreakDownMemo.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="General\Transaction\LadleWeights.aspx.resx">
+      <DependentUpon>LadleWeights.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="General\Transaction\ShopGroundBalance.aspx.resx">
+      <DependentUpon>ShopGroundBalance.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mechanical_Maintenance\RTShop\HSDRTConsumption.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\RTShop\HSDRTSValues.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\RTShop\NewMachineSparesDelete.aspx.resx">
+      <DependentUpon>NewMachineSparesDelete.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mechanical_Maintenance\RTShop\Utility\StockTransaction.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\RTShop\Utility\StockTransactionEdit.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\Setup\MachinesForTop3BdQry.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\Setup\majorSubAssemblyNew.aspx.resx">
+      <DependentUpon>majorSubAssemblyNew.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mechanical_Maintenance\Setup\NewMachineryMaster.aspx.resx">
+      <DependentUpon>NewMachineryMaster.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mechanical_Maintenance\TOOLS\Reports\InterShopJobs.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\Transaction\NewMachineryMasterEdit.aspx.resx">
+      <DependentUpon>NewMachineryMasterEdit.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mechanical_Maintenance\TOOLS\addGroupTools.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\TOOLS\CaliFreqUpdate.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\TOOLS\consumableToolIssue.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\TOOLS\consumableToolReceipt.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\TOOLS\JobsDoneAtTR.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\TOOLS\Reports\DueForCalibration.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\TOOLS\GroupToolAdd.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\TOOLS\GroupToolEdit.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\TOOLS\ManageTools.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\TOOLS\Reports\RecallNotice.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\TOOLS\ShopUpdate.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\TOOLS\toolCalibration.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\TOOLS\ToolReceipt.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\TOOLS\ToolsDelete.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\Transaction\BreakDownMemoMWEdit.aspx.resx">
+      <DependentUpon>BreakDownMemoMWEdit.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mechanical_Maintenance\Transaction\machineModified.aspx.resx">
+      <DependentUpon>machineModified.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mechanical_Maintenance\Transaction\NewMachineryMasterDelete.aspx.resx">
+      <DependentUpon>NewMachineryMasterDelete.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mechanical_Maintenance\Setup\NewMachineSparesAdd.aspx.resx">
+      <DependentUpon>NewMachineSparesAdd.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mechanical_Maintenance\Transaction\NewMachineSparesDelete.aspx.resx">
+      <DependentUpon>NewMachineSparesDelete.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mechanical_Maintenance\Transaction\NewMachineSparesEdit.aspx.resx">
+      <DependentUpon>NewMachineSparesEdit.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mechanical_Maintenance\Transaction\PLNumersforBreakDownMemo.aspx.resx">
+      <DependentUpon>PLNumersforBreakDownMemo.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mechanical_Maintenance\Transaction\unScheduleEntry.aspx.resx">
+      <DependentUpon>unScheduleEntry.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mechanical_Maintenance\Transaction\unScheduleEntryDelete.aspx.resx">
+      <DependentUpon>unScheduleEntryDelete.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mechanical_Maintenance\Utility\CriticalNonStockItemList.aspx.resx">
+      <DependentUpon>CriticalNonStockItemList.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mechanical_Maintenance\Utility\MaterialRequirement.aspx.resx">
+      <DependentUpon>MaterialRequirement.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mechanical_Maintenance\Utility\MaterialRequirementDelete.aspx.resx">
+      <DependentUpon>MaterialRequirementDelete.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mechanical_Maintenance\Utility\MaterialRequirementEdit.aspx.resx">
+      <DependentUpon>MaterialRequirementEdit.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mechanical_Maintenance\Utility\MaterialRequirementGenerate.aspx.resx">
+      <DependentUpon>MaterialRequirementGenerate.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mechanical_Maintenance\UTILIT\FlowMeterReadings.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\UTILIT\LiquidOxygenValues.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\UTILIT\Reports\WaterHardnessQuerry.aspx.resx" />
+    <EmbeddedResource Include="Mechanical_Maintenance\UTILIT\WaterHardnessData.aspx.resx" />
+    <EmbeddedResource Include="MRSMRS\Query\mmMouldBlankMachiningDetailsReport.aspx.resx">
+      <DependentUpon>mmMouldBlankMachiningDetailsReport.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MRSMRS\Query\MouldPerformance.aspx.resx">
+      <DependentUpon>MouldPerformance.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MRSMRS\Transaction\ChangeMouldStatus.aspx.resx" />
+    <EmbeddedResource Include="MRSMRS\Transaction\ConvertedMoulds.aspx.resx" />
+    <EmbeddedResource Include="MRSMRS\Transaction\IngateAssemblyNew.aspx.resx">
+      <DependentUpon>IngateAssemblyNew.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MRSMRS\Transaction\mouldAssemblyAdd.aspx.resx" />
+    <EmbeddedResource Include="MRSMRS\Transaction\mouldCondemnation.aspx.resx" />
+    <EmbeddedResource Include="MRSMRS\Transaction\MouldMachiningAdd.aspx.resx" />
+    <EmbeddedResource Include="MRSMRS\Transaction\MouldMachiningEdit.aspx.resx" />
+    <EmbeddedResource Include="MRSMRS\Transaction\mouldReceiptAdd.aspx.resx" />
+    <EmbeddedResource Include="MRSMRS\Transaction\MouldTransaction.aspx.resx" />
+    <EmbeddedResource Include="MRSMRS\Transaction\mouldTransferToMR.aspx.resx" />
+    <EmbeddedResource Include="MRSMRS\Transaction\MRSMouldCampaign.aspx.resx" />
+    <EmbeddedResource Include="MRSMRS\Transaction\MRS_machineCode_Edit.aspx.resx" />
+    <EmbeddedResource Include="MRSMRS\Transaction\NewMouldIntroductionAdd.aspx.resx" />
+    <EmbeddedResource Include="MRSMRS\Transaction\NewMouldIntroductionEdit.aspx.resx" />
+    <EmbeddedResource Include="MRSMRS\Transaction\UpdatePOofMoulds.aspx.resx" />
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\BillOfMaterial.aspx.resx" />
+    <EmbeddedResource Include="PCO\ChangeWoProductCode.aspx.resx">
+      <DependentUpon>ChangeWoProductCode.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\ConsigneeDetails.aspx.resx" />
+    <EmbeddedResource Include="PCO\CopyBOM.aspx.resx">
+      <DependentUpon>CopyBOM.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\EnhanceWorkOrder.aspx.resx">
+      <DependentUpon>EnhanceWorkOrder.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\HeatRemBrkDnRemEditForPHL.aspx.resx">
+      <DependentUpon>HeatRemBrkDnRemEditForPHL.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\Holidays.aspx.resx" />
+    <EmbeddedResource Include="PCO\LateWorkOrderRelease.aspx.resx" />
+    <EmbeddedResource Include="PCO\ManualRMR.aspx.resx" />
+    <EmbeddedResource Include="PCO\MMSOfflineReports.aspx.resx">
+      <DependentUpon>MMSOfflineReports.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\mm_pco_WTA_ComplianceAdd.aspx.resx">
+      <DependentUpon>mm_pco_WTA_ComplianceAdd.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\mm_pco_WTA_ComplianceDelete.aspx.resx">
+      <DependentUpon>mm_pco_WTA_ComplianceDelete.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\mm_pco_WTA_Meetings.aspx.resx">
+      <DependentUpon>mm_pco_WTA_Meetings.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\mm_pco_WTA_PlannedQuantitiesAdd.aspx.resx" />
+    <EmbeddedResource Include="PCO\mm_pco_WTA_PlannedQuantitiesDelete.aspx.resx" />
+    <EmbeddedResource Include="PCO\mm_pco_WTA_PlannedQuantitiesEdit.aspx.resx" />
+    <EmbeddedResource Include="PCO\mm_pco_WTA_PlannedQuantitiesView.aspx.resx" />
+    <EmbeddedResource Include="PCO\mm_pco_WTA_ProductList.aspx.resx">
+      <DependentUpon>mm_pco_WTA_ProductList.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\mm_pco_WTA_SuppliesAdd.aspx.resx">
+      <DependentUpon>mm_pco_WTA_SuppliesAdd.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\mm_pco_WTA_SuppliesDelete.aspx.resx">
+      <DependentUpon>mm_pco_WTA_SuppliesDelete.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\mm_pco_WTA_SuppliesEdit.aspx.resx">
+      <DependentUpon>mm_pco_WTA_SuppliesEdit.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\mm_pco_WTA_SuppliesView.aspx.resx">
+      <DependentUpon>mm_pco_WTA_SuppliesView.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\mm_pco_WTA_SupplyOrders.aspx.resx">
+      <DependentUpon>mm_pco_WTA_SupplyOrders.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\NonRWFAxlesPcoEntry.aspx.resx">
+      <DependentUpon>NonRWFAxlesPcoEntry.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\NonRWFAxlesPcoEntryDelete.aspx.resx">
+      <DependentUpon>NonRWFAxlesPcoEntryDelete.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\PHL_Report_Generation.aspx.resx" />
+    <EmbeddedResource Include="PCO\PPC.aspx.resx">
+      <DependentUpon>PPC.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\PPC_RB.aspx.resx">
+      <DependentUpon>PPC_RB.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\ProductionHighlights_45C.aspx.resx" />
+    <EmbeddedResource Include="PCO\ReferenceTaxDetails.aspx.resx" />
+    <EmbeddedResource Include="PCO\Reports\ProductionHighlightsReport.aspx.resx">
+      <DependentUpon>ProductionHighlightsReport.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\ProductMaster.aspx.resx">
+      <DependentUpon>ProductMaster.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\ProductUnifiedPL.aspx.resx">
+      <DependentUpon>ProductUnifiedPL.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\RemovePmsDeletedPlNumberFromBOM.aspx.resx">
+      <DependentUpon>RemovePmsDeletedPlNumberFromBOM.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\RMRCancelResume.aspx.resx">
+      <DependentUpon>RMRCancelResume.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\RMRgeneration.aspx.resx">
+      <DependentUpon>RMRgeneration.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\SSEPCOAuthorises.aspx.resx">
+      <DependentUpon>SSEPCOAuthorises.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\UpLoadReports.aspx.resx">
+      <DependentUpon>UpLoadReports.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\WorkOrder.aspx.resx">
+      <DependentUpon>WorkOrder.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="General\Query\MagnaQuerry.aspx.resx">
+      <DependentUpon>MagnaQuerry.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCO\WorkOrderClose.aspx.resx" />
+    <EmbeddedResource Include="Quality_Forms\CLRMAG\QUERY\MagnaReportsForSSMOLD.aspx.resx" />
+    <EmbeddedResource Include="Quality_Forms\CLRMAG\QUERY\MagnaSummary.aspx.resx" />
+    <EmbeddedResource Include="Quality_Forms\CLRMAG\QUERY\OldWheelLookUP.aspx.resx" />
+    <EmbeddedResource Include="Quality_Forms\CLRMAG\Transaction\CalibrationOfMagAndUTInWheelShop.aspx.resx" />
+    <EmbeddedResource Include="Quality_Forms\CLRMAG\Transaction\CalibrationOfMagAndUTInWheelShopView.aspx.resx" />
+    <EmbeddedResource Include="Quality_Forms\CLRMAG\Transaction\CalibrationOfUVIntensity.aspx.resx" />
+    <EmbeddedResource Include="Quality_Forms\CLRMAG\Transaction\calibration_bhn.aspx.resx" />
+    <EmbeddedResource Include="Quality_Forms\CLRMAG\Transaction\ChangeMagnaXCToMRXC.aspx.resx" />
+    <EmbeddedResource Include="Quality_Forms\CLRMAG\Transaction\GeneratePinkSheet.aspx.resx" />
+    <EmbeddedResource Include="Quality_Forms\CLRMAG\Transaction\GeneratePinkSheetTotal.aspx.resx" />
+    <EmbeddedResource Include="Quality_Forms\CLRMAG\Transaction\MagProcessingNavigator.aspx.resx">
+      <DependentUpon>MagProcessingNavigator.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\CMTWHL\Transaction\magnaglowTestingEdit.aspx.resx">
+      <DependentUpon>magnaglowTestingEdit.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\CMTWHL\Transaction\MagProcessDateChange.aspx.resx">
+      <DependentUpon>MagProcessDateChange.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\Chem\QUERY\TestReadingDateReport.aspx.resx">
+      <DependentUpon>TestReadingDateReport.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\Chem\SETUP\ChemicalMaterialCharacteristics.aspx.resx">
+      <DependentUpon>ChemicalMaterialCharacteristics.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\Chem\SETUP\ChemicalMaterialList.aspx.resx">
+      <DependentUpon>ChemicalMaterialList.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\Chem\Transaction\CastTest.aspx.resx">
+      <DependentUpon>CastTest.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\Chem\Transaction\CharpyCastTest.aspx.resx">
+      <DependentUpon>CharpyCastTest.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\Chem\Transaction\ChemicalLabNumber.aspx.resx">
+      <DependentUpon>ChemicalLabNumber.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\Chem\Transaction\ChemicalLabNumberChange.aspx.resx">
+      <DependentUpon>ChemicalLabNumberChange.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\Chem\Transaction\ChemicalLabNumberEdit.aspx.resx">
+      <DependentUpon>ChemicalLabNumberEdit.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\Chem\Transaction\ChemicalTestResults.aspx.resx">
+      <DependentUpon>ChemicalTestResults.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\Chem\Transaction\ChemicalTestResultsEdit.aspx.resx">
+      <DependentUpon>ChemicalTestResultsEdit.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\Chem\Transaction\SandTestResults.aspx.resx">
+      <DependentUpon>SandTestResults.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\PHY\Query\rptCastTestDetails.aspx.resx">
+      <DependentUpon>rptCastTestDetails.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\PHY\Query\rptClosureHeatRange.aspx.resx">
+      <DependentUpon>rptClosureHeatRange.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\PHY\Query\TestDetails.aspx.resx">
+      <DependentUpon>TestDetails.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\PHY\REPORT\rptHarnessSurveyReport.aspx.resx">
+      <DependentUpon>rptHarnessSurveyReport.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\PHY\Transaction\BHNChemicalValues.aspx.resx">
+      <DependentUpon>BHNChemicalValues.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\PHY\Transaction\BHNHeatTreatmentDetails.aspx.resx">
+      <DependentUpon>BHNHeatTreatmentDetails.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\PHY\Transaction\BHNPostExperimentalResultAdd.aspx.resx">
+      <DependentUpon>BHNPostExperimentalResultAdd.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\PHY\Transaction\BHNPostExperimentaPhysicalAdd.aspx.resx">
+      <DependentUpon>BHNPostExperimentaPhysicalAdd.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\PHY\Transaction\BHNPostHardnessValues.aspx.resx" />
+    <EmbeddedResource Include="Quality_Forms\METLAB\PHY\Transaction\BHNPostResultAdd.aspx.resx">
+      <DependentUpon>BHNPostResultAdd.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\PHY\Transaction\BHNPostResultEdit.aspx.resx">
+      <DependentUpon>BHNPostResultEdit.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\PHY\Transaction\BHNSample.aspx.resx">
+      <DependentUpon>BHNSample.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\PHY\Transaction\BHNSampleEdit.aspx.resx">
+      <DependentUpon>BHNSampleEdit.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\PHY\Transaction\BHNSampleScheduleDelete.aspx.resx">
+      <DependentUpon>BHNSampleScheduleDelete.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\PHY\Transaction\BHNSampleSend.aspx.resx">
+      <DependentUpon>BHNSampleSend.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\PHY\Transaction\BHNSampleSendAdd.aspx.resx">
+      <DependentUpon>BHNSampleSendAdd.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\PHY\Transaction\BHNSampleSendEdit.aspx.resx">
+      <DependentUpon>BHNSampleSendEdit.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\METLAB\PHY\Transaction\ClosureTest.aspx.resx">
+      <DependentUpon>ClosureTest.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quality_Forms\SPECTRO\Query\rptSpectroChemicalResults.aspx.resx">
+      <DependentUpon>rptSpectroChemicalResults.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WFPS_Forms\AWMCLR\Transaction\RMWheels.aspx.resx">
+      <DependentUpon>RMWheels.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="General\Transaction\WheelNotFoundInMaster.aspx.resx">
+      <DependentUpon>WheelNotFoundInMaster.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WFPS_Forms\CLRINS\Query\RMWheelsQry.aspx.resx">
+      <DependentUpon>RMWheelsQry.aspx.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app.config" />
+    <Content Include="DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
+    <None Include="DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
+    <Content Include="DataSet2.xsc">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Content>
+    <None Include="DataSet2.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet2.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="DataSet2.xss">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Content>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\PublishProfiles\CustomProfile.pubxml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="My Project\PublishProfiles\IISProfile.pubxml" />
+    <None Include="My Project\PublishProfiles\IISProfile1.pubxml" />
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="NewFolder1\desktop.ini" />
+    <Content Include="NewFolder1\Folder Settings\Folder.htt" />
+    <Content Include="NewFolder1\images\desktop.ini" />
+    <Content Include="NewFolder1\images\Folder Settings\Folder.htt" />
+    <Content Include="NewFolder1\images\vssver.scc" />
+    <Content Include="NewFolder1\vssver.scc" />
+    <None Include="packages.config" />
+    <Content Include="Quality_Forms\CLRMAG\Transaction\Help_MagnaCode.pdf" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MOULD\MLDING\Query\" />
+    <Folder Include="MOULD\SSMOLD\MSS\REPORT\" />
+    <Folder Include="Quality_Forms\CMTWHL\Query\" />
+    <Folder Include="Quality_Forms\CMTWHL\Reports\" />
+    <Folder Include="Quality_Forms\Quality_Forms_Reports\" />
+    <Folder Include="WFPS_Forms\CLRINS\Reports\" />
+    <Folder Include="WFPS_Forms\MLDNFDF\Query\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup Condition="$(VisualStudioVersion) == '16.0'">
+    <Reference Include="Microsoft.Data.Tools.Schema.Sql, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>$(SSDTPath)\Microsoft.Data.Tools.Schema.Sql.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Tools.Schema.Sql.UnitTesting, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>$(SSDTUnitTestPath)\Microsoft.Data.Tools.Schema.Sql.UnitTesting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Tools.Schema.Sql.UnitTestingAdapter, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>$(SSDTUnitTestPath)\Microsoft.Data.Tools.Schema.Sql.UnitTestingAdapter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>52240</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:52240/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" />
+  <PropertyGroup>
+    <SsdtUnitTestVersion>3.1</SsdtUnitTestVersion>
+  </PropertyGroup>
+  <Import Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="$(VisualStudioVersion) != '15.0' And '$(SQLDBExtensionsRefPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="$(VisualStudioVersion) != '15.0' And '$(SQLDBExtensionsRefPath)' == ''" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

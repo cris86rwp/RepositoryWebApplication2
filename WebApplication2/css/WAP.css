@@ -1,0 +1,29 @@
+BODY {
+	background-color : #b6dcf5;
+}
+
+TABLE {
+	font-family : "Arial Black";
+	font-size : x-small;
+	width : 100%;
+	font : bold;
+	border : 0px;
+}
+
+TD {
+	font : bold;
+	font-family : Arial;
+	font-size : x-small;
+	border : 0px;
+}
+
+INPUT {
+	font-family : "Arial";
+	font-size : x-small;
+}
+
+H3 {
+	font-family : "Arial Black";
+	font-size : larger;
+	font-style : normal;
+}

@@ -1,0 +1,31 @@
+Menu.prototype.cssFile = '/ppms/menus/skins/officexp/officexp.css';
+
+Menu.prototype.cssFile = '/ppms/menus/skins/officexp/officexp.css';
+var mM01= new Menu();var mM05= new Menu();var mM09= new Menu();var mM03= new Menu();var mM07= new Menu();var mM11= new Menu();var mM12= new Menu();var mM13= new Menu();var mM30= new Menu();var mM31= new Menu();var mM90= new Menu();
+var tmp;
+mM01.add(tmp = new MenuItem("Entry of Extra Vacancies",null,null, mM11) );
+tmp.mnemonic = '';
+mM01.add(tmp = new MenuItem("Quota Register",null,null, mM12) );
+tmp.mnemonic = '';
+mM01.add(tmp = new MenuItem("Reports",null,null, mM13) );
+tmp.mnemonic = '';
+mM01.add(tmp = new MenuItem("Roster","/ppms//bos/assesmentofVacancies.aspx"));tmp.mnemonic = '';mM01.add(tmp = new MenuItem("BOS Posts Updation","/ppms/bos/RosterEdit.aspx?mode=add"));tmp.mnemonic = '';mM01.add(tmp = new MenuItem("Roster Sanctions Updation","/ppms/bos/frmRosterHeaderUpdation.aspx"));tmp.mnemonic = '';mM03.add(tmp = new MenuItem("Seniority Artisans",null,null, mM30) );
+tmp.mnemonic = '';
+mM03.add(tmp = new MenuItem("Seniority Non - Artisans",null,null, mM31) );
+tmp.mnemonic = '';
+mM05.add(tmp = new MenuItem("Update N-Q-P From Leave",""));tmp.mnemonic = '';mM05.add(tmp = new MenuItem("Add N-Q-P","/ppms/qpn/nonQualifyingPeriodForPension.aspx?mode=add"));tmp.mnemonic = '';mM05.add(tmp = new MenuItem("Delete N-Q-P","/ppms/qpn/nonQualifyingPeriodForPension.aspx?mode=delete"));tmp.mnemonic = '';mM05.add(tmp = new MenuItem("Query","/ppms/qpn/nonQualifyingPeriodForPension.aspx?mode=view"));tmp.mnemonic = '';mM07.add(tmp = new MenuItem("Add","/ppms/vipReferenceMaintenace.aspx?mode=add"));tmp.mnemonic = '';mM07.add(tmp = new MenuItem("Modify","/ppms/vipReferenceMaintenace.aspx?mode=edit"));tmp.mnemonic = '';mM07.add(tmp = new MenuItem("Delete","/ppms/vipReferenceMaintenace.aspx?mode=delete"));tmp.mnemonic = '';mM07.add(tmp = new MenuItem("Query","/ppms/vipReferenceMaintenace.aspx?mode=view"));tmp.mnemonic = '';mM07.add(tmp = new MenuItem("Reference List","/ppms/PPVIP01"));tmp.mnemonic = '';mM09.add(tmp = new MenuItem("Recruitment",null,null, mM90) );
+tmp.mnemonic = '';
+mM11.add(tmp = new MenuItem("Add","/ppms//bos/entryofExtraVacancies.aspx?mode=add"));tmp.mnemonic = '';mM11.add(tmp = new MenuItem("Modify","/ppms//bos/entryofExtraVacancies.aspx?mode=edit"));tmp.mnemonic = '';mM11.add(tmp = new MenuItem("Delete","/ppms//bos/entryofExtraVacancies.aspx?mode=delete"));tmp.mnemonic = '';mM11.add(tmp = new MenuItem("Query","/ppms//bos/entryofExtraVacancies.aspx?mode=view"));tmp.mnemonic = '';mM12.add(tmp = new MenuItem("Add","/ppms//bos/quotaRegister.aspx?mode=add"));tmp.mnemonic = '';mM12.add(tmp = new MenuItem("Modify","/ppms//bos/quotaRegister.aspx?mode=edit"));tmp.mnemonic = '';mM30.add(tmp = new MenuItem("Add","/ppms/seniority/seniority.rpt"));tmp.mnemonic = '';mM30.add(tmp = new MenuItem("Edit","/ppms/seniority/seniorityArtisans.aspx?mode=edit"));tmp.mnemonic = '';mM31.add(tmp = new MenuItem("Add","/ppms/seniority/seniorityNonArtisans.aspx?mode=add"));tmp.mnemonic = '';mM31.add(tmp = new MenuItem("Edit","/ppms/seniority/seniorityNonArtisans.aspx?mode=edit"));tmp.mnemonic = '';mM31.add(tmp = new MenuItem("Delete","/ppms/seniority/seniorityNonArtisans.aspx?mode=delete"));tmp.mnemonic = '';mM31.add(tmp = new MenuItem("View","/ppms/seniority/seniorityNonArtisans.aspx?mode=view"));tmp.mnemonic = '';mM90.add(tmp = new MenuItem("Add","/ppms/recruitment/registerApplication.aspx?mode=add"));tmp.mnemonic = '';mM90.add(tmp = new MenuItem("Modify","/ppms/recruitment/registerApplication.aspx?mode=edit"));tmp.mnemonic = '';mM90.add(tmp = new MenuItem("Delete","/ppms/recruitment/registerApplication.aspx?mode=delete"));tmp.mnemonic = '';mM90.add(tmp = new MenuItem("Post Selected","/ppms/recruitment/postApplicationSelected.aspx?post=post"));tmp.mnemonic = '';
+var menuBar = new MenuBar();
+menuBar.add( tmp = new MenuButton("Book Of Sanction", mM01) );
+tmp.mnemonic = '';
+menuBar.add( tmp = new MenuButton("N-Q-P Pension", mM05) );
+tmp.mnemonic = '';
+menuBar.add( tmp = new MenuButton("Recruitment", mM09) );
+tmp.mnemonic = '';
+menuBar.add( tmp = new MenuButton("Seniority", mM03) );
+tmp.mnemonic = '';
+menuBar.add( tmp = new MenuButton("VIP Ref.", mM07) );
+tmp.mnemonic = '';
+
+menuBar.write();

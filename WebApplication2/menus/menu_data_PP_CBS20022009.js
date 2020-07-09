@@ -1,0 +1,47 @@
+Menu.prototype.cssFile = '/ppms/menus/skins/officexp/officexp.css';
+
+Menu.prototype.cssFile = '/ppms/menus/skins/officexp/officexp.css';
+var mA01= new Menu();var mG00= new Menu();var mN12= new Menu();var mA02= new Menu();var mA03= new Menu();var mA06= new Menu();var mC01= new Menu();var mT01= new Menu();var mZ02= new Menu();var mC20= new Menu();var mC21= new Menu();var mC22= new Menu();var mC24= new Menu();var mC25= new Menu();var mC26= new Menu();var mZ12= new Menu();var mZ27= new Menu();var mC59= new Menu();var mC60= new Menu();
+var tmp;
+mA01.add(tmp = new MenuItem("Update Taken Charge Date","/ppms/CareerEvents/careerEventsChargeUpdate.aspx"));tmp.mnemonic = '';mA01.add(tmp = new MenuItem("Post Entries To Payroll","/ppms/CareerEvents/careerEventsPayrollPosting.aspx"));tmp.mnemonic = '';mA02.add(tmp = new MenuItem("Post/Prepone Increments","/ppms/increments/increments.aspx"));tmp.mnemonic = '';mA02.add(tmp = new MenuItem("Sactioned List","/ppms/increments/sanctions.aspx?mode=S"));tmp.mnemonic = '';mA02.add(tmp = new MenuItem("Postponed List","/ppms/increments/sanctions.aspx?mode=P"));tmp.mnemonic = '';mA02.add(tmp = new MenuItem("On Leave","/ppms/increments/frmEmpLeaveONInc.aspx"));tmp.mnemonic = ' ';mA03.add(tmp = new MenuItem("Post Memo. to Payroll","/ppms/miscEDs/postMemo.aspx?post=P"));tmp.mnemonic = '';mA03.add(tmp = new MenuItem("Post Memo. to Supp.Pay","/ppms/miscEDs/postMemo.aspx?post=S"));tmp.mnemonic = '';mA06.add(tmp = new MenuItem("Post Entries To Payroll","/ppms/payrates/payratesPostingToPayroll.aspx"));tmp.mnemonic = '';mC01.add(tmp = new MenuItem("Misc. Earn/Dedns",null,null, mC20) );
+tmp.mnemonic = '';
+mC01.add(tmp = new MenuItem("Other Railways",null,null, mC21) );
+tmp.mnemonic = '';
+mC01.add(tmp = new MenuItem("Loans/Advances",null,null, mC22) );
+tmp.mnemonic = '';
+mC01.add(tmp = new MenuItem("Policies",null,null, mC24) );
+tmp.mnemonic = '';
+mC01.add(tmp = new MenuItem("Other Fixed E/Ds",null,null, mC25) );
+tmp.mnemonic = '';
+mC01.add(tmp = new MenuItem("Memberships",null,null, mC26) );
+tmp.mnemonic = '';
+mG00.add(tmp = new MenuItem("Post to Supplementary","/ppms/loans/loanPostToSupPay.aspx?post=S"));tmp.mnemonic = '';mG00.add(tmp = new MenuItem("Post to Payroll","/ppms/loans/loanPostToSupPay.aspx?post=P"));tmp.mnemonic = '';mN12.add(tmp = new MenuItem("Pay thru Payroll","/ppms/hoer/hoerPosting.aspx"));tmp.mnemonic = '';mT01.add(tmp = new MenuItem("Generate Memorandum","/ppms/ta/taMemorandum.aspx"));tmp.mnemonic = '';mT01.add(tmp = new MenuItem("Posting to Payroll","/ppms/ta/taPosting.aspx?post=P"));tmp.mnemonic = '';mT01.add(tmp = new MenuItem("Posting to Supplementary","/ppms/ta/taPosting.aspx?post=S"));tmp.mnemonic = '';mZ02.add(tmp = new MenuItem("Reports",null,null, mZ12) );
+tmp.mnemonic = '';
+mZ12.add(tmp = new MenuItem("Check List",null,null, mZ27) );
+tmp.mnemonic = '';
+mC01.add(tmp = new MenuItem("Minus Earnings",null,null, mC59) );
+tmp.mnemonic = ' ';
+mC20.add(tmp = new MenuItem("Add","/ppms/payroll/Miscelleneous.aspx?mode=add&type=MS"));tmp.mnemonic = '';mC20.add(tmp = new MenuItem("Edit","/ppms/payroll/Miscelleneous.aspx?mode=edit&type=MS"));tmp.mnemonic = '';mC20.add(tmp = new MenuItem("Delete","/ppms/payroll/MiscEarDeduDelete.aspx?mode=delete&type=MS"));tmp.mnemonic = '';mC20.add(tmp = new MenuItem("View","/ppms/payroll/MiscelleneousView.aspx?mode=view&type=MS"));tmp.mnemonic = ' ';mC21.add(tmp = new MenuItem("Add","/ppms/payroll/standard.aspx?mode=add&type=OD"));tmp.mnemonic = '';mC21.add(tmp = new MenuItem("Edit","/ppms/payroll/standard.aspx?mode=edit&type=OD"));tmp.mnemonic = '';mC21.add(tmp = new MenuItem("View","/ppms//payroll/standard.aspx?mode=view&type=OD"));tmp.mnemonic = ' ';mC22.add(tmp = new MenuItem("ADD","/ppms//payroll/Standard.aspx?mode=add&type=L%"));tmp.mnemonic = ' ';mC22.add(tmp = new MenuItem("EDIT","/ppms//payroll/Standard.aspx?mode=edit&type=L%"));tmp.mnemonic = ' ';mC22.add(tmp = new MenuItem("VIEW","/ppms//payroll/Standard.aspx?mode=view&type=L%"));tmp.mnemonic = ' ';mC24.add(tmp = new MenuItem("Add","/ppms/payroll/NonStandard.aspx?mode=add&type=NP"));tmp.mnemonic = '';mC24.add(tmp = new MenuItem("Edit","/ppms/payroll/NonStandard.aspx?mode=edit&type=NP"));tmp.mnemonic = '';mC25.add(tmp = new MenuItem("Add","/ppms/payroll/NonStandard.aspx?mode=add&type=NS"));tmp.mnemonic = ' ';mC25.add(tmp = new MenuItem("Edit","/ppms/payroll/NonStandard.aspx?mode=edit&type=NS"));tmp.mnemonic = ' ';mC25.add(tmp = new MenuItem("View","/ppms/payroll/NonStandard.aspx?mode=view&type=NS"));tmp.mnemonic = ' ';mC26.add(tmp = new MenuItem("Add","/ppms/payroll/NonStandard.aspx?mode=add&type=NM"));tmp.mnemonic = '';mC26.add(tmp = new MenuItem("Edit","/ppms/payroll/NonStandard.aspx?mode=edit&type=NM"));tmp.mnemonic = '';mC26.add(tmp = new MenuItem("View","/ppms/payroll/NonStandard.aspx?mode=view&type=NM"));tmp.mnemonic = ' ';mC60.add(tmp = new MenuItem("Add","/ppms//payroll/Standard.aspx?mode=add&type=AD"));tmp.mnemonic = ' ';mC60.add(tmp = new MenuItem("Edit","/ppms//payroll/Standard.aspx?mode=edit&type=AD"));tmp.mnemonic = ' ';mC60.add(tmp = new MenuItem("Delete","/ppms//payroll/Standard.aspx?mode=delete&type=AD"));tmp.mnemonic = ' ';mC60.add(tmp = new MenuItem("View","/ppms//payroll/Standard.aspx?mode=view&type=AD"));tmp.mnemonic = ' ';mZ27.add(tmp = new MenuItem("ChecklistBankdetails","/ppms/Reports/formats/CheckList/Checklist.aspx?mode=ChecklistBankdetails"));tmp.mnemonic = '';mZ27.add(tmp = new MenuItem("ChecklistMiscAttendanceDetails","/ppms/Reports/formats/CheckList/Checklist.aspx?mode=ChecklistMiscAttendanceDetails"));tmp.mnemonic = '';mZ27.add(tmp = new MenuItem("ChecklistMiscellaneousDeductions","/ppms/Reports/formats/CheckList/Checklist.aspx?mode=ChecklistMiscellaneousDeductions"));tmp.mnemonic = '';mZ27.add(tmp = new MenuItem("ChecklistPayrates","/ppms/Reports/formats/CheckList/Checklist.aspx?mode=ChecklistPayrates"));tmp.mnemonic = '';mC59.add(tmp = new MenuItem("Add","/ppms//payroll/Standard.aspx?mode=add&type=ME"));tmp.mnemonic = ' ';mC59.add(tmp = new MenuItem("Edit","/ppms//payroll/Standard.aspx?mode=edit&type=ME"));tmp.mnemonic = ' ';mC59.add(tmp = new MenuItem("View","/ppms//payroll/Standard.aspx?mode=view&type=ME"));tmp.mnemonic = ' ';mC01.add(tmp = new MenuItem("Arrear Deduction",null,null, mC60) );
+tmp.mnemonic = ' ';
+
+var menuBar = new MenuBar();
+menuBar.add( tmp = new MenuButton("Career Events", mA01) );
+tmp.mnemonic = '';
+menuBar.add( tmp = new MenuButton("Govt.Loans", mG00) );
+tmp.mnemonic = '';
+menuBar.add( tmp = new MenuButton("HOER OT/NDA", mN12) );
+tmp.mnemonic = '';
+menuBar.add( tmp = new MenuButton("Increments", mA02) );
+tmp.mnemonic = '';
+menuBar.add( tmp = new MenuButton("Misc. E/Ds", mA03) );
+tmp.mnemonic = '';
+menuBar.add( tmp = new MenuButton("Pay Rates", mA06) );
+tmp.mnemonic = '';
+menuBar.add( tmp = new MenuButton("Transactions", mC01) );
+tmp.mnemonic = '';
+menuBar.add( tmp = new MenuButton("Travel Allowance", mT01) );
+tmp.mnemonic = '';
+menuBar.add( tmp = new MenuButton("Reports", mZ02) );
+tmp.mnemonic = '';
+
+menuBar.write();

@@ -1,0 +1,820 @@
+Imports Microsoft.ApplicationBlocks.Data
+Imports System.Data.SqlClient
+Imports System.Data
+
+Public Class applicationForLeave
+    Inherits System.Web.UI.Page
+    Protected WithEvents lblMode As System.Web.UI.WebControls.Label
+    Protected WithEvents lblcl1 As System.Web.UI.WebControls.Label
+    Protected WithEvents lblcl2 As System.Web.UI.WebControls.Label
+    Protected WithEvents lblcommute As System.Web.UI.WebControls.Label
+    Protected WithEvents ddlconvert As System.Web.UI.WebControls.DropDownList
+    Protected WithEvents ddlleave_code As System.Web.UI.WebControls.DropDownList
+    Protected WithEvents txtleave_from As System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtaddress As System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtapplication_number As System.Web.UI.WebControls.TextBox
+    Protected WithEvents ddlfirst_half_from As System.Web.UI.WebControls.DropDownList
+    Protected WithEvents txtleave_to As System.Web.UI.WebControls.TextBox
+    Protected WithEvents ddlfirst_half_to As System.Web.UI.WebControls.DropDownList
+    Protected WithEvents txtdays As System.Web.UI.WebControls.TextBox
+    Protected WithEvents txtemployee_code As System.Web.UI.WebControls.TextBox
+    Protected WithEvents lblMessage As System.Web.UI.WebControls.Label
+    Protected WithEvents txtreason As System.Web.UI.WebControls.TextBox
+    Protected WithEvents RequiredFieldValidator1 As System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents RequiredFieldValidator2 As System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents RequiredFieldValidator3 As System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents ddloutstation_or_hq As System.Web.UI.WebControls.DropDownList
+    Protected WithEvents DataGrid1 As System.Web.UI.WebControls.DataGrid
+    Protected WithEvents Datagrid2 As System.Web.UI.WebControls.DataGrid
+    Protected WithEvents lblname As System.Web.UI.WebControls.Label
+    Protected WithEvents lbldesignation As System.Web.UI.WebControls.Label
+    Protected WithEvents cmdSave As System.Web.UI.WebControls.Button
+    Protected WithEvents cmdCancel As System.Web.UI.WebControls.Button
+    Protected WithEvents cmdExit As System.Web.UI.WebControls.Button
+    Protected WithEvents Label1 As System.Web.UI.WebControls.Label
+    Public con As New SqlConnection(ConfigurationManager.AppSettings("con"))
+    Protected WithEvents Dd1 As System.Web.UI.WebControls.DropDownList
+
+    Shared themeValue As String
+
+    Public Sub New()
+
+        AddHandler PreInit, New EventHandler(AddressOf Page_PreInit)
+    End Sub
+
+    Private Sub Page_PreInit(ByVal sender As Object, ByVal e As EventArgs)
+
+        Page.Theme = themeValue
+    End Sub
+
+
+    Protected Sub Dd1_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs)
+        themeValue = Dd1.SelectedItem.Value
+        Response.Redirect(Request.Url.ToString())
+
+    End Sub
+
+
+
+#Region " Web Form Designer Generated Code "
+
+    'This call is required by the Web Form Designer.
+    <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
+
+    End Sub
+
+    Private Sub Page_Init(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Init
+        'CODEGEN: This method call is required by the Web Form Designer
+        'Do not modify it using the code editor.
+        InitializeComponent()
+    End Sub
+
+#End Region
+
+    Dim rdr As SqlDataReader
+    Private Sub Page_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        'Put user code to initialize the page here
+        'redirecting during leave credits'
+        ' Response.Redirect("/ppms/leavemessage.htm")
+        'redirecting during leave credits'
+        Session("UserId") = "12400503337"
+        'If Session("UserId") Is Nothing Then
+        '    Response.Redirect("InvalidSession.aspx")
+        'End If
+        Session("Group") = "TOFFIC"
+        'If Not Session("Group") = "TOFFIC" Then
+        '    Response.Redirect("/ppmsppmsAppUnavailablel.aspx")
+        'End If
+
+        lblMessage.Text = ""
+
+        If Not IsPostBack Then
+            con.Open()
+
+            'Dim ecode As Integer = Session("Ecode")
+
+            'txtemployee_code.Text = ecode
+            lblMode.Text = Request.QueryString("mode")
+
+            lblMode.Text = "add"
+            'lblMode.Text = Request.QueryString("mode")
+            txtapplication_number.Text = getApplicationNumber()
+            'ddlsanctioned.Enabled = False
+            ' txtemployee_code.Text = "12400503337"
+            ' txtemployee_code.Text = Session("empCode")
+            '  txtemployee_code.ReadOnly = True
+            '  getEmployeeDetails()
+            ddlfirst_half_from.Visible = False
+            ddlfirst_half_to.Visible = False
+            ddlconvert.Visible = False
+
+            Session("half_days") = 0
+        End If
+
+    End Sub
+
+
+    'Function isPreviousDayHoliday() As Boolean
+    '    'Dim answer = today.AddDays(-5)
+    '    '  Dim s = CDate(Session("leave_from"))
+    '    ' Session("date") = s.AddDays(-1)
+    '    'Dim holiday_string As String = "SELECT type FROM holiday_master1 WHERE calender_date = '" & Format(Session("date"), "YYYY/MM/DD") & "'"
+    '    Dim holiday_string As String = "SELECT type FROM holiday_master1 WHERE calender_date = '" & DateAdd(DateInterval.Day, -1, CDate(Session("leave_from"))) & "'"
+
+    '    Session("leave_type") = SqlHelper.ExecuteScalar(con, CommandType.Text, holiday_string)
+    '    If IsDBNull(Session("leave_type")) Then
+    '        Return False
+    '    Else
+    '        Return True
+    '    End If
+
+    'End Function
+    Function isPreviousDayHoliday() As Boolean
+        Dim DD As Date
+        DD = Format(CDate(txtleave_from.Text), "yyyy-MM-dd")
+        'Dim holiday_string As String = "SELECT type FROM hr_holidays_master WHERE calender_date = '" & DateAdd(DateInterval.Day, -1, CDate(Now)) & "'"
+        Dim holiday_string As String = "SELECT type FROM hr_holidays_master WHERE calender_date = '" & Format(DateAdd(DateInterval.DayOfYear, -1, DD), "yyyy-MM-dd") & "'"
+
+        Session("leave_type") = SqlHelper.ExecuteScalar(con, CommandType.Text, holiday_string)
+        If IsDBNull(Session("leave_type")) Then
+            Return False
+        Else
+            Return True
+        End If
+
+    End Function
+
+    'Function checkforCL() As Boolean
+    '    Dim leave_code_string As String
+    '    Dim isholiday As Boolean = isPreviousDayHoliday()
+
+    '    If (isholiday) = True Then
+    '        leave_code_string = "select leavecode from hr_leave_application_details where empno='" & Trim(txtemployee_code.Text) & "'and to_date='" & DateAdd(DateInterval.Day, -2, CDate(Session("leave_from"))) & "'"
+    '    Else
+    '        leave_code_string = "select leavecode from hr_leave_application_details where empno='" & Trim(txtemployee_code.Text) & "'and to_date='" & DateAdd(DateInterval.Day, -1, CDate(Session("leave_from"))) & "'"
+    '    End If
+
+    '    Session("leave_code_previous_day") = SqlHelper.ExecuteScalar(con, CommandType.Text, leave_code_string)
+
+    '    If IsDBNull(Session("leave_code_previous_day")) Then
+    '        Return False
+    '    ElseIf Session("leave_code_previous_day") = "14" Then
+    '        Return True
+    '    Else
+    '        Return False
+    '    End If
+    'End Function
+    Function checkforCL() As Boolean
+        Dim leave_code_string As String
+        Dim DD As Date
+        DD = Format(CDate(txtleave_from.Text), "yyyy-MM-dd")
+        Dim isholiday As Boolean = isPreviousDayHoliday()
+
+        If (isholiday) = True Then
+            leave_code_string = "select leave_code from hr_leave_details where employee_code='" & Trim(txtemployee_code.Text) & "'and to_date='" & Format(DateAdd(DateInterval.DayOfYear, -2, DD), "yyyy-MM-dd") & "'"
+        Else
+            leave_code_string = "select leave_code from hr_leave_details where employee_code='" & Trim(txtemployee_code.Text) & "'and to_date='" & Format(DateAdd(DateInterval.DayOfYear, -1, DD), "yyyy-MM-dd") & "'"
+        End If
+
+        Session("leave_code_previous_day") = SqlHelper.ExecuteScalar(con, CommandType.Text, leave_code_string)
+
+        If IsDBNull(Session("leave_code_previous_day")) Then
+            Return False
+        ElseIf Session("leave_code_previous_day") = "14" Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
+    Function checkforLAP()
+        Dim leave_code_string As String
+        Dim isholiday As Boolean = isPreviousDayHoliday()
+
+        If (isholiday) = True Then
+            leave_code_string = "select leavecode from hr_leave_application_details where empno='" & Trim(txtemployee_code.Text) & "'and to_date='" & DateAdd(DateInterval.Day, -1, CDate(Session("leave_from"))) & "'"
+        Else
+            leave_code_string = "select leavecode from hr_leave_application_details where empno='" & Trim(txtemployee_code.Text) & "'and to_date='" & DateAdd(DateInterval.Day, -1, CDate(Session("leave_from"))) & "'"
+        End If
+
+        'leave_code_string = "select leave_code from hr_leave_details where employee_code='" & Trim(txtemployee_code.Text) & "'and to_date='" & DateAdd(DateInterval.Day, -1, CDate(session("leave_from"))) & "'"
+
+        Session("leave_code_previous_day") = SqlHelper.ExecuteScalar(con, CommandType.Text, leave_code_string)
+        If IsDBNull(Session("leave_code_previous_day")) Then
+            Return False
+        ElseIf Session("leave_code_previous_day") = "01" Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
+    'Function getApplicationNumber()
+    '    '''insert into code values ('PP','LA','LEAVE','2003001815','')
+    '    Dim rdr11 As SqlDataReader
+    '    Try
+    '        'rdr11 = SqlHelper.ExecuteReader(ConfigurationSettings.AppSettings("con"), CommandType.Text, "select max(application_number)+1 sequence_number from hr_leave_application_details")
+    '        Dim QUERY As String
+    '        ' QUERY = "select DESCRIPTION from code where application='PP' AND code_type='LA' and code='LEAVE'"
+
+
+    '        'autonumber = CLng(SqlHelper.ExecuteScalar(ConfigurationManager.AppSettings("con"), CommandType.Text, QUERY))
+    '        'autonumber += 1
+    '        'QUERY = "update code set DESCRIPTION ='" & autonumber & "'where application='PP' AND code_type='LA' and code='LEAVE'"
+    '        QUERY = "select MAX(application_number) from hr_leave_application_details "
+
+    '        Dim appnumber As String
+    '        Dim autonumber As Long
+    '        appnumber = SqlHelper.ExecuteScalar(ConfigurationSettings.AppSettings("con"), CommandType.Text, QUERY)
+    '        '  If Left(appnumber, 4) = Trim(CStr(Year(Now.Date))) Then
+    '        autonumber = CLng(appnumber) + 1
+
+    '        ' Else
+    '        ' autonumber = Trim(CStr(Year(Now.Date))) + "000001"
+
+    '        '            End If
+
+    '        ' QUERY = "update code set DESCRIPTION ='" & Trim(CStr(autonumber)) & "'where application='PP' AND code_type='LA' and code='LEAVE'"
+    '        QUERY = "insert into hr_leave_application_details(application_number,EMPNO,application_type,LEAVECODE,from_date,to_date,l_convert,number_of_days,half_days,address,reason,l_confirm,outstation_or_hq,applied_to) values('" & Trim(CStr(autonumber)) & "','txtemployee_code.Text','C','ddlleave_code.SelectedItem.Value','txtleave_from.Text','txtleave_to.Text','ddlconvert.SelectedIndex.Value',txtdays.Text,0,'txtaddress.Text','txtreason.Text','P', 'ddloutstation_or_hq.SelectedItem.Value','12400503337')"
+
+    '        SqlHelper.ExecuteNonQuery(ConfigurationManager.AppSettings("con"), CommandType.Text, QUERY)
+    '        Return autonumber
+    '    Catch ee As Exception
+    '        lblMessage.Text = ee.Message
+    '    End Try
+    'End Function
+    Function getApplicationNumber()
+        Try
+            Dim QUERY As String
+            '  QUERY = "select DESCRIPTION from code where application='PP' AND code_type='LA' and code='LEAVE'"
+            QUERY = "select MAX (CAST(application_number as INT)) from hr_leave_application_details "
+
+            Dim appnumber As String
+            Dim autonumber As Long
+            appnumber = SqlHelper.ExecuteScalar(ConfigurationSettings.AppSettings("con"), CommandType.Text, QUERY)
+            '  If Left(appnumber, 4) = Trim(CStr(Year(Now.Date))) Then
+            autonumber = CLng(appnumber) + 1
+
+            ' Else
+            ' autonumber = Trim(CStr(Year(Now.Date))) + "000001"
+
+            '            End If
+
+            ' QUERY = "update code set DESCRIPTION ='" & Trim(CStr(autonumber)) & "'where application='PP' AND code_type='LA' and code='LEAVE'"
+            ' QUERY = "insert into hr_leave_application_details(application_number,EMPNO,application_type,LEAVECODE,from_date,to_date,l_convert,number_of_days,half_days,address,reason,l_confirm,outstation_or_hq,applied_to) values('" & Trim(CStr(autonumber)) & "',txtemployee_code.Text,'C',ddlleave_code.SelectedItem.Value,'txtleave_from.Text','txtleave_to.Text','ddlconvert.SelectedIndex.Value',txtdays.Text,0,'txtaddress.Text','txtreason.Text','P', 'ddloutstation_or_hq.SelectedItem.Value','12400503337')"
+
+            ' SqlHelper.ExecuteNonQuery(ConfigurationSettings.AppSettings("con"), CommandType.Text, QUERY)
+            Return autonumber
+        Catch ee As Exception
+            lblMessage.Text = ee.Message
+        End Try
+    End Function
+    Private Sub cmdSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmdSave.Click
+        Dim strSQL As String
+        Dim tot_bal, leave_pending As Integer
+        strSQL = "Select (LEAVEOB+LEAVECREDITED-leaveavailed) tot_bal from leave_header where empno='" & Trim(txtemployee_code.Text) & "' and leavecode='" & ddlleave_code.SelectedItem.Value & "'"
+        tot_bal = SqlHelper.ExecuteScalar(ConfigurationSettings.AppSettings("Dbcon"), CommandType.Text, strSQL)
+
+        strSQL = "Select isnull(sum(number_of_days),0) from hr_leave_application_details where empno='" & Trim(txtemployee_code.Text) & "' and leaveCode='" & ddlleave_code.SelectedItem.Value & "' and l_confirm='F'"
+        leave_pending = SqlHelper.ExecuteScalar(ConfigurationSettings.AppSettings("Dbcon"), CommandType.Text, strSQL)
+        strSQL = "select leave_eligibility from hr_leave_master where leave_code='" & Trim(ddlleave_code.SelectedItem.Value) & "'"
+        Dim leave_eligibility As String
+        leave_eligibility = SqlHelper.ExecuteScalar(con, CommandType.Text, strSQL)
+        If leave_eligibility = "T" Then
+            If (leave_pending + Val(txtdays.Text) > tot_bal) Then 'And (Trim(ddlleave_code.SelectedItem.Value) <> "08") And (Trim(ddlleave_code.SelectedItem.Value) <> "PL" And (Trim(ddlleave_code.SelectedItem.Value) <> "18")) Then
+                lblMessage.Text = "Not Enough Leave Balance!!!"
+                Exit Sub
+            End If
+        End If
+        Dim hd_availed As Integer = SqlHelper.ExecuteScalar(con, CommandType.Text, "select isnull(halfcredited,0) from leave_header where empno='" & txtemployee_code.Text & "' and leavecode='01'")
+        Dim hd_total As Integer = SqlHelper.ExecuteScalar(con, CommandType.Text, "select isnull(halfcredited,0) from leave_header where empno='" & txtemployee_code.Text & "' and leavecode='01'")
+
+        If (Session("pay_category1") = "5" And hd_availed + Session("half_days") > hd_total) Then
+            lblMessage.Text = "U have Availed Max of LAP halfdays...."
+            Exit Sub
+        End If
+
+        Dim sqlpara(15) As SqlParameter
+
+        sqlpara(0) = New SqlParameter("@txtapplication_number", txtapplication_number.Text)
+        sqlpara(1) = New SqlParameter("@txtemployee_code", txtemployee_code.Text)
+        sqlpara(2) = New SqlParameter("@ddlleave_code", ddlleave_code.SelectedItem.Value)
+        sqlpara(3) = New SqlParameter("@txtfrom_date", Session("leave_from"))
+        sqlpara(4) = New SqlParameter("@txtto_date", Session("leave_to"))
+        sqlpara(5) = New SqlParameter("@ddlfrom_f_a_indicator", ddlfirst_half_from.SelectedItem.Value)
+        sqlpara(6) = New SqlParameter("@ddlto_f_a_indicator", ddlfirst_half_to.SelectedItem.Value)
+        sqlpara(7) = New SqlParameter("@ddll_convert", ddlconvert.SelectedItem.Value)
+        sqlpara(8) = New SqlParameter("@txtnumber_of_days", txtdays.Text)
+        sqlpara(9) = New SqlParameter("@txtaddress", txtaddress.Text)
+        sqlpara(10) = New SqlParameter("@txtreason", txtreason.Text)
+        sqlpara(11) = New SqlParameter("@ddloutstationHqrs", ddloutstation_or_hq.SelectedItem.Value)
+        sqlpara(12) = New SqlParameter("@half_days", Session("half_days"))
+        sqlpara(13) = New SqlParameter("@change_date", Format(CDate(Now), "MM/dd/yyyy"))
+        sqlpara(14) = New SqlParameter("@change_time", Format(CDate(Now), "MM/dd/yyyy HH:mm:ss"))
+        sqlpara(15) = New SqlParameter("@userid", UCase(Session("bill_unit")))
+
+        Dim insertStr As String
+        insertStr = "insert into hr_leave_application_details (application_number,application_type,l_confirm,applied_to,empno,leavecode,from_date,"
+        insertStr = insertStr & "to_date,from_f_a_indicator,to_f_a_indicator,l_convert,number_of_days,address,reason,"
+        insertStr = insertStr & "outstation_or_hq,half_days,change_time,change_date,user_id) values (@txtapplication_number,"
+        insertStr = insertStr & "'C','p','12400503337',@txtemployee_code,@ddlleave_code,@txtfrom_date,@txtto_date,@ddlfrom_f_a_indicator,@ddlto_f_a_indicator,"
+        insertStr = insertStr & "@ddll_convert,@txtnumber_of_days,@txtaddress,@txtreason,@ddloutstationHqrs,@half_days,"
+        insertStr = insertStr & "@change_time,@change_date,@userid)"
+        Try
+            SqlHelper.ExecuteNonQuery(con, CommandType.Text, insertStr, sqlpara)
+            '   lblMessage.Text = "Note the Application number: " & txtapplication_number.Text
+            Dim i As Integer
+            i = MsgBox("Note the Application number: " & txtapplication_number.Text, 0, "Information")
+            lblMode.Text = "Updated...."
+            Call clearall()
+            'txtapplication_number.Text = getApplicationNumber()
+        Catch ee As Exception
+            Response.Write(ee.Message)
+        End Try
+
+
+    End Sub
+
+    Private Sub getEmployeeDetails()
+        Dim available1 As Boolean = validateemployeenumber()
+        If available1 = True Then
+
+            Call employeedetails()
+            txtleave_from.Text = ""
+            txtleave_to.Text = ""
+            ddlfirst_half_from.SelectedIndex = -1
+            ddlfirst_half_to.SelectedIndex = -1
+            txtdays.Text = ""
+
+            'SELECT DISTINCT leave_code FROM(hr_leave_master)WHERE (sex = 'a') OR (sex = 'f')
+            Session("sex") = SqlHelper.ExecuteScalar(con, CommandType.Text, "select sex from employee_master where empno='" & Trim(txtemployee_code.Text) & "'")
+            Session("pay_category1") = SqlHelper.ExecuteScalar(con, CommandType.Text, "select paycategory from employee_master where empno='" & Trim(txtemployee_code.Text) & "'")
+
+            Dim leavecodestring As String = "select distinct leave_code,description FROM hr_leave_master where sex = 'A' OR sex ='" & Session("sex") & "' and pay_category='" & Session("pay_category1") & "'"
+            rdr = SqlHelper.ExecuteReader(con, CommandType.Text, leavecodestring)
+            'ddlleave_code.DataValueField = "leave_code"
+            'ddlleave_code.DataTextField = "description"
+            'ddlleave_code.DataSource = rdr
+            'ddlleave_code.DataBind()
+            If (Session("sex").Equals("M")) Then
+                ddlleave_code.Items.Remove(ddlleave_code.Items.FindByValue("08"))
+            End If
+            If (Session("sex").Equals("F")) Then
+                ddlleave_code.Items.Remove(ddlleave_code.Items.FindByValue("PL"))
+            End If
+            rdr.Close()
+            'ddlleave_code.Items.Insert(0, "")
+
+            ' to clear the message lable and enable the fields
+            ddlfirst_half_from.Enabled = True
+            ddlfirst_half_to.Enabled = True
+            'lblMessage.Text = ""
+            'lblMode.Text = ""
+
+            ' to get the sex of the employee
+            getemployeesex()
+
+            Call BindGrid1()
+            Call BindGrid2()
+
+        Else
+            lblMessage.Text = "Invalid Employee.."
+            Exit Sub
+
+        End If
+    End Sub
+
+    Sub employeedetails()
+        Dim rdr2 As SqlDataReader
+        Dim sqlstring2 As String
+
+        sqlstring2 = "select empname,desigcode,billunit from employee_master where empno='" & Trim(txtemployee_code.Text) & "'"
+        rdr2 = SqlHelper.ExecuteReader(con, CommandType.Text, sqlstring2)
+        'Dim d As Date
+        While rdr2.Read
+            lblname.Text = IIf(IsDBNull(rdr2.Item("empname")), "", rdr2.Item("empname"))
+            Session("code") = (Trim(rdr2.Item("desigcode")))
+            Session("billunit") = IIf(IsDBNull(rdr2.Item("billunit")), "", rdr2.Item("billunit"))
+        End While
+        rdr2.Close()
+        lbldesignation.Text = SqlHelper.ExecuteScalar(con, CommandType.Text, "select desigcode from employee_master where desigcode='" & Session("code") & "'")
+    End Sub
+
+    Sub getemployeesex()
+        Session("sex") = SqlHelper.ExecuteScalar(con, CommandType.Text, "select sex from employee_master where empno='" & Trim(txtemployee_code.Text) & "'")
+    End Sub
+
+    Function validateemployeenumber() As Boolean
+        Dim available As Boolean
+
+        Dim rdr1 As SqlDataReader
+        Dim sqlstring As String
+        'Dim pass As String
+
+        sqlstring = "select empno from employee_master where empno='" & Trim(txtemployee_code.Text) & "'"
+        rdr1 = SqlHelper.ExecuteReader(ConfigurationSettings.AppSettings("con"), CommandType.Text, sqlstring)
+
+        While rdr1.Read
+            If IsDBNull(rdr1.Item("empno")) = True Then
+                available = False
+            Else
+                available = True
+            End If
+        End While
+        rdr1.Close()
+        Return available
+    End Function
+
+    Private Sub ddlleave_code_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ddlleave_code.SelectedIndexChanged
+        'clear the selections in Forenoon,Afternoon indicators
+        ddlfirst_half_from.SelectedIndex = -1
+        ddlfirst_half_to.SelectedIndex = -1
+        If (ddlleave_code.SelectedItem.Value = "02") Then
+
+            lblcl1.Text = ""
+            lblcl2.Text = ""
+            ddlfirst_half_from.Visible = False
+            ddlfirst_half_to.Visible = False
+            lblcommute.Text = "Commute :"
+
+            ddlconvert.Visible = True
+
+
+        ElseIf (ddlleave_code.SelectedItem.Value = "14") Then
+            lblcommute.Text = ""
+
+            ddlconvert.Visible = False
+
+            lblcl1.Text = "1st half/2nd half :"
+            lblcl2.Text = "1st half/2nd half :"
+            ddlfirst_half_from.Visible = True
+            ddlfirst_half_to.Visible = True
+
+        Else
+
+            lblcl1.Text = ""
+            lblcl2.Text = ""
+            ddlfirst_half_from.Visible = False
+            ddlfirst_half_to.Visible = False
+            lblcommute.Text = ""
+
+            ddlconvert.Visible = False
+
+        End If
+
+        'If ddlleave_code.SelectedItem.Value = "14" Or ddlleave_code.SelectedItem.Value = "01" Or ddlleave_code.SelectedItem.Value = "06" Then
+        '    ddlfirst_half_from.Enabled = True
+        '    ddlfirst_half_to.Enabled = True
+        'Else
+        '    ddlfirst_half_from.Enabled = False
+        '    ddlfirst_half_to.Enabled = False
+        'End If
+
+        'If ddlleave_code.SelectedItem.Value = "02" Then
+        '    ddlconvert.Enabled = True
+        'Else
+        '    ddlconvert.Enabled = False
+        'End If
+
+        If (Session("pay_category1") = "5" And (ddlleave_code.SelectedItem.Value = "01")) Then
+            ddlfirst_half_from.Enabled = True
+            ddlfirst_half_to.Enabled = True
+        End If
+        calculateDays()
+    End Sub
+
+    Private Sub txtleave_to_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtleave_to.TextChanged
+        calculateDays()
+    End Sub
+
+    Private Sub calculateDays()
+        Dim from_Date, to_date As Date
+        lblMessage.Text = ""
+        If Not Len(txtleave_from.Text) > 0 Then
+            Exit Sub
+        End If
+        If Not Len(txtleave_to.Text) > 0 Then
+            Exit Sub
+        End If
+
+        Session("leave_from") = CDate(txtleave_from.Text)
+        Session("leave_to") = CDate(txtleave_to.Text)
+        If CDate(Session("leave_from")) > CDate(Session("leave_to")) Then
+            lblMessage.Text = "From Leave Date Cant be More than To leave Date...."
+            Exit Sub
+        End If
+
+        Dim rdr1 As SqlDataReader
+        Dim sqlst As String = "select from_date,to_date from hr_leave_application_details where empno='" & Trim(txtemployee_code.Text) & "'"
+        rdr1 = SqlHelper.ExecuteReader(ConfigurationSettings.AppSettings("con"), CommandType.Text, sqlst)
+        If Not IsDBNull(rdr1) Then
+            While rdr1.Read
+                Dim ch As Boolean = checkdateinbetween(CDate(Session("leave_from")), CDate(rdr1.Item("from_date")), CDate(rdr1.Item("to_date")))
+                If ch = True Then
+                    lblMessage.Text = "Leave already Availed for this Period.."
+                    Call clearfields()
+                    Exit Sub
+                End If
+
+                Dim ch1 As Boolean = checkdateinbetween(CDate(Session("leave_to")), CDate(rdr1.Item("from_date")), CDate(rdr1.Item("to_date")))
+                If ch1 = True Then
+                    lblMessage.Text = "Leave already Availed for this Period.."
+                    Call clearfields()
+                    Exit Sub
+                End If
+
+            End While
+            rdr1.Close()
+            rdr1 = Nothing
+        End If
+
+        Dim sqlst1 As String = "select lv_prdfm,lv_prdto from hr_payroll_system_files where pay_category='" & Session("pay_category1") & "'"
+        rdr1 = SqlHelper.ExecuteReader(ConfigurationSettings.AppSettings("con"), CommandType.Text, sqlst1)
+        If Not IsDBNull(rdr1) Then
+
+            '''''''''''''''''''''''''''
+            While rdr1.Read
+                Dim ch As Boolean = checkdateinbetween(CDate(Session("leave_from")), CDate(rdr1.Item("lv_prdfm")), CDate(rdr1.Item("lv_prdto")))
+                Dim ch1 As Boolean = checkdateinbetween(CDate(Session("leave_to")), CDate(rdr1.Item("lv_prdfm")), CDate(rdr1.Item("lv_prdto")))
+                If ch = False And CDate(Session("leave_from")) < CDate(rdr1.Item("lv_prdfm")) Then
+                    lblMessage.Text = "Leave Requested is out of Leave Period.."
+                    Call clearfields()
+                    Exit Sub
+                End If
+
+                If ch1 = False And CDate(Session("leave_to")) < CDate(rdr1.Item("lv_prdto")) Then
+                    lblMessage.Text = "Leave Requested is out of Leave Period.."
+                    Call clearfields()
+                    Exit Sub
+                End If
+
+            End While
+            rdr1.Close()
+            rdr1 = Nothing
+            '''''''''''''''''''''''''''''
+
+        End If
+
+
+        'get the number of days applied for leave
+        txtdays.Text = DateDiff(DateInterval.Day, CDate(Session("leave_from")), CDate(Session("leave_to"))) + 1
+
+        Session("total_days1") = DateDiff(DateInterval.Day, CDate(Session("leave_from")), CDate(Session("leave_to"))) + 1
+        If ddlleave_code.SelectedItem.Value = "02" And ddlconvert.SelectedItem.Value = "Y" Then
+            txtdays.Text = CDbl(txtdays.Text) * 2
+        End If
+
+        If (ddlleave_code.SelectedItem.Value = "14" Or ddlleave_code.SelectedItem.Value = "01" Or ddlleave_code.SelectedItem.Value = "06") Then
+            If (((ddlfirst_half_from.SelectedItem.Value = "F") Or (ddlfirst_half_from.SelectedItem.Value = "A")) And (CDate(Session("leave_from")) = CDate(Session("leave_to")))) Then
+                txtdays.Text = "0.5"
+            ElseIf (((ddlfirst_half_from.SelectedItem.Value = "A") And (ddlfirst_half_to.SelectedItem.Value = "F")) And (CDate(Session("leave_from")) <> CDate(Session("leave_to")))) Then
+                Session("total_days1") = Session("total_days1") - 1
+                txtdays.Text = Session("total_days1")
+            ElseIf (((ddlfirst_half_from.SelectedItem.Value = "F") And (ddlfirst_half_to.SelectedItem.Value = "A")) And (CDate(Session("leave_from")) <> CDate(Session("leave_to")))) Then
+                Session("total_days1") = DateDiff(DateInterval.Day, CDate(Session("leave_from")), CDate(Session("leave_to"))) + 1
+                'Session("total_days1") = Session("total_days1")
+                txtdays.Text = Session("total_days1")
+            ElseIf (((ddlfirst_half_from.SelectedItem.Value = "F") And (ddlfirst_half_to.SelectedItem.Value = "F")) And (CDate(Session("leave_from")) <> CDate(Session("leave_to")))) Then
+                Session("total_days1") = Session("total_days1") - 0.5
+                txtdays.Text = Session("total_days1")
+            ElseIf (((ddlfirst_half_from.SelectedItem.Value = "A") And (ddlfirst_half_to.SelectedItem.Value = "A")) And (CDate(Session("leave_from")) <> CDate(Session("leave_to")))) Then
+                Session("total_days1") = Session("total_days1") - 0.5
+                txtdays.Text = Session("total_days1")
+            ElseIf (((ddlfirst_half_from.SelectedItem.Value = "A") And (ddlfirst_half_to.SelectedItem.Value = "")) And (CDate(Session("leave_from")) <> CDate(Session("leave_to")))) Then
+                Session("total_days1") = Session("total_days1") - 0.5
+                txtdays.Text = Session("total_days1")
+            End If
+
+        End If
+
+    End Sub
+
+    Sub clearfields()
+        Session("leave_from") = ""
+        txtleave_to.Text = ""
+        txtleave_from.Text = ""
+        ddlconvert.SelectedIndex = -1
+        ddlleave_code.SelectedIndex = -1
+        txtdays.Text = ""
+    End Sub
+
+    Function checkdateinbetween(ByVal d As Date, ByVal d1 As Date, ByVal d2 As Date)
+        If d >= d1 And d <= d2 Then
+            Return True
+            Exit Function
+        End If
+    End Function
+
+    Sub clearall()
+        txtaddress.Text = ""
+        txtapplication_number.Text = ""
+        txtdays.Text = ""
+        txtemployee_code.Text = ""
+        txtleave_from.Text = ""
+        txtleave_to.Text = ""
+        txtreason.Text = ""
+        ddlconvert.SelectedIndex = -1
+        ddlfirst_half_from.SelectedIndex = -1
+        ddlfirst_half_to.SelectedIndex = -1
+        ddlleave_code.SelectedIndex = -1
+        ddloutstation_or_hq.SelectedIndex = -1
+    End Sub
+
+    Private Sub BindGrid1()
+        Dim sqlstring2 As String = "select distinct b.description,convert(varchar,a.from_date,103) [from_date],convert(varchar,a.to_date,103) [to_date],a.number_of_days from hr_leave_application_details a, hr_leave_master b where a.leavecode=b.leave_code and a.empno='" & Trim(txtemployee_code.Text) & "'"
+        Dim myCommand As New SqlDataAdapter(sqlstring2, con)
+        Dim ds As New DataSet()
+        myCommand.Fill(ds)
+        DataGrid1.DataSource = ds
+        DataGrid1.DataBind()
+    End Sub
+
+    Private Sub BindGrid2()
+        Dim sqlstring2 As String
+        'sqlstring2= "select leave_code, total_leave_availed, total_leave_accumulated + total_leave_eligibility - total_leave_availed AS balance from hr_leave_header where employee_code='" & Trim(txtemployee_code.Text) & "'"
+        sqlstring2 = "  select distinct b.description as leavecode, leaveavailed, leaveob + leavecredited - leaveavailed AS balance "
+        sqlstring2 &= " from leave_header a, hr_leave_master b"
+        sqlstring2 &= " where empno='" & Trim(txtemployee_code.Text) & "'"
+        sqlstring2 &= " and a.leavecode=b.leave_code and b.leave_code <> '00'"
+
+        Dim myCommand As New SqlDataAdapter(sqlstring2, con)
+        Dim ds As New DataSet()
+        myCommand.Fill(ds)
+
+        Datagrid2.DataSource = ds
+        Datagrid2.DataBind()
+
+    End Sub
+
+    Private Sub txtleave_from_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtleave_from.TextChanged
+        lblMessage.Text = ""
+
+        calculateDays()
+        'to check if from date is greater than to date
+        If (txtleave_to.Text <> "") Then
+            If CDate(Session("leave_from")) > CDate(Session("leave_to")) Then
+                lblMessage.Text = "From Leave Date Cant be More than To leave Date...."
+                Call clearfields()
+                Exit Sub
+            End If
+
+        End If
+
+        ' check if the leave code field is empty
+        If ddlleave_code.SelectedItem.Value = "" Then
+            lblMessage.Text = "Leave Code Empty!"
+            Exit Sub
+        End If
+
+        ' check if the previous day is applied CL
+        If ddlleave_code.SelectedItem.Value = "01" Then
+            Dim clcombination As Boolean = checkforCL()
+            If clcombination = True Then
+                lblMessage.Text = "CL combination with LAP is not allowed"
+                Call clearfields()
+                Exit Sub
+            End If
+            '' check if the previous day is LAP
+            ''ElseIf ddlleave_code.SelectedItem.Value = "14" Then
+            ''    Dim lapcombination As Boolean = checkforLAP()
+            ''    If lapcombination = True Then
+            ''        lblMessage.Text = "LAP combination with CL is not allowed"
+            ''        Call clearfields()
+            ''        Exit Sub
+            ''    End If
+        End If
+
+
+        If (ddlleave_code.SelectedItem.Value = "14") Then
+            If txtleave_to.Text <> "" Then
+
+                Session("total_days1") = DateDiff(DateInterval.Day, CDate(Session("leave_from")), CDate(Session("leave_to"))) + 1
+                If (CDate(Session("leave_from")) = CDate(Session("leave_to")) And ddlfirst_half_from.SelectedItem.Value = "" And ddlfirst_half_to.SelectedItem.Value = "") Then
+                    txtdays.Text = "1"
+
+                ElseIf (CDate(Session("leave_from")) = CDate(Session("leave_to")) And ddlfirst_half_from.SelectedItem.Value = "A" And (ddlfirst_half_to.SelectedItem.Value = "" Or ddlfirst_half_to.SelectedItem.Value = "A" Or ddlfirst_half_to.SelectedItem.Value = "F")) Then
+                    txtdays.Text = "0.5"
+
+                ElseIf (CDate(Session("leave_from")) = CDate(Session("leave_to")) And ddlfirst_half_from.SelectedItem.Value = "F" And (ddlfirst_half_to.SelectedItem.Value = "" Or ddlfirst_half_to.SelectedItem.Value = "A" Or ddlfirst_half_to.SelectedItem.Value = "F")) Then
+                    txtdays.Text = "1"
+
+                ElseIf (((ddlfirst_half_from.SelectedItem.Value = "A") And (ddlfirst_half_to.SelectedItem.Value = "F")) And (CDate(Session("leave_from")) <> CDate(Session("leave_to")))) Then
+                    Session("total_days1") = Session("total_days1") - 1
+                    txtdays.Text = Session("total_days1")
+
+                ElseIf (((ddlfirst_half_from.SelectedItem.Value = "F") And (ddlfirst_half_to.SelectedItem.Value = "A")) And (CDate(Session("leave_from")) <> CDate(Session("leave_to")))) Then
+                    Session("total_days1") = Session("total_days1")
+                    txtdays.Text = Session("total_days1")
+
+                ElseIf (((ddlfirst_half_from.SelectedItem.Value = "F") And (ddlfirst_half_to.SelectedItem.Value = "F")) And (CDate(Session("leave_from")) <> CDate(Session("leave_to")))) Then
+                    Session("total_days1") = Session("total_days1") - 0.5
+                    txtdays.Text = Session("total_days1")
+
+                ElseIf (((ddlfirst_half_from.SelectedItem.Value = "A") And (ddlfirst_half_to.SelectedItem.Value = "A")) And (CDate(Session("leave_from")) <> CDate(Session("leave_to")))) Then
+                    Session("total_days1") = Session("total_days1") - 0.5
+                    txtdays.Text = Session("total_days1")
+
+                ElseIf (((ddlfirst_half_from.SelectedItem.Value = "") And (ddlfirst_half_to.SelectedItem.Value = "")) And (CDate(Session("leave_from")) <> CDate(Session("leave_to")))) Then
+                    txtdays.Text = DateDiff(DateInterval.Day, CDate(Session("leave_from")), CDate(Session("leave_to"))) + 1
+                    'txtdays.Text = Session("total_days1")
+                End If
+            End If
+
+        End If
+
+    End Sub
+
+    Private Sub ddlfirst_half_to_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ddlfirst_half_to.SelectedIndexChanged
+
+        Session("total_days1") = DateDiff(DateInterval.Day, CDate(Session("leave_from")), CDate(Session("leave_to"))) + 1
+
+        If (ddlleave_code.SelectedItem.Value = "14" Or (ddlleave_code.SelectedItem.Value = "01" And Session("pay_category1") = "5")) Then
+            If (((ddlfirst_half_from.SelectedItem.Value = "F") Or (ddlfirst_half_from.SelectedItem.Value = "A")) And (CDate(Session("leave_from")) = CDate(Session("leave_to")))) Then
+                txtdays.Text = "0.5"
+            ElseIf (((ddlfirst_half_from.SelectedItem.Value = "A") And (ddlfirst_half_to.SelectedItem.Value = "F")) And (CDate(Session("leave_from")) <> CDate(Session("leave_to")))) Then
+                Session("total_days1") = Session("total_days1") - 1
+                txtdays.Text = Session("total_days1")
+            ElseIf (((ddlfirst_half_from.SelectedItem.Value = "F") And (ddlfirst_half_to.SelectedItem.Value = "A")) And (CDate(Session("leave_from")) <> CDate(Session("leave_to")))) Then
+                Session("total_days1") = Session("total_days1")
+                txtdays.Text = Session("total_days1")
+            ElseIf (((ddlfirst_half_from.SelectedItem.Value = "F") And (ddlfirst_half_to.SelectedItem.Value = "F")) And (CDate(Session("leave_from")) <> CDate(Session("leave_to")))) Then
+                Session("total_days1") = Session("total_days1") - 0.5
+                txtdays.Text = Session("total_days1")
+            ElseIf (((ddlfirst_half_from.SelectedItem.Value = "A") And (ddlfirst_half_to.SelectedItem.Value = "A")) And (CDate(Session("leave_from")) <> CDate(Session("leave_to")))) Then
+                Session("total_days1") = Session("total_days1") - 0.5
+                txtdays.Text = Session("total_days1")
+            ElseIf (((ddlfirst_half_from.SelectedItem.Value = "F") And (ddlfirst_half_to.SelectedItem.Value = "")) And (CDate(Session("leave_from")) <> CDate(Session("leave_to")))) Then
+                Session("total_days1") = DateDiff(DateInterval.Day, CDate(Session("leave_from")), CDate(Session("leave_to"))) + 1
+                txtdays.Text = Session("total_days1")
+            ElseIf (((ddlfirst_half_from.SelectedItem.Value = "F") And (ddlfirst_half_to.SelectedItem.Value = "")) And (CDate(Session("leave_from")) <> CDate(Session("leave_to")))) Then
+                Session("total_days1") = DateDiff(DateInterval.Day, CDate(Session("leave_from")), CDate(Session("leave_to"))) + 1
+                Session("total_days1") = Session("total_days1") - 0.5
+                txtdays.Text = Session("total_days1")
+            ElseIf (((ddlfirst_half_from.SelectedItem.Value = "") And (ddlfirst_half_to.SelectedItem.Value = "F")) And (CDate(Session("leave_from")) <> CDate(Session("leave_to")))) Then
+                Session("total_days1") = DateDiff(DateInterval.Day, CDate(Session("leave_from")), CDate(Session("leave_to"))) + 1
+                Session("total_days1") = Session("total_days1") - 0.5
+                txtdays.Text = Session("total_days1")
+            ElseIf (((ddlfirst_half_from.SelectedItem.Value = "") And (ddlfirst_half_to.SelectedItem.Value = "A")) And (CDate(Session("leave_from")) <> CDate(Session("leave_to")))) Then
+                Session("total_days1") = DateDiff(DateInterval.Day, CDate(Session("leave_from")), CDate(Session("leave_to"))) + 1
+                Session("total_days1") = Session("total_days1")
+                txtdays.Text = Session("total_days1")
+            End If
+
+        End If
+    End Sub
+    Private Sub ddlfirst_half_from_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ddlfirst_half_from.SelectedIndexChanged
+
+        If (txtleave_to.Text <> "") Then
+            Session("total_days1") = DateDiff(DateInterval.Day, CDate(Session("leave_from")), CDate(Session("leave_to"))) + 1
+
+            If (ddlleave_code.SelectedItem.Value = "14" Or (ddlleave_code.SelectedItem.Value = "01" And Session("pay_category1") = "5")) Then
+                If (((ddlfirst_half_from.SelectedItem.Value = "F") Or (ddlfirst_half_from.SelectedItem.Value = "A")) And (CDate(Session("leave_from")) = CDate(Session("leave_to")))) Then
+                    txtdays.Text = "0.5"
+                ElseIf (((ddlfirst_half_from.SelectedItem.Value = "A") And (ddlfirst_half_to.SelectedItem.Value = "F")) And (CDate(Session("leave_from")) <> CDate(Session("leave_to")))) Then
+                    Session("total_days1") = DateDiff(DateInterval.Day, CDate(Session("leave_from")), CDate(Session("leave_to"))) + 1
+                    Session("total_days1") = Session("total_days1") - 1
+                    txtdays.Text = Session("total_days1")
+                ElseIf (((ddlfirst_half_from.SelectedItem.Value = "F") And (ddlfirst_half_to.SelectedItem.Value = "A")) And (CDate(Session("leave_from")) <> CDate(Session("leave_to")))) Then
+                    Session("total_days1") = Session("total_days1")
+                    txtdays.Text = Session("total_days1")
+                ElseIf (((ddlfirst_half_from.SelectedItem.Value = "F") And (ddlfirst_half_to.SelectedItem.Value = "F")) And (CDate(Session("leave_from")) <> CDate(Session("leave_to")))) Then
+                    Session("total_days1") = DateDiff(DateInterval.Day, CDate(Session("leave_from")), CDate(Session("leave_to"))) + 1
+                    Session("total_days1") = Session("total_days1") - 0.5
+                    txtdays.Text = Session("total_days1")
+                ElseIf (((ddlfirst_half_from.SelectedItem.Value = "A") And (ddlfirst_half_to.SelectedItem.Value = "A")) And (CDate(Session("leave_from")) <> CDate(Session("leave_to")))) Then
+                    Session("total_days1") = DateDiff(DateInterval.Day, CDate(Session("leave_from")), CDate(Session("leave_to"))) + 1
+                    Session("total_days1") = Session("total_days1") - 0.5
+                    txtdays.Text = Session("total_days1")
+                ElseIf (((ddlfirst_half_from.SelectedItem.Value = "A") And (ddlfirst_half_to.SelectedItem.Value = "")) And (CDate(Session("leave_from")) <> CDate(Session("leave_to")))) Then
+                    Session("total_days1") = DateDiff(DateInterval.Day, CDate(Session("leave_from")), CDate(Session("leave_to"))) + 1
+                    Session("total_days1") = Session("total_days1") - 0.5
+                    txtdays.Text = Session("total_days1")
+                ElseIf (((ddlfirst_half_from.SelectedItem.Value = "") And (ddlfirst_half_to.SelectedItem.Value = "")) And (CDate(Session("leave_from")) <> CDate(Session("leave_to")))) Then
+                    Session("total_days1") = DateDiff(DateInterval.Day, CDate(Session("leave_from")), CDate(Session("leave_to"))) + 1
+                    txtdays.Text = Session("total_days1")
+                ElseIf (((ddlfirst_half_from.SelectedItem.Value = "F") And (ddlfirst_half_to.SelectedItem.Value = "")) And (CDate(Session("leave_from")) <> CDate(Session("leave_to")))) Then
+                    Session("total_days1") = DateDiff(DateInterval.Day, CDate(Session("leave_from")), CDate(Session("leave_to"))) + 1
+                    txtdays.Text = Session("total_days1")
+                End If
+            End If
+        End If
+    End Sub
+    Private Sub DataGrid1_PageIndexChanged(ByVal source As Object, ByVal e As System.Web.UI.WebControls.DataGridPageChangedEventArgs) Handles DataGrid1.PageIndexChanged
+        DataGrid1.CurrentPageIndex = e.NewPageIndex
+        BindGrid1()
+    End Sub
+    Private Sub ddlconvert_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ddlconvert.SelectedIndexChanged
+        calculateDays()
+    End Sub
+
+    Private Sub Datagrid2_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Datagrid2.SelectedIndexChanged
+
+    End Sub
+
+
+    Private Sub txtemployee_code_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtemployee_code.TextChanged
+        getEmployeeDetails()
+        cmdSave.Enabled = True
+
+    End Sub
+End Class
