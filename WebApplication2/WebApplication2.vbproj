@@ -351,6 +351,7 @@
     <Content Include="Quality_Forms\SPECTRO\Transaction\JMPSampleData.aspx" />
     <Content Include="wapframesetpp.aspx" />
     <Content Include="WapGroupset.aspx" />
+    <Content Include="WebFormRiddhi.aspx" />
     <Content Include="WFPS_Forms\CLRINS\Query\RMWheelsQry.aspx" />
     <Content Include="WFPS_Forms\MLDNFDF\Transaction\EditDrawfurnaceDetails.aspx" />
     <Content Include="WFPS_Forms\MLDNFDF\Transaction\EditDrawFurnaceZoneTemp.aspx" />
@@ -1593,6 +1594,13 @@
     <Compile Include="WapGroupset.aspx.vb">
       <DependentUpon>WapGroupset.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebFormRiddhi.aspx.designer.vb">
+      <DependentUpon>WebFormRiddhi.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebFormRiddhi.aspx.vb">
+      <DependentUpon>WebFormRiddhi.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="WFPS_Forms\CLRINS\Query\RMWheelsQry.aspx.vb">
       <DependentUpon>RMWheelsQry.aspx</DependentUpon>
